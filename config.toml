@@ -1,0 +1,33 @@
+base_url = "https://fborello-lambda.github.io/"
+title = "In Case I Forget"
+compile_sass = true
+build_search_index = true
+theme = "apollo"
+taxonomies = [{ name = "tags" }]
+
+[markdown]
+highlight_code = true
+highlight_theme = "ayu-light"
+
+[extra]
+toc = true
+theme = "toggle"
+fancy_code = true
+dynamic_note = true
+mathjax = true
+mathjax_dollar_inline_enable = true
+menu = [
+    { name = "/notes_ee", url = "/notes_ee", weight = 1 },
+    { name = "/notes_cs", url = "/notes_cs", weight = 2 },
+    { name = "/notes_devops", url = "/notes_devops", weight = 3 },
+    { name = "/projects", url = "/projects", weight = 4 },
+    { name = "/tags", url = "/tags", weight = 5 },
+]
+socials = [
+    { name = "github", url = "https://github.com/fborello-lambda", icon = "github" },
+]
+stylesheets = [
+    "dark.css",  # without this the sass/dark.scss file is not used
+    "light.css", # without this the sass/light.scss file is not used
+]
+favicon = "/icons/bug-icon.svg"

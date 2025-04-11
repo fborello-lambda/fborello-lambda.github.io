@@ -1,0 +1,28 @@
+name: Zola on GitHub Pages
+
+## Inside Settings > Actions > General > Workflow permissions
+##  Give Read and write permissions
+
+## Inside Settings > Pages
+##  Select: Deploy from a branch and choose `gh-pages`
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Publish site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+      - name: Build and deploy
+        uses: shalzz/zola-deploy-action@v0.20.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
