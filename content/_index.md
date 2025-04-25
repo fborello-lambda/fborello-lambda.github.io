@@ -12,6 +12,20 @@ The notes and even the code may not make sense. The code may be flaky or poorly 
 - [Notes from My Time at LambdaClass](./notes_at_lambdaclass)
 - [Blogs and Links](./blogs_and_links)
 
+# Quotes
+
+> “The hard work of the future will be pushing buttons”
+>
+> -- Nikola Tesla
+
+> “Tell me and I forget, teach me and I may remember, involve me and I learn.”
+>
+> -- Benjamin Franklin
+
+> “[...]Don't think about what you want to be, but what you want to do.[...]”
+>
+> -- Richard P. Feynman
+
 # Structure
 - [notes_ee](./notes_ee)
   - Notes about Electronics/Hardware.
