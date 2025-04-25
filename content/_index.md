@@ -33,6 +33,8 @@ The notes and even the code may not make sense. The code may be flaky or poorly 
   - Notes about Computer Science/Programming.
 - [notes_devops](./notes_devops)
   - Notes about DevOps/Hosting/OSes/HomeLabs.
+- [notes_misc](./notes_misc)
+  - Notes about Philosophy/Non-Technical topics.
 - [projects](./projects)
   - Some "big" projects I would like to highlight.
 - [tags](./tags).

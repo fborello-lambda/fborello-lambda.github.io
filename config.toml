@@ -17,11 +17,12 @@ dynamic_note = true
 mathjax = true
 mathjax_dollar_inline_enable = true
 menu = [
-    { name = "/notes_ee", url = "/notes_ee", weight = 1 },
-    { name = "/notes_cs", url = "/notes_cs", weight = 2 },
-    { name = "/notes_devops", url = "/notes_devops", weight = 3 },
-    { name = "/projects", url = "/projects", weight = 4 },
-    { name = "/tags", url = "/tags", weight = 5 },
+    { name = "/ee", url = "/notes_ee", weight = 1 },
+    { name = "/cs", url = "/notes_cs", weight = 2 },
+    { name = "/devops", url = "/notes_devops", weight = 3 },
+    { name = "/misc", url = "/notes_misc", weight = 4 },
+    { name = "/projects", url = "/projects", weight = 5 },
+    { name = "/tags", url = "/tags", weight = 6 },
 ]
 socials = [
     { name = "github", url = "https://github.com/fborello-lambda", icon = "github" },
