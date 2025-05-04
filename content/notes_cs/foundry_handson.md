@@ -6,8 +6,7 @@ date = 2024-08-26
 tags=["programming", "web3"]
 +++
 
-
-# How to use Foundry with OpenZeppelin
+## How to use Foundry with OpenZeppelin
 
 [Installation - Foundry Book](https://book.getfoundry.sh/getting-started/installation)
 
@@ -81,7 +80,6 @@ contract Token is ERC20 {
 Then we have to change the deployment script `script/Token.s.sol`:
 
 - Reference: [Solidity Scripting - Foundry Book](https://book.getfoundry.sh/tutorials/solidity-scripting)
-
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED

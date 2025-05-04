@@ -6,11 +6,11 @@ date = 2024-05-01
 tags=["ethereum", "programming"]
 +++
 
-# Ethereum
+## Ethereum
 
 ## [Glossary](https://ethereum.org/en/glossary/)
 
-The Ethereum organization proposes some specs or improvements `EIPs` , this specs are what ***Architecture*** means for hardware*.*
+The Ethereum organization proposes some specs or improvements `EIPs` , this specs are what **_Architecture_** means for hardware.
 
 Updates are released when a certain block height is met. All execution clients agree on the height.
 
@@ -28,7 +28,6 @@ System Contracts → Contracts that provide general purpose code, some interact 
 Contract’s events:
 
 > You should emit an event anytime something occurs in your smart contract that some system outside the blockchain should be aware of so that the outside system may listen for such occurrences
-> 
 
 [What are Paymasters?](https://www.stackup.sh/blog/what-are-paymasters)
 
@@ -42,19 +41,19 @@ Rollups:
 
 - Optimistic
 - zk Rollups
-    - Validium → Proofs are not stored on the blockchain.
-    - Sometimes, a merkletree that contains all the transactions hashes is built and then the root composes the zk Proof that is later stored on the L1.
+  - Validium → Proofs are not stored on the blockchain.
+  - Sometimes, a merkletree that contains all the transactions hashes is built and then the root composes the zk Proof that is later stored on the L1.
 
 Rollup operation requires the assistance of an operator, who rolls transactions together, computes a zero-knowledge proof of the correct state transition, and affects the state transition by interacting with the rollup contract.
 
 [Sharding](https://ethereum.org/es/roadmap/danksharding/)
 
-zkEVM → Solves the problem of creating a general purpose verifier. Taking into account that the `circuit` (Arithmetization of the problem) has to be fixed in order to verify proofs, the idea is to have a so called `Virtual Machine` that operates like a processor whose proof takes into account each step of the execution. 
+zkEVM → Solves the problem of creating a general purpose verifier. Taking into account that the `circuit` (Arithmetization of the problem) has to be fixed in order to verify proofs, the idea is to have a so called `Virtual Machine` that operates like a processor whose proof takes into account each step of the execution.
 
 - [TinyRAM](https://www.scipr-lab.org/doc/TinyRAM-spec-2.000.pdf) inspires the zkSync’s zkEVM
 - How is the zkEVM compatible with Solidity? Solidity → compiles to → Yul → compiles to LLVM → Then the bytecode is interpreted by the zkEVM.
 
-## EVM 
+## EVM
 
 [EVM Deep Dives: The Path to Shadowy Super Coder 🥷 💻 - Part 1](https://noxx.substack.com/p/evm-deep-dives-the-path-to-shadowy)
 
@@ -67,17 +66,17 @@ zkEVM → Solves the problem of creating a general purpose verifier. Taking into
 - [Merkle Patricia Trie | ethereum.org](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie)
 - [Verkle trees | ethereum.org](https://ethereum.org/en/roadmap/verkle-trees)
 - Opcodes:
-    - [Ethereum Foundation Opcodes](https://ethereum.org/en/developers/docs/evm/opcodes/)
-    - [Opcodes interactive](https://ethervm.io/)
-    - [David J. Pearce (Disassembling EVM Bytecode (the Basics))](https://whileydave.com/2023/01/04/disassembling-evm-bytecode-the-basics/)
+  - [Ethereum Foundation Opcodes](https://ethereum.org/en/developers/docs/evm/opcodes/)
+  - [Opcodes interactive](https://ethervm.io/)
+  - [David J. Pearce (Disassembling EVM Bytecode (the Basics))](https://whileydave.com/2023/01/04/disassembling-evm-bytecode-the-basics/)
 - Logs
-    - [Understanding event logs on the Ethereum blockchain | by Luit Hollander | MyCrypto | Medium](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378)
-    - [Ethereum Logs and Events - What are Event Logs on the Ethereum Network](https://moralis.io/ethereum-logs-and-events-what-are-event-logs-on-the-ethereum-network/)
-    - [go ethereum - Understanding logs and log blooms - Ethereum Stack Exchange](https://ethereum.stackexchange.com/questions/12553/understanding-logs-and-log-blooms) (Important)
+  - [Understanding event logs on the Ethereum blockchain | by Luit Hollander | MyCrypto | Medium](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378)
+  - [Ethereum Logs and Events - What are Event Logs on the Ethereum Network](https://moralis.io/ethereum-logs-and-events-what-are-event-logs-on-the-ethereum-network/)
+  - [go ethereum - Understanding logs and log blooms - Ethereum Stack Exchange](https://ethereum.stackexchange.com/questions/12553/understanding-logs-and-log-blooms) (Important)
 - Gas
   - [maxPriorityFeePerGas vs maxFeePerGas](https://docs.alchemy.com/docs/maxpriorityfeepergas-vs-maxfeepergas)
   - [EIP-1559 Gas Fees: Base Fee, Priority Fee, & Max Fee](https://www.blocknative.com/blog/eip-1559-fees)
-  
+
 [How to convert eth gas price in gwei to $. : r/ethereum](https://www.reddit.com/r/ethereum/comments/pxze1i/how_to_convert_eth_gas_price_in_gwei_to/):
 
 ```sh
@@ -93,10 +92,11 @@ Assume gas price 131 gwei
 ```
 
 ## Yul | EVM's "Assembly" lang
+
 - earn yul:
-    - [Docs](https://docs.soliditylang.org/en/latest/yul.html)
-    - [learn-yul](https://github.com/andreitoma8/learn-yul)
-  
+  - [Docs](https://docs.soliditylang.org/en/latest/yul.html)
+  - [learn-yul](https://github.com/andreitoma8/learn-yul)
+
 ## ZK Rollups
 
 Blogposts:
@@ -127,7 +127,7 @@ contract SimpleStorage {
     function get() public view returns (uint) {
         return n;
     }
-    
+
     // Pure functions neither read nor write the Blockchain's state
     function add(uint i, uint j) public pure returns (uint) {
         return i + j;
@@ -138,49 +138,47 @@ contract SimpleStorage {
 - Solidity interprets the `Contract` keyword as the “entry point”, just like the `main` function in a programming language.
 - Smart Contracts are atomic, if one operation fails, the entire operation is reverted without altering the Blockchain’s state.
 - The variables that are outside `functions` are stored in the Blockchain. And are called `State variables` . A scheme of “getters” and “setters” is used.
-    - If the function takes inputs like our `set` function (line 9), you must specify the parameter types and names. A common convention is to use an underscore as a prefix for the parameter name to distinguish them from state variables.
+  - If the function takes inputs like our `set` function (line 9), you must specify the parameter types and names. A common convention is to use an underscore as a prefix for the parameter name to distinguish them from state variables.
 - `pure` and `view` functions don’t modify the Blockchain’s state.
-    
-    "The following statements are considered modifying the state:
-    
-    1. Writing to state variables / Reading from state variables.
-    2. Emitting events.
-    3. Creating other contracts.
-    4. Using selfdestruct.
-    5. Sending Ether via calls.
-    6. Calling any function not marked view or pure.
-    7. Using low-level calls.
-    8. Using inline assembly that contains certain opcodes."
-    9. Accessing `address(this).balance` or `<address>.balance`.
-    10. Accessing any of the members of block, tx, msg (with the exception of `msg.sig` and `msg.data`).
+  "The following statements are considered modifying the state:
+  1. Writing to state variables / Reading from state variables.
+  2. Emitting events.
+  3. Creating other contracts.
+  4. Using selfdestruct.
+  5. Sending Ether via calls.
+  6. Calling any function not marked view or pure.
+  7. Using low-level calls.
+  8. Using inline assembly that contains certain opcodes."
+  9. Accessing `address(this).balance` or `<address>.balance`.
+  10. Accessing any of the members of block, tx, msg (with the exception of `msg.sig` and `msg.data`).
 - `Modifiers` and `Constructors`
-    - A `Constructor` is called the first time the contract is deployed.
-    - A `Modifier` is used to change the behavior of a function, in other words, it checks some parameters and executes the function. An `_` (underscore) is used to symbolize the function’s code: The code you place before the underscore in the modifier will be executed before the code in the body of the modified function. The code after the underscore will be executed after the code in the body of the modified function. [require](https://docs.soliditylang.org/en/latest/control-structures.html#error-handling-assert-require-revert-and-exceptions) keyword.
+  - A `Constructor` is called the first time the contract is deployed.
+  - A `Modifier` is used to change the behavior of a function, in other words, it checks some parameters and executes the function. An `_` (underscore) is used to symbolize the function’s code: The code you place before the underscore in the modifier will be executed before the code in the body of the modified function. The code after the underscore will be executed after the code in the body of the modified function. [require](https://docs.soliditylang.org/en/latest/control-structures.html#error-handling-assert-require-revert-and-exceptions) keyword.
 - Function visibilty:
-    - private: only inside the contract
-    - internal: inside the contract and by child contract
-    - public: inside contract, child contract and other contracts or transactions
-    - external: only called by other contracts or transactions, state variables can not be external
+  - private: only inside the contract
+  - internal: inside the contract and by child contract
+  - public: inside contract, child contract and other contracts or transactions
+  - external: only called by other contracts or transactions, state variables can not be external
 - [What are the virtual and override keywords in Solidity? - Ethereum Stack Exchange](https://ethereum.stackexchange.com/questions/78572/what-are-the-virtual-and-override-keywords-in-solidity)
 - DataTypes
-    - Arrays
-    - Enums
-    - Structs
-    - Mappings (Used to store values related to an `address`)
-        - `mapping(address => uint) balance;`
-        - Accessing: `balance[_addr];`
-        - Nested mappings are allowed.
+  - Arrays
+  - Enums
+  - Structs
+  - Mappings (Used to store values related to an `address`)
+    - `mapping(address => uint) balance;`
+    - Accessing: `balance[_addr];`
+    - Nested mappings are allowed.
 - DataLocations
-    - [When to use Storage vs. Memory vs. Calldata in Solidity](https://docs.alchemy.com/docs/when-to-use-storage-vs-memory-vs-calldata-in-solidity)
-    - Storage: stores the data permanently on the Blockchain
-        - Variables located inside a `contract` but outside `functions` are called State variables, and are stored in `storage` .
-    - Memory: Values stored in `memory` are only stored temporarily and are not on the blockchain, variables inside `functions` are stored in memory, sometimes the keyword is needed to specify which type of DataLocation is needed.
-    - Calldata: stores function arguments. The data is stored temporarily and cannot be mutated.
-    - Assignments:
-        - Memory to Memory:  This creates a reference.
-        - “Global” Storage to “Local” Storage: This creates a reference.
-        - Storage and Memory/Calldata: This creates a copy.
-    - `.selector` [go ethereum - explanation of appending .selector in solidity smart contracts - Ethereum Stack Exchange](https://ethereum.stackexchange.com/questions/72687/explanation-of-appending-selector-in-solidity-smart-contracts)
+  - [When to use Storage vs. Memory vs. Calldata in Solidity](https://docs.alchemy.com/docs/when-to-use-storage-vs-memory-vs-calldata-in-solidity)
+  - Storage: stores the data permanently on the Blockchain
+    - Variables located inside a `contract` but outside `functions` are called State variables, and are stored in `storage` .
+  - Memory: Values stored in `memory` are only stored temporarily and are not on the blockchain, variables inside `functions` are stored in memory, sometimes the keyword is needed to specify which type of DataLocation is needed.
+  - Calldata: stores function arguments. The data is stored temporarily and cannot be mutated.
+  - Assignments:
+    - Memory to Memory: This creates a reference.
+    - “Global” Storage to “Local” Storage: This creates a reference.
+    - Storage and Memory/Calldata: This creates a copy.
+  - `.selector` [go ethereum - explanation of appending .selector in solidity smart contracts - Ethereum Stack Exchange](https://ethereum.stackexchange.com/questions/72687/explanation-of-appending-selector-in-solidity-smart-contracts)
 
 [SPDX licenses](https://spdx.org/licenses/)
 

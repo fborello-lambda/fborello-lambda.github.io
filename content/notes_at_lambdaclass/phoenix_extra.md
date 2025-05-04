@@ -6,7 +6,7 @@ date = 2024-05-01
 tags=["programming", "phx"]
 +++
 
-# Phoenix 
+## Phoenix
 
 - **[FLAME](https://fly.io/blog/rethinking-serverless-with-flame/)**
 - [Dokku - PaaS](https://dokku.com/)
@@ -17,18 +17,18 @@ tags=["programming", "phx"]
 
 - [Elixir Streams |> Phoenix forms without changesets!](https://www.elixirstreams.com/tips/phoenix-forms-without-changesets)
 - Tailwind
-    - [Tailwind Tutorial](https://github.com/dwyl/learn-tailwind)
-    - [Heroicons](https://heroicons.com/)
+  - [Tailwind Tutorial](https://github.com/dwyl/learn-tailwind)
+  - [Heroicons](https://heroicons.com/)
 - A good way to use "Views" with liveview is to put them in `app_web/live/view1.ex`. The view1 could be the homepage for example and inside it goes the html using `~H` . Then `router.ex` calls the defined module in `view1.ex`  → [Phoenix LiveView Counter](https://github.com/dwyl/phoenix-liveview-counter-tutorial).
 - [Starknet Explorer](https://www.starkcompass.com/) → The following file of the repo shows the default layout of every view [Repo](https://github.com/lambdaclass/stark_compass_explorer/blob/main/lib/starknet_explorer_web/components/layouts/root.html.heex)
 
-## OpenApi → 
+## OpenApi
 
 - [Open API Specifications for Elixir Plug applications](https://github.com/open-api-spex/open_api_spex)
 - [How to design better APIs. 15 language-agnostic, actionable tips on REST API design](https://r.bluethl.net/how-to-design-better-apis)
 - [Swagger integration to Phoenix framework](https://github.com/xerions/phoenix_swagger)
 
-## Counter App Error →
+## Counter App Error
 
 Solution for the following error:
 

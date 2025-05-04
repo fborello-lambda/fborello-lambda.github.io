@@ -6,7 +6,7 @@ date = 2024-05-01
 tags=["programming"]
 +++
 
-# Javascript
+## Javascript
 
 ## Bun
 

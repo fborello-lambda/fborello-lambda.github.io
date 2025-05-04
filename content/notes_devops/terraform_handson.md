@@ -6,7 +6,7 @@ date = 2024-07-01
 tags=["devops"]
 +++
 
-# Terraform
+## Terraform
 
 Terraform is used to manage infrastructure. Keeping the state of the project and applying just the changes.
 

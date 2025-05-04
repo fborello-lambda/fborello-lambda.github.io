@@ -6,7 +6,6 @@ date = 2024-11-19
 tags=["ethereum"]
 +++
 
-
 - Ethereum
   - [EPFsg overview](https://epf.wiki/#/eps/intro?id=epf-protocol-studies)
   - [web3js - Sending ether via Contract instance - Ethereum Stack Exchange](https://ethereum.stackexchange.com/questions/53094/sending-ether-via-contract-instance)
@@ -43,16 +42,16 @@ tags=["ethereum"]
   - [Possible futures of the Ethereum protocol, part 2: The Surge](https://vitalik.eth.limo/general/2024/10/17/futures2.html#6)
   - https://x.com/0xsiva/status/1850919448309301371?s=12
 - ZK-Provers:
-    - [Why multi-prover matters. SGX as a possible solution. — Taiko Labs](https://taiko.mirror.xyz/Kx1Mp4WJjd83K1KDEwp1pM7xi9QmpSahxJg3S_N7NE4)Ï
-    - https://scroll.io/blog/scaling-security
-    - [Announcing Zeth: The First Type Zero zkEVM | RISC Zero](https://risczero.com/blog/zeth-release)
+  - [Why multi-prover matters. SGX as a possible solution. — Taiko Labs](https://taiko.mirror.xyz/Kx1Mp4WJjd83K1KDEwp1pM7xi9QmpSahxJg3S_N7NE4)Ï
+  - https://scroll.io/blog/scaling-security
+  - [Announcing Zeth: The First Type Zero zkEVM | RISC Zero](https://risczero.com/blog/zeth-release)
 - SGX / TEEs
-    - Use SGX or TDX? Virtualuzation seems a better option.Ï
-    - [Home | SGX 101](https://sgx101.gitbook.io/sgx101)
-    - https://ethresear.ch/t/2fa-zk-rollups-using-sgx/14462/30 - EIP needed for performance when using SGX
-    - https://collective.flashbots.net/t/tee-boost/3741#tee-proofs-6  TEE proofs
+  - Use SGX or TDX? Virtualuzation seems a better option.Ï
+  - [Home | SGX 101](https://sgx101.gitbook.io/sgx101)
+  - https://ethresear.ch/t/2fa-zk-rollups-using-sgx/14462/30 - EIP needed for performance when using SGX
+  - https://collective.flashbots.net/t/tee-boost/3741#tee-proofs-6 TEE proofs
 - EIPs
-    - https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7702.md - Account Abstraction
+  - https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7702.md - Account Abstraction
 - MISC
-    - https://github.com/chainbound/bolt
-    - https://zksecurity.github.io/RFCs/
+  - https://github.com/chainbound/bolt
+  - https://zksecurity.github.io/RFCs/

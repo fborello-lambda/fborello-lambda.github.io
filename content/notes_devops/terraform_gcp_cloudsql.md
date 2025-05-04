@@ -6,16 +6,15 @@ date = 2024-07-02
 tags=["devops"]
 +++
 
-
-# Terraform GCP CloudSQL
+## Terraform GCP CloudSQL
 
 Main Resource:
+
 - [Configure private IP  |  Cloud SQL for MySQL  |  Google Cloud](https://cloud.google.com/sql/docs/mysql/configure-private-ip#console_1)
 
 Taking as foundation the [Terraform Handson](./terraform_handson.md) note. Where a VM is declared.
 
 ## Declaring the Database
-
 
 ```hcl
 // First we need a Postgres Server
@@ -114,6 +113,7 @@ With all these changes, we should have a VM whose access is open to the world bu
 The full code and instructions can be found in the GitHub repo: [fborello-lambda/terraform_handson: Terraform HandsOn using GCP](https://github.com/fborello-lambda/terraform_handson)
 
 ## Resources
+
 - [google_sql_database_instance | Resources | hashicorp/google | Terraform | Terraform Registry](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#ipv4_enabled)
 - [Learn about using private IP  |  Cloud SQL for MySQL  |  Google Cloud](https://cloud.google.com/sql/docs/mysql/private-ip#network_requirements)
 - [Create Google Cloud Sql MySql instance using Terraform - YouTube](https://www.youtube.com/watch?v=4H8_eu9l5cE&list=PLL220wRvDvTm_MyPtW0W3kc1_Htb3cJev&index=8)

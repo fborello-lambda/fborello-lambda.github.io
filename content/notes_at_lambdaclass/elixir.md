@@ -6,7 +6,7 @@ date = 2024-05-01
 tags=["programming", "phx"]
 +++
 
-# Elixir
+## Elixir
 
 `spawn(<function>)` → runs the function asynchronously.
 
@@ -22,7 +22,7 @@ Function arities → number of arguments a function receives.
 
 [Capture operator](https://stackoverflow.com/questions/44266193/why-do-we-need-a-function-capture-operator-in-elixir)
 
-Creating an anonymous function: 
+Creating an anonymous function:
 
 ```elixir
 iex(5)> mult = &(&1 * &2)
@@ -61,23 +61,20 @@ iex(32)> for x <- ["a", "b", "c"], do: String.upcase(x)
 
 Elixir has Structs and Polymorphic functions with “Protocols”.
 
-Erlang’s Dialyzer tool → analyzes code →  “dialyxir” module for Elixir
+Erlang’s Dialyzer tool → analyzes code → “dialyxir” module for Elixir
 
 - Key Aspects of elixir:
-    - Persistent Data Structures → Immutability
-    - Preemptive scheduler
-    - Testing: properties to test for your code and writing good generators for the data over which you want to test.
+  - Persistent Data Structures → Immutability
+  - Preemptive scheduler
+  - Testing: properties to test for your code and writing good generators for the data over which you want to test.
 - [Enum Cheatsheet](https://hexdocs.pm/elixir/1.16/enum-cheat.html)
 
-# Phoenix
+## Phoenix
 
-[Phoenix in Action Repo w v1.7.10](https://github.com/fborello-lambda/phoenix_in_action)
-
-[Phoenix LiveView simple project](https://fly.io/phoenix-files/dynamic-forms-with-streams/)
-
-[Phoenix Playlist](https://youtube.com/playlist?list=PL2Rv8vpZJz4zM3Go3X-dda478p-6xrmEl&feature=shared) → Useful 
-
-[Phoenix in Action comments](https://elixirforum.com/t/phoenix-in-action-book-running-the-code-in-2023/55828)
+- [Phoenix in Action Repo w v1.7.10](https://github.com/fborello-lambda/phoenix_in_action
+- [Phoenix LiveView simple project](https://fly.io/phoenix-files/dynamic-forms-with-streams/
+- [Phoenix Playlist](https://youtube.com/playlist?list=PL2Rv8vpZJz4zM3Go3X-dda478p-6xrmEl&feature=shared) → Useful
+- [Phoenix in Action comments](https://elixirforum.com/t/phoenix-in-action-book-running-the-code-in-2023/55828)
 
 Set up Postgres docker container:
 
@@ -87,10 +84,10 @@ docker run \
 	-e POSTGRES_USER=phx_db \
 	-e POSTGRES_PASSWORD=phx_test \
 	-p 5432:5432 \
-	-d postgres 
+	-d postgres
 ```
 
-Inside `/phx_app/config/dev.exs`  if using a standalone phx-app change:
+Inside `/phx_app/config/dev.exs` if using a standalone phx-app change:
 
 ```elixir
 # Configure your database
@@ -115,37 +112,38 @@ Users table and Accounts table separated? why is it a terrible practice to merge
 {% mermaid() %}
 flowchart TD
 
-	subgraph PhoenixProcess
-			direction TB
-			subgraph Router
-					direction TB
-				r1(["'pipelines'"]) --> r2(["Searches the route by  'scope'"])
-			end
-			e1(["Using 'plugs'"]) --> Endpoint --> Router --> ControllerProcess
-			
-			subgraph ControllerProcess
-				direction TB
-				Controller --> index
-				Controller --> new
-				Controller --> create
-				Controller --> show
-				Controller --> edit
-				Controller --> delete
-				Controller --> update
-			end
-			
-			subgraph View
-					direction TB
-				v1(["'Render Function'"]) 
-			end
+    subgraph PhoenixProcess
+    		direction TB
+    		subgraph Router
+    				direction TB
+    			r1(["'pipelines'"]) --> r2(["Searches the route by  'scope'"])
+    		end
+    		e1(["Using 'plugs'"]) --> Endpoint --> Router --> ControllerProcess
 
-			DB[("DataBase")] <-- ConnectsTo --> ControllerProcess --> View --> Templates
+    		subgraph ControllerProcess
+    			direction TB
+    			Controller --> index
+    			Controller --> new
+    			Controller --> create
+    			Controller --> show
+    			Controller --> edit
+    			Controller --> delete
+    			Controller --> update
+    		end
 
-			
+    		subgraph View
+    				direction TB
+    			v1(["'Render Function'"])
+    		end
 
-			
-	end				
-	WebRequest --> PhoenixProcess --> SendRequest
+    		DB[("DataBase")] <-- ConnectsTo --> ControllerProcess --> View --> Templates
+
+
+
+
+    end
+    WebRequest --> PhoenixProcess --> SendRequest
+
 {% end %}
 
 If the the Phoenix App is named `demo` → `demo_web` is the dir in which all the components, controllers, and routes are specified.
@@ -181,7 +179,7 @@ scope "/demo", DemoWeb do
 #[...]
 ```
 
-means that the route “/demo” will “open” the `TestController` controller defined inside `/demo_web/controllers`. Now, following the guidelines another module to specify the path to the html files should be created `/demo_web/controllers/test_html.ex` inside it: 
+means that the route “/demo” will “open” the `TestController` controller defined inside `/demo_web/controllers`. Now, following the guidelines another module to specify the path to the html files should be created `/demo_web/controllers/test_html.ex` inside it:
 
 ```elixir
 defmodule AuctionWeb.TestHTML do
@@ -191,11 +189,11 @@ defmodule AuctionWeb.TestHTML do
 end
 ```
 
-The `embed_templates` function is trying to bind the htmls inside the path `/demo_web/controllers/test_html` to the controller. The `html.heex` templates have to be placed in that dir. 
+The `embed_templates` function is trying to bind the htmls inside the path `/demo_web/controllers/test_html` to the controller. The `html.heex` templates have to be placed in that dir.
 
-# Phoenix in Action
+## Phoenix in Action
 
-Phoenix in action chapter6 → `{Phoenix.PubSub, name: AuctionWeb.PubSub}` above`AuctionWeb.Endpoint,` in `<umbrella>/apps/auction_web/lib/auction_web/application.ex` . This handles the pubsub error. 
+Phoenix in action chapter6 → `{Phoenix.PubSub, name: AuctionWeb.PubSub}` above`AuctionWeb.Endpoint,` in `<umbrella>/apps/auction_web/lib/auction_web/application.ex` . This handles the pubsub error.
 
 [Phoenix 1.7.x Routing](https://hexdocs.pm/phoenix/routing.html) → Useful, links can be done like this:
 
@@ -221,7 +219,7 @@ scope "/", AuctionWeb do
   end
 ```
 
-And  `controllers/item_controller.ex`
+And `controllers/item_controller.ex`
 
 ```elixir
 defmodule AuctionWeb.ItemController do
@@ -252,7 +250,7 @@ defmodule AuctionWeb.ItemHTML do
 end
 ```
 
-The controller calls the function render/3 with the Plug.conn, the html template specified as an atom. `:test` → refers to →`item_html/test.html.heex`. A variable can be passed to the template, for example, the function `show()` calls `render(conn, :show, item: items).` , now the variable “item” can be accessed inside the template == `:show` == `show.html.heex` as follows: `@items`. The first line  showing how to code links,`<%= for item <- @items do %>`, demonstrates how to use the variable passes to the template.
+The controller calls the function render/3 with the Plug.conn, the html template specified as an atom. `:test` → refers to →`item_html/test.html.heex`. A variable can be passed to the template, for example, the function `show()` calls `render(conn, :show, item: items).` , now the variable “item” can be accessed inside the template == `:show` == `show.html.heex` as follows: `@items`. The first line showing how to code links,`<%= for item <- @items do %>`, demonstrates how to use the variable passes to the template.
 
 ## Creating a form
 
@@ -341,11 +339,11 @@ def show(conn, %{"id" => id}) do
 # [...]
 ```
 
-The “sigil”p == ~p makes this task easy. Here, in this module, we have the route `items/new` which “triggers” the `new()`  function, whose view has the form previously defined, the form redirects to `~p"/items"` with a POST request, this triggers the `create()` function. Finally, a redirection is performed to `~p"/items/#{item.id}"`, this route triggers the `show()` function. All this “operation” is possible because RESTful paths are defined in `router.ex`.
+The “sigil”p == ~p makes this task easy. Here, in this module, we have the route `items/new` which “triggers” the `new()` function, whose view has the form previously defined, the form redirects to `~p"/items"` with a POST request, this triggers the `create()` function. Finally, a redirection is performed to `~p"/items/#{item.id}"`, this route triggers the `show()` function. All this “operation” is possible because RESTful paths are defined in `router.ex`.
 
 ## Handle Errors with the case statement
 
-This expression is really useful. If the insertion is made without errors, based on the Ecto.Changeset, it redirects to the `show()` function, else it redirects again to the `new()` function. 
+This expression is really useful. If the insertion is made without errors, based on the Ecto.Changeset, it redirects to the `show()` function, else it redirects again to the `new()` function.
 
 ```elixir
 def create(conn, %{"item" => item_params}) do
@@ -439,7 +437,7 @@ Phoenix seems smart enough to detect that the form was generated with an “edit
 
 ### Chapter 10
 
-I couldn’t make it work the following:  `delete "/logout", SessionController, :delete.`. I changed it to handle “GET” requests, which are triggered with a simple form with a button, whose action is `"login"`
+I couldn’t make it work the following: `delete "/logout", SessionController, :delete.`. I changed it to handle “GET” requests, which are triggered with a simple form with a button, whose action is `"login"`
 
 ### Chapter 11
 
@@ -462,7 +460,7 @@ And the module `AuctionWeb.GlobalHelpers` can be defined inside a file named `au
 
 In the example above, `integer_to_currency()` is a function from the `GlobalHelpers` module.
 
-# Code an API on top of the HTML web_app
+## Code an API on top of the HTML web_app
 
 [Phoenix Docs](https://hexdocs.pm/phoenix/json_and_apis.html#rendering-json)
 

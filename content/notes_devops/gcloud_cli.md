@@ -6,7 +6,7 @@ date = 2024-07-30
 tags=["devops"]
 +++
 
-# Pro Tips
+## Pro Tips
 
 - Check for `machine-type` availability:
   - [gcloud topic filters  |  Google Cloud CLI Documentation](https://cloud.google.com/sdk/gcloud/reference/topic/filters)

@@ -19,11 +19,11 @@ path = "blogs_and_links"
 - Hardware
   - [**GPU acceleration in ZK crypto**](https://www.youtube.com/watch?v=JJMZQzVhCvY)
   - [**Talk on Icicle by Ingonyama**](https://www.youtube.com/watch?v=mUo0WtLnEHU)
-- Software Philosophy - Basics
+- Software Philosophy Basics
+
   - [Basic Things](https://matklad.github.io/2024/03/22/basic-things.html)
   - [Cognitive load is what matters](https://minds.md/zakirullin/cognitive)
   - [Software Design is Knowledge Building | olano.dev](https://olano.dev/blog/software-design-is-knowledge-building/)
-
 
 - Videos
   - Distributed Systems

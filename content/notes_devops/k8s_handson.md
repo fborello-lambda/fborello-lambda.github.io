@@ -6,7 +6,7 @@ date = 2024-06-25
 tags=["devops"]
 +++
 
-# Kubernetes
+## Kubernetes
 
 To test Kubernetes locally, we need a `Kubernetes Cluster`. We can create a cluster using `Docker`. Docker Desktop provides a quick way to run a Kubernetes cluster. However, `Minikube` offers detailed tutorials and thorough documentation.
 
@@ -48,7 +48,6 @@ minikube start
 |   `annotate`   |                            Adds or updates annotations on resources.                             |
 |     `edit`     | Edits a resource in the default editor or the editor specified by the KUBE_EDITOR or EDITOR env. |
 
-
 To ask for our context:
 
 ```sh
@@ -62,6 +61,7 @@ kubectl get nodes
 ```
 
 Output:
+
 ```sh
 ❯ kubectl get nodes
 NAME             STATUS   ROLES           AGE   VERSION
@@ -79,6 +79,7 @@ kubectl create deployment first-deploy --image=<img url>
 We can also deploy more neatly by using a file:
 
 `k8s_deployment`:
+
 ```yml
 apiVersion: apps/v1
 kind: Deployment
@@ -105,7 +106,7 @@ spec:
 To deploy with this file:
 
 ```sh
-kubectl apply -f k8s_deployment.yml 
+kubectl apply -f k8s_deployment.yml
 ```
 
 Now if we take a look at the deployments:
@@ -136,7 +137,7 @@ A resize can be performed as follows:
 kubectl scale deployment.apps/hello-world --replicas=4
 ```
 
-The pods are attached to the deployment, which is always supervised. 
+The pods are attached to the deployment, which is always supervised.
 
 To delete the deployment:
 
@@ -171,6 +172,7 @@ kubectl get pods
 ```
 
 Output:
+
 ```sh
 ❯ kubectl get pods
 NAME                          READY   STATUS    RESTARTS   AGE
@@ -187,7 +189,7 @@ http://localhost:8001/api/v1/namespaces/default/pods/<POD_NAME>:8080/proxy/
 
 ### Services
 
-From the Docs: 
+From the Docs:
 
 > A Service in Kubernetes is an abstraction which defines a logical set of Pods and a policy by which to access them.
 
@@ -239,7 +241,7 @@ Version: 1.0.0
 Hostname: hello-world-5486f9dfc5-6bkhr
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > If using minikube, the `service` has to be exposed `minikube service hello-service --url`
 
 The `LoadBalancer` service handles the case where it doesn't matter which pod you are accessing and it even takes into account the network traffic.
@@ -261,7 +263,7 @@ In such case, we will have a deployment for each app, which may have multiple re
 ### Helm
 
 > The package manager for Kubernetes
-> 
+>
 > Helm is the best way to find, share, and use software built for Kubernetes
 
 With `helm`, the Ingress controller can be installed with the following command:
@@ -319,8 +321,6 @@ Version: 1.0.0
 Hostname: hello-world-5486f9dfc5-lqclc
 ```
 
-
-
 # Resources
 
 - [Learn Kubernetes Basics | Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
@@ -330,6 +330,7 @@ Hostname: hello-world-5486f9dfc5-lqclc
 - [KUBERNETES De NOVATO a PRO! (CURSO COMPLETO EN ESPAÑOL) - YouTube](https://www.youtube.com/watch?v=DCoBcpOA7W4)
 
 ## Ingress
+
 - [Installation Guide - Ingress-Nginx Controller](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
 - [Ingress | Kubernetes](https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource)
 - [Ingress Made Easy! Install and Configure the Ingress NGINX Controller for Kubernetes - YouTube](https://www.youtube.com/watch?v=g9EqZiTWLGA)

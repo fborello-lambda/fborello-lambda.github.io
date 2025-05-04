@@ -6,7 +6,7 @@ date = 2024-07-30
 tags=["devops"]
 +++
 
-# ConfigMap as a "Volume"
+## ConfigMap as a "Volume"
 
 We can use a `ConfigMap` to declare a file and then mount it as a volume to any container:
 
@@ -62,22 +62,22 @@ spec:
 
     spec:
       containers:
-      - name: simple-web-server
-        image: nginx:latest
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        volumeMounts:
-        - name: html-volume
-          mountPath: /usr/share/nginx/html/index.html
-          subPath: index.html
-        ports:
-        - containerPort: 80
+        - name: simple-web-server
+          image: nginx:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: html-volume
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+          ports:
+            - containerPort: 80
       volumes:
-      - name: html-volume
-        configMap:
-          name: html
+        - name: html-volume
+          configMap:
+            name: html
 ---
 apiVersion: v1
 kind: Service
@@ -88,7 +88,7 @@ spec:
   selector:
     app: simple-web-server
   ports:
-  - port: 80
-    targetPort: 80
-    protocol: TCP
+    - port: 80
+      targetPort: 80
+      protocol: TCP
 ```
