@@ -10,7 +10,8 @@ Disclaimer: The notes and even the code may not make sense. The code may be flak
 ## Special Links
 
 - [Notes from My Time at LambdaClass](./notes_at_lambdaclass)
-- [Blogs and Links](./blogs_and_links)
+- [Technical Blogs and Links](./t_blogs_and_links)
+- [Non-Technical Blogs and Links](./nt_blogs_and_links)
 
 ## Quotes
 
