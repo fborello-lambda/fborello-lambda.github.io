@@ -7,11 +7,15 @@ There are cases in which I have the willingness to write some documents or notes
 
 Disclaimer: The notes and even the code may not make sense. The code may be flaky or poorly written, some calculations may be off, and I could have interpreted some concepts incorrectly, but the overall idea is what matters.
 
-## Special Links
+## Special Internal Links
 
 - [Notes from My Time at LambdaClass](./notes_at_lambdaclass)
 - [Technical Blogs and Links](./t_blogs_and_links)
 - [Non-Technical Blogs and Links](./nt_blogs_and_links)
+
+## Special External Links
+
+- [TIGER_STYLE.md at main · tigerbeetle/tigerbeetle · GitHub](https://github.com/tigerbeetle/tigerbeetle/blob/main/docs/TIGER_STYLE.md)
 
 ## Quotes
 
