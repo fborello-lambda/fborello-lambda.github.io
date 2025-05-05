@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Terraform GCP CloudSQL
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Terraform GCP CloudSQL" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Terraform GCP CloudSQL<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-07-02</time>
+                    
+
+                    
+
+                    
+
+                    :: 336 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/devops/"
+                                   class="post-tag">devops</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-gcp-cloudsql/#terraform-gcp-cloudsql">Terraform GCP CloudSQL</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-gcp-cloudsql/#declaring-the-database">Declaring the Database</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-gcp-cloudsql/#set-a-service-network">Set a Service Network</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-gcp-cloudsql/#resources">Resources</a>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="terraform-gcp-cloudsql"><a class="zola-anchor" href="#terraform-gcp-cloudsql" aria-label="Anchor link for: terraform-gcp-cloudsql">Terraform GCP CloudSQL</a></h2>
+<p>Main Resource:</p>
+<ul>
+<li><a href="https://cloud.google.com/sql/docs/mysql/configure-private-ip#console_1">Configure private IP  |  Cloud SQL for MySQL  |  Google Cloud</a></li>
+</ul>
+<p>Taking as foundation the <a href="https://fborello-lambda.github.io/notes_devops/terraform-gcp-cloudsql/./terraform_handson.md">Terraform Handson</a> note. Where a VM is declared.</p>
+<h2 id="declaring-the-database"><a class="zola-anchor" href="#declaring-the-database" aria-label="Anchor link for: declaring-the-database">Declaring the Database</a></h2>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>// First we need a Postgres Server
+</span><span>resource &quot;google_sql_database_instance&quot; &quot;pg_instance1&quot; {
+</span><span>  name             = &quot;db-instance1&quot;
+</span><span>  region           = &quot;us-central1&quot;
+</span><span>  database_version = &quot;POSTGRES_14&quot;
+</span><span>
+</span><span>  settings {
+</span><span>    tier = &quot;db-f1-micro&quot;
+</span><span>    ip_configuration {
+</span><span>      ipv4_enabled = true
+</span><span>    }
+</span><span>  }
+</span><span>}
+</span><span>
+</span><span>// We specify the name of the DB that will be created
+</span><span>resource &quot;google_sql_database&quot; &quot;db_policy1&quot; {
+</span><span>  name            = &quot;db_policy1&quot;
+</span><span>  instance        = google_sql_database_instance.pg_instance1.name
+</span><span>  deletion_policy = &quot;DELETE&quot;
+</span><span>}
+</span></code></pre>
+<p>A user must be created; a <code>host</code> value can be set to limit where the user can connect from:</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>resource &quot;google_sql_user&quot; &quot;db_user1&quot; {
+</span><span>  name     = &quot;dev&quot;
+</span><span>  instance = google_sql_database_instance.pg_instance1.name
+</span><span>  password = &quot;password&quot;
+</span><span>}
+</span></code></pre>
+<p>With this configuration, we are setting up a DB with <code>ipv4_enabled</code> set to true, which will create a public IP automatically. We should set up a firewall and extra protection methods. An alternative could be blocking access from outside and using a private network instead of a public IP.</p>
+<h2 id="set-a-service-network"><a class="zola-anchor" href="#set-a-service-network" aria-label="Anchor link for: set-a-service-network">Set a Service Network</a></h2>
+<p>First, we need to enable the <code>Service Networking API</code> within the gcloud project's gui. Then, we can declare the following resources:</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>// Private Network
+</span><span>resource &quot;google_compute_global_address&quot; &quot;private_ip_address&quot; {
+</span><span>  name          = &quot;private-ip-address&quot;
+</span><span>  purpose       = &quot;VPC_PEERING&quot;
+</span><span>  address_type  = &quot;INTERNAL&quot;
+</span><span>  prefix_length = 16
+</span><span>  network       = google_compute_network.net_instance1.id
+</span><span>}
+</span><span>
+</span><span>resource &quot;google_service_networking_connection&quot; &quot;tf_network&quot; {
+</span><span>  network                 = google_compute_network.net_instance1.id
+</span><span>  service                 = &quot;servicenetworking.googleapis.com&quot;
+</span><span>  reserved_peering_ranges = [google_compute_global_address.private_ip_address.name]
+</span><span>}
+</span><span>//
+</span></code></pre>
+<p>Now this network has to be used in conjunction with the Database, and <code>ipv4_enabled</code> has to be set to false to avoid creating a <code>private_ip</code>:</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>resource &quot;google_sql_database_instance&quot; &quot;pg_instance1&quot; {
+</span><span>  name             = &quot;db-instance1&quot;
+</span><span>  region           = &quot;us-central1&quot;
+</span><span>  database_version = &quot;POSTGRES_14&quot;
+</span><span>  depends_on       = [google_service_networking_connection.tf_network]
+</span><span>
+</span><span>  settings {
+</span><span>    tier = &quot;db-f1-micro&quot;
+</span><span>    ip_configuration {
+</span><span>      ipv4_enabled    = false
+</span><span>      private_network = google_compute_network.net_instance1.id
+</span><span>    }
+</span><span>  }
+</span><span>}
+</span></code></pre>
+<p>At this stage, we are creating a connection between the VPC <code>net_instance1</code> and the PostgreSQL server network. Our VPC will <code>auto_create_subnetworks</code> automatically, so this setting has to be set to false to avoid overlapping. Then, we will need to create a custom subnetwork:</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>resource &quot;google_compute_network&quot; &quot;net_instance1&quot; {
+</span><span>  name                    = &quot;tf-network-instance&quot;
+</span><span>  auto_create_subnetworks = false
+</span><span>}
+</span><span>
+</span><span>resource &quot;google_compute_subnetwork&quot; &quot;subnet_instance1&quot; {
+</span><span>  name          = &quot;subnet&quot;
+</span><span>  ip_cidr_range = &quot;10.0.0.0/16&quot;
+</span><span>  region        = &quot;us-central1&quot;
+</span><span>  network       = google_compute_network.net_instance1.self_link
+</span><span>}
+</span></code></pre>
+<p>With all these changes, we should have a VM whose access is open to the world but restricted (needing the SSH key), and a PostgreSQL server whose access is only allowed through the VM, both resources inside the same VPC subnetwork.</p>
+<p>The full code and instructions can be found in the GitHub repo: <a href="https://github.com/fborello-lambda/terraform_handson">fborello-lambda/terraform_handson: Terraform HandsOn using GCP</a></p>
+<h2 id="resources"><a class="zola-anchor" href="#resources" aria-label="Anchor link for: resources">Resources</a></h2>
+<ul>
+<li><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#ipv4_enabled">google_sql_database_instance | Resources | hashicorp/google | Terraform | Terraform Registry</a></li>
+<li><a href="https://cloud.google.com/sql/docs/mysql/private-ip#network_requirements">Learn about using private IP  |  Cloud SQL for MySQL  |  Google Cloud</a></li>
+<li><a href="https://www.youtube.com/watch?v=4H8_eu9l5cE&amp;list=PLL220wRvDvTm_MyPtW0W3kc1_Htb3cJev&amp;index=8">Create Google Cloud Sql MySql instance using Terraform - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=VCayKl82Lt8">Learn Terraform with Google Cloud Platform – Infrastructure as Code Course - YouTube</a></li>
+</ul>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

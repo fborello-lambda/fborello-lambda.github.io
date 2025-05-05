@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Git
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Git" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Git<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-05-01</time>
+                    
+
+                    
+
+                    
+
+                    :: 1163 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/devops/"
+                                   class="post-tag">devops</a>
+                                ,
+                            
+                                <a href="https://fborello-lambda.github.io/tags/programming/"
+                                   class="post-tag">programming</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/git/#git">Git</a>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="git"><a class="zola-anchor" href="#git" aria-label="Anchor link for: git">Git</a></h2>
+<ul>
+<li><strong><a href="https://stackoverflow.com/a/74631110">How to modify someone else's Github pull request?</a></strong></li>
+<li><strong><a href="https://stackoverflow.com/questions/7726949/remove-tracking-branches-no-longer-on-remote">Remove tracking branches no longer on remote</a></strong></li>
+<li><a href="https://stackoverflow.com/questions/1519006/how-do-i-create-a-remote-git-branch/27185855#27185855">Push New local branch to remote(origin)</a></li>
+<li><a href="https://github.com/orgs/community/discussions/16925">Warning/Tips/Caution/Notes in Github’s README</a></li>
+<li>git submodules</li>
+<li><a href="https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716#file-semantic-commit-messages-md">Semantic Commit Messages</a></li>
+<li>Multiple Remotes</li>
+<li>Add SSH key:
+<ul>
+<li><a href="https://apple.stackexchange.com/questions/48502/how-can-i-permanently-add-my-ssh-private-key-to-keychain-so-it-is-automatically">SSH-key on MacOs</a></li>
+<li><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Generate SSH key</a></li>
+<li><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">Add SSH key</a></li>
+</ul>
+</li>
+<li>Usual workflow
+<ul>
+<li>For every new feature a new branch is created, the feature is developed in the new branch, then a Pull Request is performed to integrate the feature branch with the main code.</li>
+<li>The Maintainer, reviews the feature branch and performs a “Merge” to integrate the changes. Before the Merge, some comments and modifications may occur. Conflicts may arise.</li>
+<li>Sometimes, 2 “main” branches are used. The proper main branch and the develop branch, an extra branch may be used to solve hot-fixes.</li>
+</ul>
+</li>
+<li>HEAD always points to the most recent commit which is reflected in the working tree.</li>
+<li>Git has relative refs:
+<ul>
+<li>Moving upward one commit at a time: <code>^</code></li>
+<li>Moving upwards a number of times with <code>~&lt;num&gt;</code></li>
+</ul>
+</li>
+<li><code>git reverse HEAD</code> (remote)</li>
+<li><code>git reset &lt;commit&gt;</code> (local)</li>
+<li><code>git cherry-pick &lt;commitA&gt; &lt;commitB&gt;</code> it “copies” some commits, even if they are in other branches, below HEAD.</li>
+<li><code>git rebase -i &lt;commit&gt;</code> interactive way of reordering commits.</li>
+<li>Git Remote:
+<ul>
+<li>importance of origin/main. <code>origin</code> is the default <strong>alias</strong> to the URL of your remote repository.</li>
+<li><code>git push origin &lt;branch&gt;</code> // <code>git push origin &lt;source&gt;:&lt;destination&gt;</code> (this command creates the destination branch if it doesn’t exist)</li>
+<li><code>git clone</code> <code>git fetch</code></li>
+<li><code>git pull</code> == <code>git fetch; git merge o/main</code> // <code>git pull origin &lt;source&gt;:&lt;destination&gt;</code></li>
+<li><code>git pull --rebase; git push</code> (useful in some cases)</li>
+<li>If new feature is implemented, but the remote branch has some changes:
+<ul>
+<li>create a feature branch: <code>git checkout -b feature</code></li>
+<li>checkout and reset the branch that has changed: <code>git checkout main; git reset HEAD^</code> (instead of HEAD^ an specific commit can be used if multiple changes has been made)</li>
+<li>finally: <code>git checkout feature; git push</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Git commit message: it concisely describes the why of some decisions and what has been changed.
+<ul>
+<li><a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration">SetUp a text editor</a> to write a good commit message that consist of a Subject and Body.</li>
+<li><code>git log</code> → displays commit history
+<ul>
+<li><code>git shortlog</code></li>
+<li><code>git log --oneline</code> → Shows only the Subject.</li>
+</ul>
+</li>
+<li><a href="https://cbea.ms/git-commit/#separate">Separate subject from body with a blank line</a></li>
+<li><a href="https://cbea.ms/git-commit/#limit-50">Limit the subject line to 50 characters</a></li>
+<li><a href="https://cbea.ms/git-commit/#capitalize">Capitalize the subject line</a></li>
+<li><a href="https://cbea.ms/git-commit/#end">Do not end the subject line with a period</a></li>
+<li><a href="https://cbea.ms/git-commit/#imperative">Use the imperative mood in the subject line</a></li>
+<li><a href="https://cbea.ms/git-commit/#wrap-72">Wrap the body at 72 characters</a></li>
+<li><a href="https://cbea.ms/git-commit/#why-not-how">Use the body to explain <em>what</em> and <em>why</em> vs. <em>how</em></a></li>
+</ul>
+</li>
+<li>Rebase vs Merge:
+<ul>
+<li>Rebase is useful to have a cleaner history free of unnecessary merge commits.</li>
+<li>The golden rule of <code>git rebase</code> is to never use it on <em>public</em> branches.</li>
+<li><code>git push --force</code> only if no one is using the branch.</li>
+<li>If you use pull requests as part of your code review process, you need to avoid using <code>git rebase</code> after creating the pull request. For this reason, it’s usually a good idea to clean up your code with an interactive rebase <em>before</em> submitting your pull request.</li>
+</ul>
+</li>
+<li><a href="https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings">Configure Line Endings</a></li>
+</ul>
+<p><code>git config --list</code> command to list all the settings Git can find at that point</p>
+<p><code>git config &lt;key&gt;</code></p>
+<p><code>git config --show-origin &lt;key&gt; (shows the file being used, global or local)</code></p>
+<p><code>git help &lt;command&gt;</code></p>
+<ul>
+<li>Blank lines or lines starting with # are ignored.</li>
+<li>Standard glob patterns work, and will be applied recursively throughout the entire working tree.</li>
+<li>You can start patterns with a forward slash (/) to avoid recursivity.</li>
+<li>You can end patterns with a forward slash (/) to specify a directory.</li>
+<li>You can negate a pattern by starting it with an exclamation point (!)</li>
+</ul>
+<p><code>git commit -a</code> (it isn't necessary a previous git add, the -a option stages every file that is already tracked)</p>
+<p><code>git rm &lt;file&gt;</code> removes file locally and stages the file's removal.</p>
+<p>if the files have been staged, the <code>--cached</code> flag "undoes the staging".</p>
+<p><code>git mv &lt;file1&gt; &lt;file2&gt;</code> == <code>mv &lt;file1&gt; &lt;file2&gt;</code>; <code>git rm &lt;file1&gt;</code>; <code>git add &lt;file2&gt;</code></p>
+<p>Useful if performing a code review:</p>
+<p><code>git log --pretty=format:&lt;format&gt;</code></p>
+<p><code>git log -p</code> (shows the lines changed)</p>
+<p><code>git log --oneline --graph</code></p>
+<p><code>git log --oneline --decorate --graph --all</code></p>
+<p><code>git log --since=1.weeks</code></p>
+<p>if you wanted to find the last commit that added or removed a reference to a specific function, you could call: <code>git log -S &lt;function&gt;</code></p>
+<p>check if a file was modified: <code>git log -- &lt;path/file&gt;</code></p>
+<p><code>git commit --amend</code> use case:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">git</span><span> commit</span><span style="color:#ff8f40;"> -m </span><span style="color:#86b300;">&#39;msg&#39;
+</span><span style="color:#f29718;">git</span><span> add forgotten_file
+</span><span style="color:#f29718;">git</span><span> commit</span><span style="color:#ff8f40;"> --amend
+</span></code></pre>
+<p>The same commit msg is used, but the previous commit is replaced by the commit after the add command.</p>
+<blockquote>
+<p>[!WARNING]
+Only amend commits that are still local and have not been pushed somewhere.</p>
+</blockquote>
+<p>It’s important to understand that <code>git checkout -- &lt;file&gt;</code> or <code>git restore &lt;file&gt;</code> is a dangerous command. Any local changes made to that file are gone.</p>
+<p><code>git clone</code> command implicitly adds the origin remote for you. origin — is the default name Git gives to the server you cloned from.</p>
+<p>Tags have to be pushed: <code>git push origin &lt;tagname&gt;</code> <code>git push origin --tags</code> to push all tags</p>
+<p>Git Aliases: <code>git config --global alias.&lt;alias&gt; '&lt;command&gt;'</code></p>
+<p>Example: <code>git config --global alias.last 'log -1 HEAD'</code></p>
+<p>Rebase:
+Often, you’ll do this to make sure your commits apply cleanly on a remote branch — perhaps in a project to which you’re trying to contribute but that you don’t maintain. In this case, you’d do your work in a branch and then rebase your work onto origin/master when you were ready to submit your patches to the main project. That way, the maintainer doesn’t have to do any integration work — just a fast-forward or a clean apply.</p>
+<p>Page 99 - ProGit → use case.</p>
+<p>“<strong>Do not rebase commits that exist outside your repository and that people may have based
+work on.”</strong></p>
+<p><code>git log -- &lt;file&gt; --oneline | wc -l</code> → Determine the number of commits that have changed the file.</p>
+<p><code>git diff &lt;commit1&gt; &lt;commit2&gt; -- &lt;file&gt;</code> → diff of specific file between commit1 and commit2.</p>
+<p><code>git diff --stat &lt;commit1&gt; &lt;commit2&gt; -- &lt;file&gt;</code> → number of changes.</p>
+<p><a href="https://jvns.ca/blog/2019/08/30/git-exercises--navigate-a-repository/">Useful exercises</a></p>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

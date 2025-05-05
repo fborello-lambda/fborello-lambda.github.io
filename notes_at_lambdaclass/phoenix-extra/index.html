@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Phoenix Extra
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Phoenix Extra" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Phoenix Extra<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-05-01</time>
+                    
+
+                    
+
+                    
+
+                    :: 262 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/programming/"
+                                   class="post-tag">programming</a>
+                                ,
+                            
+                                <a href="https://fborello-lambda.github.io/tags/phx/"
+                                   class="post-tag">phx</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/phoenix-extra/#phoenix">Phoenix</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/phoenix-extra/#phoenix-liveview">Phoenix LiveView</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/phoenix-extra/#openapi">OpenApi</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/phoenix-extra/#counter-app-error">Counter App Error</a>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="phoenix"><a class="zola-anchor" href="#phoenix" aria-label="Anchor link for: phoenix">Phoenix</a></h2>
+<ul>
+<li><strong><a href="https://fly.io/blog/rethinking-serverless-with-flame/">FLAME</a></strong></li>
+<li><a href="https://dokku.com/">Dokku - PaaS</a></li>
+<li><a href="https://www.sleepeasy.app/2024/01/21/elixir-best-language-for-bootstrapped-b2b-saas/">Phoenix Real Case</a></li>
+<li><a href="https://nimblehq.co/blog/whats-new-in-phoenix-1-7">Phoenix 1.7: A Major Step for the Phoenix Framework – Nimble</a></li>
+</ul>
+<h2 id="phoenix-liveview"><a class="zola-anchor" href="#phoenix-liveview" aria-label="Anchor link for: phoenix-liveview">Phoenix LiveView</a></h2>
+<ul>
+<li><a href="https://www.elixirstreams.com/tips/phoenix-forms-without-changesets">Elixir Streams |&gt; Phoenix forms without changesets!</a></li>
+<li>Tailwind
+<ul>
+<li><a href="https://github.com/dwyl/learn-tailwind">Tailwind Tutorial</a></li>
+<li><a href="https://heroicons.com/">Heroicons</a></li>
+</ul>
+</li>
+<li>A good way to use "Views" with liveview is to put them in <code>app_web/live/view1.ex</code>. The view1 could be the homepage for example and inside it goes the html using <code>~H</code> . Then <code>router.ex</code> calls the defined module in <code>view1.ex</code>  → <a href="https://github.com/dwyl/phoenix-liveview-counter-tutorial">Phoenix LiveView Counter</a>.</li>
+<li><a href="https://www.starkcompass.com/">Starknet Explorer</a> → The following file of the repo shows the default layout of every view <a href="https://github.com/lambdaclass/stark_compass_explorer/blob/main/lib/starknet_explorer_web/components/layouts/root.html.heex">Repo</a></li>
+</ul>
+<h2 id="openapi"><a class="zola-anchor" href="#openapi" aria-label="Anchor link for: openapi">OpenApi</a></h2>
+<ul>
+<li><a href="https://github.com/open-api-spex/open_api_spex">Open API Specifications for Elixir Plug applications</a></li>
+<li><a href="https://r.bluethl.net/how-to-design-better-apis">How to design better APIs. 15 language-agnostic, actionable tips on REST API design</a></li>
+<li><a href="https://github.com/xerions/phoenix_swagger">Swagger integration to Phoenix framework</a></li>
+</ul>
+<h2 id="counter-app-error"><a class="zola-anchor" href="#counter-app-error" aria-label="Anchor link for: counter-app-error">Counter App Error</a></h2>
+<p>Solution for the following error:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">17:08:15.791 </span><span style="color:#fa6e32;">[</span><span>error</span><span style="color:#fa6e32;">]</span><span> Could not check origin for Phoenix.Socket transport.
+</span><span>
+</span><span style="color:#f29718;">Origin</span><span> of the request: http://</span><span style="color:#ed9366;">&lt;</span><span>public_ip</span><span style="color:#ed9366;">&gt;</span><span>:4000
+</span><span>
+</span><span style="color:#f29718;">This</span><span> happens when you are attempting a socket connection to
+</span><span style="color:#f29718;">a</span><span> different host than the one configured in your config/
+</span><span style="color:#f29718;">files.</span><span> For example, in development the host is configured
+</span><span style="color:#f29718;">to </span><span style="color:#86b300;">&quot;localhost&quot;</span><span> but you may be trying to access it from
+</span><span style="color:#86b300;">&quot;127.0.0.1&quot;</span><span style="color:#f29718;">.</span><span> To fix this issue, you may either:
+</span></code></pre>
+<p>In <code>config\runtime.exs</code> , the <code>port:</code> parameter isn’t needed, the app uses <code>4000</code>. And the important part, the <code>host</code> parameter needs brackets → <code>[host: host]</code> to work and the <code>PHX_HOST</code> env variable doesn’t have to be set, so that “0.0.0.0” is truthy and used as host:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="font-style:italic;color:#abb0b6;">#[...]
+</span><span>host </span><span style="color:#ed9366;">= </span><span style="color:#399ee6;">System</span><span style="color:#61676ccc;">.</span><span>get_env(</span><span style="color:#86b300;">&quot;PHX_HOST&quot;</span><span>) </span><span style="color:#ed9366;">|| </span><span style="color:#86b300;">&quot;0.0.0.0&quot;
+</span><span>port </span><span style="color:#ed9366;">= </span><span style="color:#399ee6;">String</span><span style="color:#61676ccc;">.</span><span>to_integer(</span><span style="color:#399ee6;">System</span><span style="color:#61676ccc;">.</span><span>get_env(</span><span style="color:#86b300;">&quot;PORT&quot;</span><span>) </span><span style="color:#ed9366;">|| </span><span style="color:#86b300;">&quot;4000&quot;</span><span>)
+</span><span>
+</span><span>config </span><span style="color:#86b300;">:counter</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:dns_cluster_query</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">System</span><span style="color:#61676ccc;">.</span><span>get_env(</span><span style="color:#86b300;">&quot;DNS_CLUSTER_QUERY&quot;</span><span>)
+</span><span>
+</span><span>config </span><span style="color:#86b300;">:counter</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">CounterWeb</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">Endpoint</span><span style="color:#61676ccc;">,
+</span><span>  </span><span style="color:#ff8f40;">url: </span><span>[[</span><span style="color:#ff8f40;">host:</span><span> host]</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">scheme: </span><span style="color:#86b300;">&quot;http&quot;</span><span>]</span><span style="color:#61676ccc;">,
+</span><span>  </span><span style="color:#ff8f40;">http: </span><span>[
+</span><span style="font-style:italic;color:#abb0b6;">    # Enable IPv6 and bind on all interfaces.
+</span><span style="font-style:italic;color:#abb0b6;">    # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
+</span><span style="font-style:italic;color:#abb0b6;">    # See the documentation on https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html
+</span><span style="font-style:italic;color:#abb0b6;">    # for details about using IPv6 vs IPv4 and loopback vs public addresses.
+</span><span>    </span><span style="color:#ff8f40;">ip: </span><span>{</span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">0</span><span>}</span><span style="color:#61676ccc;">,
+</span><span>    </span><span style="color:#ff8f40;">port:</span><span> port
+</span><span>  ]</span><span style="color:#61676ccc;">,
+</span><span>  </span><span style="color:#ff8f40;">secret_key_base:</span><span> secret_key_base
+</span><span style="font-style:italic;color:#abb0b6;">#[...]
+</span></code></pre>
+<p>Now the app can be accessed with <code>localhost:4000</code> and <code>&lt;public_ip&gt;:4000</code></p>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

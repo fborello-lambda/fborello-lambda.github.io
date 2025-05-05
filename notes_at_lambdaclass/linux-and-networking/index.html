@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Linux and Networking
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Linux and Networking" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Linux and Networking<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-05-01</time>
+                    
+
+                    
+
+                    
+
+                    :: 2927 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/cs/"
+                                   class="post-tag">cs</a>
+                                ,
+                            
+                                <a href="https://fborello-lambda.github.io/tags/linux/"
+                                   class="post-tag">linux</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/linux-and-networking/#unix-philosophy">Unix Philosophy</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/linux-and-networking/#linux">Linux</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/linux-and-networking/#networking">Networking</a>
+                                    
+                                        <ul>
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/linux-and-networking/#wireshark">Wireshark</a>
+                                                </li>
+
+                                                
+                                            
+                                        </ul>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="unix-philosophy"><a class="zola-anchor" href="#unix-philosophy" aria-label="Anchor link for: unix-philosophy"><a href="https://github.com/lambdaclass/lambdaclass_hacking_learning_path?tab=readme-ov-file#unix-philosophy">Unix Philosophy</a></a></h2>
+<ul>
+<li><a href="https://upload.wikimedia.org/wikipedia/commons/c/cd/Unix_timeline.en.svg">Unix Timeline</a></li>
+<li><a href="http://www.catb.org/~esr/writings/taoup/html/ch01s06.html">Basics of the Unix Philosophy</a>
+<ul>
+<li>“This is the Unix philosophy: Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface.”</li>
+</ul>
+</li>
+<li><a href="http://www.catb.org/~esr/writings/taoup/html/modularitychapter.html">Modularity</a></li>
+<li><a href="http://www.catb.org/~esr/writings/taoup/html/ch06s02.html">Transparency</a></li>
+</ul>
+<p>Questions:</p>
+<ul>
+<li>
+<p>How does complexity relate to modularity?</p>
+<p>More complexity results in larger programs, contrary to Unix’s philosophy. Modular and small programs that are not complex to use—although their internal parts may be complex—are preferred because they perform specific tasks effectively and facilitate proper communication between them.</p>
+</li>
+<li>
+<p>Why is the text-stream interface important in the Unix Philosophy?</p>
+<p>The text-stream interface serves as the communication interface between programs (via piping like “prog1 | prog2”).</p>
+</li>
+<li>
+<p>Why should design for transparency encourage simple interfaces?</p>
+<p>Transparency aims to have a clean communication interface, debug programs/watchers, and should work on any program.</p>
+</li>
+<li>
+<p>How does robustness relate to transparency and simplicity?</p>
+<p>Robustness means that a program is reliable. For example, if it depends on user input, the program should account for any possible—even impossible—situations. If it’s simple, the result should be more predictable, making it easier to monitor if the program follows transparency rules.</p>
+</li>
+<li>
+<p>Even with video processing, why should the output of programs be terse?</p>
+<p>Because old programs that already work wouldn’t have a way to interface with newer ones. Following a convention and avoiding unexpected results help create new programs that can operate with both new and existing ones.</p>
+</li>
+<li>
+<p>According to the Unix Philosophy, how noisy should errors be?</p>
+<p>Errors should be as loud as possible, meaning the user should be notified. If a program B expects the output of program A and it fails, program B should receive an error. The way to handle the error depends on program B.</p>
+</li>
+<li>
+<p>How does the economy of programmer time relate to robustness?</p>
+<p>If software can write software, outcomes are faster, cheaper, and more reliable (robust).</p>
+</li>
+<li>
+<p>Why does premature local optimization reduce overall performance?</p>
+<p>Premature optimization can overcomplicate the code, reducing performance. It’s recommended to create a working prototype first and then optimize.</p>
+</li>
+<li>
+<p>If there is only "one true way" of doing things, how does it affect extensibility?</p>
+<p>If there were only one way to do things, it would create a closed system where communications are restricted to a specific interface.</p>
+</li>
+</ul>
+<h2 id="linux"><a class="zola-anchor" href="#linux" aria-label="Anchor link for: linux"><a href="https://github.com/lambdaclass/lambdaclass_hacking_learning_path?tab=readme-ov-file#linux">Linux</a></a></h2>
+<ul>
+<li>
+<p>/<strong>root</strong> → first directory, where all directories are mounted to. (Linux Filesystem Hierarchy Standard).</p>
+</li>
+<li>
+<p>The contents and/or purpose of a file is determined by other means. Although Unix-like operating systems don’t use file extensions to determine the contents/purpose of files, some application programs do. The <code>file</code> command gives a brief description of the file's contents.</p>
+</li>
+<li>
+<p>/usr/bin contains the executable programs installed
+by your Linux distribution. It is not uncommon for this
+directory to hold thousands of programs.</p>
+</li>
+<li>
+<p>Use of symbolic links or soft links and hard links. <code>ln</code> command to create soft/hard links.</p>
+</li>
+<li>
+<p><code>type</code></p>
+<ul>
+<li>Indicates how a command name is interpreted.</li>
+</ul>
+</li>
+<li>
+<p><code>which</code></p>
+<ul>
+<li>Displays which executable program will be executed.</li>
+</ul>
+</li>
+<li>
+<p><code>man</code></p>
+<ul>
+<li>Displays a command’s manual page.</li>
+</ul>
+</li>
+<li>
+<p><code>apropos</code></p>
+<ul>
+<li>Displays a list of appropriate commands.</li>
+</ul>
+</li>
+<li>
+<p><code>info</code></p>
+<ul>
+<li>Displays a command’s info entry.</li>
+</ul>
+</li>
+<li>
+<p><code>whatis</code></p>
+<ul>
+<li>Displays a very brief description of a command.</li>
+</ul>
+</li>
+<li>
+<p><code>alias</code></p>
+<ul>
+<li>Creates an alias for a command.</li>
+</ul>
+</li>
+<li>
+<p><code>cat</code></p>
+<ul>
+<li>Concatenates files.</li>
+</ul>
+</li>
+<li>
+<p><code>sort</code></p>
+<ul>
+<li>Sorts lines of text.</li>
+</ul>
+</li>
+<li>
+<p><code>uniq</code></p>
+<ul>
+<li>Reports or omits repeated lines.</li>
+</ul>
+</li>
+<li>
+<p><code>wc</code></p>
+<ul>
+<li>Prints newline, word, and byte counts for each file.</li>
+</ul>
+</li>
+<li>
+<p><code>grep</code></p>
+<ul>
+<li>Prints lines matching a pattern.</li>
+</ul>
+</li>
+<li>
+<p><code>head</code></p>
+<ul>
+<li>Outputs the first part of a file.</li>
+</ul>
+</li>
+<li>
+<p><code>tail</code></p>
+<ul>
+<li>Output the last part of a file.</li>
+<li><code>tail -f</code> prints and "watches" the file until ctrl-c. a file and can be used as input for the following program.</li>
+</ul>
+</li>
+<li>
+<p><code>tee</code></p>
+<ul>
+<li>Read from standard input and write to standard output and files.</li>
+<li><code>tee</code> creates a "T" fitting on the pipe. The output of a program can be redirected to</li>
+</ul>
+</li>
+<li>
+<p>Redirecting stdout with <code>&gt;</code>(creates new file) <code>&gt;&gt;</code>(appends). FileDescriptors(1: stdout, 2:stderr). Redirecting stderr and stdout: <code>{command} &gt; test.txt 2&gt;&amp;1</code> == <code>{command} &amp;&gt; test.txt</code> . <code>/dev/null</code> to suppress errors. Redirecting stdin with <code>&lt;</code>.</p>
+</li>
+<li>
+<p>Piping <code>programA | programB</code> the output of programA is used as programB's input</p>
+</li>
+<li>
+<p>Bracket expansion: <code>mkdir {2009..2011}-0{1..9} {2009..2011}-{10..12}</code> it creates multiple directories divided by month and for 2009 up to 2011.</p>
+</li>
+<li>
+<p>Command substitution: <code>$(command)</code> or backquotes can be used too.</p>
+</li>
+<li>
+<p>Double quotes allow spacing, single quotes suppress all expansions, backslash escapes a single character.</p>
+</li>
+<li>
+<p>Terminal</p>
+<ul>
+<li>CTRL-K Kill text from the cursor location to the end of line.</li>
+<li>CTRL-U Kill text from the cursor location to the beginning of the line.</li>
+<li>CTRL-A Move cursor to the beginning of the line.</li>
+<li>CTRL-E Move cursor to the end of the line.</li>
+<li>CTRL-R Reverse incremental search. Searches incrementally from the current command line up the history list.</li>
+<li>ALT-P Reverse search, non-incremental. With this key, type the search string and press ENTER before the search is performed.</li>
+<li>ALT-N Forward search, non-incremental.</li>
+</ul>
+</li>
+<li>
+<p><code>history | tail</code> -&gt; outputs a numbered list with all the last commands that then can be called used in the following way <code>!number</code></p>
+</li>
+<li>
+<p><code>id</code></p>
+<ul>
+<li>Displays user identity.</li>
+</ul>
+</li>
+<li>
+<p><code>chmod</code></p>
+<ul>
+<li>Changes a file’s mode.</li>
+</ul>
+</li>
+<li>
+<p><code>umask</code></p>
+<ul>
+<li>Sets the default file permissions.</li>
+</ul>
+</li>
+<li>
+<p><code>su</code></p>
+<ul>
+<li>Runs a shell as another user.</li>
+</ul>
+</li>
+<li>
+<p><code>sudo</code></p>
+<ul>
+<li>Executes a command as another user.</li>
+</ul>
+</li>
+<li>
+<p><code>chown</code></p>
+<ul>
+<li>Changes a file’s owner.</li>
+</ul>
+</li>
+<li>
+<p><code>chgrp</code></p>
+<ul>
+<li>Changes a file’s group ownership.</li>
+</ul>
+</li>
+<li>
+<p><code>passwd</code></p>
+<ul>
+<li>Changes a user’s password.</li>
+</ul>
+</li>
+<li>
+<p><code>ps</code></p>
+<ul>
+<li>Reports a snapshot of current processes.</li>
+</ul>
+</li>
+<li>
+<p><code>top</code></p>
+<ul>
+<li>Displays tasks. (htop) . It can send signals too.</li>
+</ul>
+</li>
+<li>
+<p><code>jobs</code></p>
+<ul>
+<li>Lists active jobs.</li>
+</ul>
+</li>
+<li>
+<p><code>bg</code></p>
+<ul>
+<li>Places a job in the background.</li>
+</ul>
+</li>
+<li>
+<p><code>fg</code></p>
+<ul>
+<li>Places a job in the foreground. (ctrl-z and then fg can be used to run that process. the jobs command displays the number of every job, and fg can be used as follows: <code>fs %(job's number)</code>)</li>
+</ul>
+</li>
+<li>
+<p><code>kill</code></p>
+<ul>
+<li>Send a signal to a process.</li>
+</ul>
+</li>
+<li>
+<p><code>killall</code></p>
+<ul>
+<li>Kill processes by name.</li>
+</ul>
+</li>
+<li>
+<p><code>shutdown</code></p>
+<ul>
+<li>Shut down or reboot the system.</li>
+</ul>
+</li>
+<li>
+<p>“When a system starts up, the kernel initiates a few of its own activities as processes and launches a program called init. init, in turn, runs a series of shell scripts (located in /etc) called init scripts, which start all the system services. Many of these services are implemented as daemon programs” (systemctl to manage daemon programs in linux)</p>
+</li>
+<li>
+<p>Package Management: difference between <code>rpm</code> and <code>yum</code> // <code>dpkg</code> and <code>apt</code>/<code>aptitude</code>.</p>
+</li>
+<li>
+<p><code>ping</code></p>
+<ul>
+<li>Sends an ICMP ECHO_REQUEST to network hosts.</li>
+</ul>
+</li>
+<li>
+<p><code>traceroute</code></p>
+<ul>
+<li>Prints the route packets trace to a network host.</li>
+</ul>
+</li>
+<li>
+<p><code>netstat</code></p>
+<ul>
+<li>Prints network connections, routing tables, interface statistics, masquerade connections, and multicast memberships. (netstat -t displays the kernel’s network routing table)</li>
+</ul>
+</li>
+<li>
+<p><code>ftp</code></p>
+<ul>
+<li>Internet file transfer program.</li>
+</ul>
+</li>
+<li>
+<p><code>lftp</code></p>
+<ul>
+<li>An improved Internet file transfer program.</li>
+</ul>
+</li>
+<li>
+<p><code>wget</code></p>
+<ul>
+<li>Non-interactive network downloader.</li>
+</ul>
+</li>
+<li>
+<p><code>ssh</code></p>
+<ul>
+<li>OpenSSH SSH client (remote login program). (port 22)</li>
+</ul>
+</li>
+<li>
+<p><code>scp</code></p>
+<ul>
+<li>Secure copy (remote file copy program).</li>
+</ul>
+</li>
+<li>
+<p><code>sftp</code></p>
+<ul>
+<li>Secure file transfer program. (<code>rsync</code> is also used)</li>
+</ul>
+</li>
+<li>
+<p><code>locate</code></p>
+<ul>
+<li>Finds files by name.</li>
+</ul>
+</li>
+<li>
+<p><code>find</code></p>
+<ul>
+<li>Searches for files in a directory hierarchy.</li>
+</ul>
+</li>
+<li>
+<p><code>xargs</code></p>
+<ul>
+<li>Builds and executes command lines from standard input.</li>
+</ul>
+</li>
+<li>
+<p><code>touch</code></p>
+<ul>
+<li>Creates or modifies "last time opened".</li>
+</ul>
+</li>
+<li>
+<p><code>stat</code></p>
+<ul>
+<li>Displays file or filesystem status.</li>
+</ul>
+</li>
+<li>
+<p>Archiving → tar // gzip-gunzip.</p>
+</li>
+<li>
+<p>Bit-by-Bit copy <code>dd</code></p>
+</li>
+<li>
+<p>sda2 is partition 2 of drive sda.</p>
+</li>
+<li>
+<p><code>fsck</code> -&gt; checks for errors.</p>
+</li>
+<li>
+<p><a href="https://superuser.com/questions/1496858/is-dev-sda-a-file-or-a-directory">Is /dev/sda a file or a directory?</a></p>
+</li>
+</ul>
+<h2 id="networking"><a class="zola-anchor" href="#networking" aria-label="Anchor link for: networking">Networking</a></h2>
+<ul>
+<li>ARP stands for <strong>Address Resolution Protocol</strong>, which is a process used to connect a dynamic IP address to a physical machine's MAC address. ARP is used to resolve IP addresses into MAC addresses, which means that the IP address is already known, but the MAC address is not. ARP is necessary because it helps in resolving dynamic IP addresses into MAC addresses.</li>
+<li>hardware → protocols → apps (OSI model).</li>
+</ul>
+<script src=https://fborello-lambda.github.io/js/mermaid.js></script>
+
+<pre class="mermaid">
+  flowchart TD
+
+subgraph Z[" "]
+direction LR
+Packets -- Have --> Headers -- Help to --> Redirect
+end
+
+subgraph ZA[" "]
+direction LR
+HTTP --> TCP --> IP
+HTTPS -- HTTP but encrypted --> TCP
+end
+</pre>
+<ul>
+<li>static and dynamic ip (internet protocol). Internet Protocol Security (IPSec), a protocol that comes with a diversity of mechanisms to ensure the integrity, authenticity, and confidentiality of data packets.</li>
+<li>transport protocols: UDP(fast, but no reliable), TCP(reliable, uses a handshake mechanism), QUIC(uses a faster handshake mechanism)</li>
+<li>Domain Name System (DNS), a public, decentralized database that links a unique name to an IP address. DNS Security Extensions (DNSSEC). DNS over HTTPS (DOH)</li>
+<li>HTTPS is purely defined as securing HTTP connections by means of the cryptographic protocol Transport Layer Security (TLS).</li>
+<li>In order to set up a TLS connection between server and client, their communicating nodes establish a shared secret key through a handshake. Server Name Indication (SNI), certificate authorities (CA).</li>
+</ul>
+<script src=https://fborello-lambda.github.io/js/mermaid.js></script>
+
+<pre class="mermaid">
+  graph TD
+CryptographicTechniques --> SigningData -- Used As--> AuthenticationMethod
+CryptographicTechniques --> Encryption
+Encryption --> SymmetricCryptography
+Encryption --> AsymmetricCryptography
+AsymmetricCryptography --> Private&Public_Keys
+SymmetricCryptography --> SingleShared_Key
+EndToEndEncryption --> DoubleRatchetAlgo
+EndToEndEncryption --> OpenPGP_GPG
+</pre>
+<p>Many modern encryption algorithms feature <strong>Forward Secrecy</strong>, which ensures that intercepted and stored encrypted packets can’t be decrypted in the future, even if the long-term encryption keys of the sender and receiver are compromised.</p>
+<ul>
+<li>Packet Analysis</li>
+<li>Burpsuite</li>
+<li>How packet sniffers work?
+<ul>
+<li>Collection of the packet → Promiscuous mode</li>
+<li>Conversion</li>
+<li>Analysis</li>
+</ul>
+</li>
+<li>Issues that need to be solved by protocols:
+<ul>
+<li>Connection Initiation</li>
+<li>Negotiation of connection characteristics (handshaking)</li>
+<li>Data formatting</li>
+<li>Error Detection and Correction</li>
+<li>Connection Termination</li>
+</ul>
+</li>
+</ul>
+<p>The OSI model uses specific terms to describe packaged data at each layer. The physical layer contains bits, the data link layer contains frames, the network layer contains packets, and the transport layer contains segments. The top three layers simply use the term data. This nomenclature isn’t used much in practice, so we’ll generally just use the term packet to refer to a complete or partial PDU that includes header and footer information from a few or many layers of the OSI model. (encapsulation of data)</p>
+<p>The extent to which broadcast packets can travel is called the <strong>broadcast
+domain</strong>, which is the network segment where any computer can directly transmit to another computer without going through a router.</p>
+<h3 id="wireshark"><a class="zola-anchor" href="#wireshark" aria-label="Anchor link for: wireshark">Wireshark</a></h3>
+<ul>
+<li>From ChatGPT:
+Wireshark, the digital detective for networks, captures and unveils the content of data "packets" traveling through your network. An Ethernet frame acts like an envelope for this data, containing layers like IP (with addresses) and TCP (ensuring reliable data transfer). Importantly, each layer carries information from the layer above, and Wireshark helps you dissect these layers, revealing the intricate details of your network's communication. Understanding the Ethernet frame is key, as it serves as the outer layer transporting information across the network.</li>
+<li><a href="https://www.youtube.com/watch?v=OU-A2EmVrKQ&amp;list=PLW8bTPfXNGdC5Co0VnBK1yVzAwSSphzpJ">Youtube Tutorial</a></li>
+<li>ctrl-m → mark packet</li>
+<li>shift-ctrl-n → next marked packet // shift-ctrl-b → previous(back) marked packet.</li>
+<li>time shift and time ref is useful (time ref → ctrl-t)</li>
+<li>Output Tab → for logging data.</li>
+<li>The <code>ping</code> command generates ICMP traffic.</li>
+<li>Capture and Display filters. Berkeley Packet Filter (BPF) → expressions.
+<ul>
+<li>Capture Filters are applied before a “Packet Capturing Session”
+<ul>
+<li>A common scenario is to capture only TCP packets with the RST flag
+set. Offset 13 has the TCP’s packet flags. The Capture Filter to get the a flag is: <code>tcp[13] &amp; 4 == 4</code> this filter gets the RST flag.</li>
+<li>Commonly Used Capture Filters:
+<ul>
+<li>tcp[13] &amp; 32 == 32 TCP packets with the URG flag set</li>
+<li>tcp[13] &amp; 16 == 16 TCP packets with the ACK flag set</li>
+<li>tcp[13] &amp; 8 == 8 TCP packets with the PSH flag set</li>
+<li>tcp[13] &amp; 4 == 4 TCP packets with the RST flag set</li>
+<li>tcp[13] &amp; 2 == 2 TCP packets with the SYN flag set</li>
+<li>tcp[13] &amp; 1 == 1 TCP packets with the FIN flag set</li>
+<li>tcp[13] == 18 TCP SYN-ACK packets</li>
+<li>ether host 00:00:00:00:00:00 Traffic to or from your MAC address</li>
+<li>!ether host 00:00:00:00:00:00 Traffic not to or from your MAC address</li>
+<li>broadcast Broadcast traffic only</li>
+<li>icmp ICMP traffic</li>
+<li>icmp[0:2] == 0x0301 ICMP destination unreachable, host unreachable</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Display filters are applied and can be reverted. (A common case is to “hide” arp packets)
+<ul>
+<li>Analyze → Display Filters. GUI for creating filters.</li>
+<li>format: protocol.feature.subfeature</li>
+<li>Commonly Used Display Filters:
+<ul>
+<li>ip.addr==192.168.0.33</li>
+<li>!tcp.port==3389 Filter out RDP traffic</li>
+<li>tcp.flags.syn==1 TCP packets with the SYN flag set</li>
+<li>tcp.flags.reset==1 TCP packets with the RST flag set</li>
+<li>!arp Clear ARP traffic</li>
+<li>http All HTTP traffic</li>
+<li><code>tcp.port==23 || tcp.port==21</code> Telnet or FTP traffic</li>
+<li>smtp || pop || imap Email traffic (SMTP, POP, or IMAP)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Layer3, Network Layer Protocols: ARP, IPv4, IPv6, ICMP, and ICMPv6.
+<ul>
+<li>Ethernet is Layer2 → Data Link</li>
+<li>ARP:
+”MAC addresses are needed because a switch that interconnects devices
+on a network uses a Content Addressable Memory (CAM) table, which lists the MAC addresses of all devices plugged into each of its ports. When the switch receives traffic destined for a particular MAC address, it uses this table to know which port to send the traffic through. If the destination MAC address is unknown, the transmitting device will first check for the address in its cache; if the address isn’t there, then it must be resolved through additional communication on the network. The resolution process that TCP/IP networking (with IPv4) uses to resolve an IP address to a MAC address is called the Address Resolution Protocol (ARP), which is defined in RFC 826. The ARP resolution process uses only two packets: an ARP request and an ARP response.” - ARP request (The packet destination address is the broadcast address ff:ff:ff:ff:ff:ff)→ Asks for the MAC address given an IP.
+ARP response → responds to the request with the MAC address of the device whose IP address matches the one that was sent in the request. - The gratuitous ARP packet → when ip changes and for load balancing. - <a href="https://learningnetwork.cisco.com/s/question/0D53i00000Ksz5aCAB/is-arp-a-layer-2-or-3-protocol">ARP is Layer2/3</a></li>
+<li>IP:
+<ul>
+<li>IPv4 &amp; IPv6 // Netmask // CIDR notation. The Netmask determines which part corresponds to the network and which part corresponds to the host.</li>
+<li>TTL: Time to Live Defines the lifetime of the packet, measured in hops or seconds through routers.</li>
+<li>ICMP uses IP to deliver Packages.</li>
+<li>IP is Layer3</li>
+<li>IP Fragmentation → Divides the IP packet based on the Maximum Transmission Unit(MTU).</li>
+<li>IPv6: Hop Limit Defines the lifetime of the packet, measured in hops
+through routers. This field replaces the TTL field in IPv4.</li>
+<li>IPv6 doesn’t support broadcast traffic because broadcast is viewed as an inefficient mechanism for transmission.</li>
+<li>Neighbor Solicitation, a function of Neighbor Discovery Protocol (NDP), which utilizes ICMPv6(similar to ARP). Is used to find IPv6 devices.</li>
+<li>IPv6 fragmentation used MTU discovery. Routers do not fragment packets. If the packets sent are too big, an ICMPv6 packet is sent to the initial sender.</li>
+<li>IPv6 Transitional protocols(encapsulation):
+<ul>
+<li>6to4</li>
+<li>Teredo</li>
+<li>ISATAP</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ICMP
+<ul>
+<li>Relies on IP, it has a checksum.</li>
+<li>Some firewalls block pings (ICMP).</li>
+<li>The random text used in an ICMP echo request can be of great interest to a potential attacker. Attackers can use the information in this padding to profile the operating system used on a device.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Layer4, Transport Layer Protocols:
+<ul>
+<li>TCP:
+<ul>
+<li>ports</li>
+<li>reliable</li>
+<li>flags (give status)</li>
+<li>TCP Three-Way Handshake
+<ul>
+<li>hostA sends a packet with SYN flag active.</li>
+<li>hostB sends a response with SYN and ACK flag active.</li>
+<li>hostA responds with ACK flag active.</li>
+</ul>
+</li>
+<li>TCP Teardown → FIN/ACK handshake → gracefully end connection.</li>
+<li>TCP Reset → RST flag → indicates that a connection was closed abruptly.</li>
+</ul>
+</li>
+<li>UDP:
+<ul>
+<li>fast but not reliable</li>
+<li>No handshake</li>
+<li>The application-layer protocols DNS and DHCP, which are highly dependent on the speed of packet transmission across a network, use UDP as their transport layer protocol, but they handle error checking and retransmission timers themselves.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Layer7, Application Layer Protocols.
+<ul>
+<li>DHCP
+<ul>
+<li>Allows a device to get an IP address dynamically.</li>
+<li>DORA process (dev → DHCP server):
+<ul>
+<li>Discover →</li>
+<li>Offer ←</li>
+<li>Request →</li>
+<li>Acknowledgment ←</li>
+</ul>
+</li>
+<li>The DHCP server leases the ip address to the client, when the time passes, the DORA process is performed again(without ‘DO’), the server may offer the same IP if it wasn’t taken.</li>
+<li>DHCPv6 uses SARR:
+<ul>
+<li>Solicit →</li>
+<li>Advertise ←</li>
+<li>Request →</li>
+<li>Reply ←</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DNS
+<ul>
+<li>Maps an IP to a domain(human readable format)</li>
+<li>Device → Queries → DNS server</li>
+<li>Device ← Reply ← DNS server</li>
+<li>DNS server Recursion, one server may request an IP from another server.</li>
+<li>DNS zones divide responsibility for namespaces.
+<ul>
+<li>AXFR and IXFR</li>
+<li>“The data contained in a zone transfer can be very dangerous in the wrong hands. For example, by enumerating a single DNS server, you can map a network’s entire infrastructure.”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>HTTP
+<ul>
+<li>The Hypertext Transfer Protocol is the delivery mechanism of the World Wide Web.</li>
+<li>An HTTP server is usually on TCP port 80.</li>
+<li>HTTP header:
+<ul>
+<li>Header example: “GET / HTTP/1.1\r\n”</li>
+<li>This information tells us that the client is sending a request to download (GET) the root web directory (/) of the web server using version 1.1 of HTTP.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SMTP
+<ul>
+<li>Simple Mail Transfer Protocol.</li>
+<li>When you send a message, it’s sent from your MUA to a mail transfer agent (MTA). The MTA is often referred to as the mail server, with popular mail server applications being Microsoft Exchange or Postfix.</li>
+<li>The MTA must use DNS to find the location address of the recipient mail server.</li>
+<li>Retrieving email from a mailbox on a SMTP server is done with POP3 or IMAP. TLS encryption is used.</li>
+</ul>
+</li>
+<li>Port mirroring is probably not an option on the SOHO switch. Our best bet is to use a cheap tap(hardware) or to perform ARP cache poisoning(man in the middle attack // software) to intercept these packets.</li>
+<li>A computer will typically use its hosts file as the authoritative source for DNS name-to-IP address mappings, and it will check that file before querying an outside source. <code>/etc/hosts</code></li>
+</ul>
+</li>
+</ul>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

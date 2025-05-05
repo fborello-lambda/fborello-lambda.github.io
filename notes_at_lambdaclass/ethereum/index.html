@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Ethereum
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Ethereum" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Ethereum<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-05-01</time>
+                    
+
+                    
+
+                    
+
+                    :: 1276 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/ethereum/"
+                                   class="post-tag">ethereum</a>
+                                ,
+                            
+                                <a href="https://fborello-lambda.github.io/tags/programming/"
+                                   class="post-tag">programming</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/ethereum/#ethereum">Ethereum</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/ethereum/#glossary">Glossary</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/ethereum/#evm">EVM</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/ethereum/#misc">MISC</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/ethereum/#yul-evm-s-assembly-lang">Yul | EVM&#x27;s &quot;Assembly&quot; lang</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/ethereum/#zk-rollups">ZK Rollups</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/ethereum/#solidity">Solidity</a>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="ethereum"><a class="zola-anchor" href="#ethereum" aria-label="Anchor link for: ethereum">Ethereum</a></h2>
+<h2 id="glossary"><a class="zola-anchor" href="#glossary" aria-label="Anchor link for: glossary"><a href="https://ethereum.org/en/glossary/">Glossary</a></a></h2>
+<p>The Ethereum organization proposes some specs or improvements <code>EIPs</code> , this specs are what <strong><em>Architecture</em></strong> means for hardware.</p>
+<p>Updates are released when a certain block height is met. All execution clients agree on the height.</p>
+<p><a href="https://ethereum.org/en/developers/docs/accounts/">Accounts</a> → Difference between <code>Externally Owned Account</code> and <code>Contract Account</code>.
+<a href="https://ethereum.stackexchange.com/questions/142626/redeploy-a-smart-contract-on-the-same-address">selfdestruct - Redeploy a smart contract on the same address - Ethereum Stack Exchange</a></p>
+<p><a href="https://eips.ethereum.org/EIPS/eip-1271">ERC-1271: Standard Signature Validation Method for Contracts</a></p>
+<p>Types of Tx accepted by zkSync → <a href="https://eips.ethereum.org/EIPS/eip-712">EIP-712: Typed structured data hashing and signing</a></p>
+<ul>
+<li><a href="https://medium.com/metamask/eip712-is-coming-what-to-expect-and-how-to-use-it-bb92fd1a7a26">EIP712 is here: What to expect and how to use it | by Koh Wei Jie | MetaMask | Medium</a></li>
+<li>Gas calculation → <a href="https://help.coinbase.com/en/coinbase/getting-started/crypto-education/eip-1559">What is EIP-1559? | Coinbase Help</a></li>
+</ul>
+<p>System Contracts → Contracts that provide general purpose code, some interact with the L1 like <code>Diamond</code>.
+Contract’s events:</p>
+<blockquote>
+<p>You should emit an event anytime something occurs in your smart contract that some system outside the blockchain should be aware of so that the outside system may listen for such occurrences</p>
+</blockquote>
+<p><a href="https://www.stackup.sh/blog/what-are-paymasters">What are Paymasters?</a></p>
+<p><a href="https://eips.ethereum.org/EIPS/eip-3529">Gas Refund</a></p>
+<p><a href="https://ethereum.org/en/glossary/#ommer">ommer blocks</a></p>
+<p><a href="https://eips.ethereum.org/EIPS/eip-2930">optional access lists</a></p>
+<p>Rollups:</p>
+<ul>
+<li>Optimistic</li>
+<li>zk Rollups
+<ul>
+<li>Validium → Proofs are not stored on the blockchain.</li>
+<li>Sometimes, a merkletree that contains all the transactions hashes is built and then the root composes the zk Proof that is later stored on the L1.</li>
+</ul>
+</li>
+</ul>
+<p>Rollup operation requires the assistance of an operator, who rolls transactions together, computes a zero-knowledge proof of the correct state transition, and affects the state transition by interacting with the rollup contract.</p>
+<p><a href="https://ethereum.org/es/roadmap/danksharding/">Sharding</a></p>
+<p>zkEVM → Solves the problem of creating a general purpose verifier. Taking into account that the <code>circuit</code> (Arithmetization of the problem) has to be fixed in order to verify proofs, the idea is to have a so called <code>Virtual Machine</code> that operates like a processor whose proof takes into account each step of the execution.</p>
+<ul>
+<li><a href="https://www.scipr-lab.org/doc/TinyRAM-spec-2.000.pdf">TinyRAM</a> inspires the zkSync’s zkEVM</li>
+<li>How is the zkEVM compatible with Solidity? Solidity → compiles to → Yul → compiles to LLVM → Then the bytecode is interpreted by the zkEVM.</li>
+</ul>
+<h2 id="evm"><a class="zola-anchor" href="#evm" aria-label="Anchor link for: evm">EVM</a></h2>
+<p><a href="https://noxx.substack.com/p/evm-deep-dives-the-path-to-shadowy">EVM Deep Dives: The Path to Shadowy Super Coder 🥷 💻 - Part 1</a></p>
+<p><a href="https://noxx.substack.com/p/evm-deep-dives-the-path-to-shadowy-d6b?s=r">EVM Deep Dives: The Path to Shadowy Super Coder 🥷 💻 - Part 2</a></p>
+<h2 id="misc"><a class="zola-anchor" href="#misc" aria-label="Anchor link for: misc">MISC</a></h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/44602539/how-does-the-opcode-jump-work-in-the-evm-stack">ethereum - How does the opcode JUMP work in the EVM Stack? - Stack Overflow</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/76334/what-is-the-difference-between-bytecode-init-code-deployed-bytecode-creation">creationcode - What is the difference between bytecode, init code, deployed bytecode, creation bytecode, and runtime bytecode? - Ethereum Stack Exchang</a></li>
+<li><a href="https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie">Merkle Patricia Trie | ethereum.org</a></li>
+<li><a href="https://ethereum.org/en/roadmap/verkle-trees">Verkle trees | ethereum.org</a></li>
+<li>Opcodes:
+<ul>
+<li><a href="https://ethereum.org/en/developers/docs/evm/opcodes/">Ethereum Foundation Opcodes</a></li>
+<li><a href="https://ethervm.io/">Opcodes interactive</a></li>
+<li><a href="https://whileydave.com/2023/01/04/disassembling-evm-bytecode-the-basics/">David J. Pearce (Disassembling EVM Bytecode (the Basics))</a></li>
+</ul>
+</li>
+<li>Logs
+<ul>
+<li><a href="https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378">Understanding event logs on the Ethereum blockchain | by Luit Hollander | MyCrypto | Medium</a></li>
+<li><a href="https://moralis.io/ethereum-logs-and-events-what-are-event-logs-on-the-ethereum-network/">Ethereum Logs and Events - What are Event Logs on the Ethereum Network</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/12553/understanding-logs-and-log-blooms">go ethereum - Understanding logs and log blooms - Ethereum Stack Exchange</a> (Important)</li>
+</ul>
+</li>
+<li>Gas
+<ul>
+<li><a href="https://docs.alchemy.com/docs/maxpriorityfeepergas-vs-maxfeepergas">maxPriorityFeePerGas vs maxFeePerGas</a></li>
+<li><a href="https://www.blocknative.com/blog/eip-1559-fees">EIP-1559 Gas Fees: Base Fee, Priority Fee, &amp; Max Fee</a></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.reddit.com/r/ethereum/comments/pxze1i/how_to_convert_eth_gas_price_in_gwei_to/">How to convert eth gas price in gwei to $. : r/ethereum</a>:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">1</span><span> ETH = 1e18 wei
+</span><span>
+</span><span style="color:#f29718;">1</span><span> Gwei (for giga wei) </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">1e9wei</span><span> = 0.000000001 ETH
+</span><span>
+</span><span style="color:#f29718;">A</span><span> standard transaction costs 21_000 gas.
+</span><span>
+</span><span style="color:#f29718;">Assume</span><span> gas price 131 gwei
+</span><span>
+</span><span style="color:#f29718;">131</span><span> gwei/gas </span><span style="color:#ed9366;">*</span><span> 21_000 gas = 2_751_000 gwei = 0.002751 ETH
+</span></code></pre>
+<h2 id="yul-evm-s-assembly-lang"><a class="zola-anchor" href="#yul-evm-s-assembly-lang" aria-label="Anchor link for: yul-evm-s-assembly-lang">Yul | EVM's "Assembly" lang</a></h2>
+<ul>
+<li>earn yul:
+<ul>
+<li><a href="https://docs.soliditylang.org/en/latest/yul.html">Docs</a></li>
+<li><a href="https://github.com/andreitoma8/learn-yul">learn-yul</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="zk-rollups"><a class="zola-anchor" href="#zk-rollups" aria-label="Anchor link for: zk-rollups">ZK Rollups</a></h2>
+<p>Blogposts:</p>
+<ul>
+<li><a href="https://blog.matter-labs.io/introduction-to-hyperchains-fdb33414ead7">Hyperchain Blog</a></li>
+<li><a href="https://docs.zksync.io/zk-stack/concepts/hyperchains-hyperscaling.html">Hyperscaling-zkSync</a></li>
+</ul>
+<h2 id="solidity"><a class="zola-anchor" href="#solidity" aria-label="Anchor link for: solidity">Solidity</a></h2>
+<ul>
+<li>Following the <a href="https://remix.ethereum.org/">REMIX IDE tutorial</a></li>
+</ul>
+<p>Kick off Contract:</p>
+<pre data-lang="solidity" style="background-color:#fafafa;color:#61676c;" class="language-solidity "><code class="language-solidity" data-lang="solidity"><span>// SPDX-License-Identifier: MIT // &lt;-- License
+</span><span>pragma solidity ^0.8.0; // &lt;-- Specify version
+</span><span>
+</span><span>contract SimpleStorage {
+</span><span>    // State variable, stored in the Blockchain
+</span><span>    uint public n; // It is initialized to 0
+</span><span>
+</span><span>    // A transaction is needed to change the state variable.
+</span><span>    function set(uint _n) public {
+</span><span>        n = _n;
+</span><span>    }
+</span><span>
+</span><span>    // To read the variable you don&#39;t need to send a transaction.
+</span><span>    function get() public view returns (uint) {
+</span><span>        return n;
+</span><span>    }
+</span><span>
+</span><span>    // Pure functions neither read nor write the Blockchain&#39;s state
+</span><span>    function add(uint i, uint j) public pure returns (uint) {
+</span><span>        return i + j;
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<ul>
+<li>Solidity interprets the <code>Contract</code> keyword as the “entry point”, just like the <code>main</code> function in a programming language.</li>
+<li>Smart Contracts are atomic, if one operation fails, the entire operation is reverted without altering the Blockchain’s state.</li>
+<li>The variables that are outside <code>functions</code> are stored in the Blockchain. And are called <code>State variables</code> . A scheme of “getters” and “setters” is used.
+<ul>
+<li>If the function takes inputs like our <code>set</code> function (line 9), you must specify the parameter types and names. A common convention is to use an underscore as a prefix for the parameter name to distinguish them from state variables.</li>
+</ul>
+</li>
+<li><code>pure</code> and <code>view</code> functions don’t modify the Blockchain’s state.
+"The following statements are considered modifying the state:
+<ol>
+<li>Writing to state variables / Reading from state variables.</li>
+<li>Emitting events.</li>
+<li>Creating other contracts.</li>
+<li>Using selfdestruct.</li>
+<li>Sending Ether via calls.</li>
+<li>Calling any function not marked view or pure.</li>
+<li>Using low-level calls.</li>
+<li>Using inline assembly that contains certain opcodes."</li>
+<li>Accessing <code>address(this).balance</code> or <code>&lt;address&gt;.balance</code>.</li>
+<li>Accessing any of the members of block, tx, msg (with the exception of <code>msg.sig</code> and <code>msg.data</code>).</li>
+</ol>
+</li>
+<li><code>Modifiers</code> and <code>Constructors</code>
+<ul>
+<li>A <code>Constructor</code> is called the first time the contract is deployed.</li>
+<li>A <code>Modifier</code> is used to change the behavior of a function, in other words, it checks some parameters and executes the function. An <code>_</code> (underscore) is used to symbolize the function’s code: The code you place before the underscore in the modifier will be executed before the code in the body of the modified function. The code after the underscore will be executed after the code in the body of the modified function. <a href="https://docs.soliditylang.org/en/latest/control-structures.html#error-handling-assert-require-revert-and-exceptions">require</a> keyword.</li>
+</ul>
+</li>
+<li>Function visibilty:
+<ul>
+<li>private: only inside the contract</li>
+<li>internal: inside the contract and by child contract</li>
+<li>public: inside contract, child contract and other contracts or transactions</li>
+<li>external: only called by other contracts or transactions, state variables can not be external</li>
+</ul>
+</li>
+<li><a href="https://ethereum.stackexchange.com/questions/78572/what-are-the-virtual-and-override-keywords-in-solidity">What are the virtual and override keywords in Solidity? - Ethereum Stack Exchange</a></li>
+<li>DataTypes
+<ul>
+<li>Arrays</li>
+<li>Enums</li>
+<li>Structs</li>
+<li>Mappings (Used to store values related to an <code>address</code>)
+<ul>
+<li><code>mapping(address =&gt; uint) balance;</code></li>
+<li>Accessing: <code>balance[_addr];</code></li>
+<li>Nested mappings are allowed.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DataLocations
+<ul>
+<li><a href="https://docs.alchemy.com/docs/when-to-use-storage-vs-memory-vs-calldata-in-solidity">When to use Storage vs. Memory vs. Calldata in Solidity</a></li>
+<li>Storage: stores the data permanently on the Blockchain
+<ul>
+<li>Variables located inside a <code>contract</code> but outside <code>functions</code> are called State variables, and are stored in <code>storage</code> .</li>
+</ul>
+</li>
+<li>Memory: Values stored in <code>memory</code> are only stored temporarily and are not on the blockchain, variables inside <code>functions</code> are stored in memory, sometimes the keyword is needed to specify which type of DataLocation is needed.</li>
+<li>Calldata: stores function arguments. The data is stored temporarily and cannot be mutated.</li>
+<li>Assignments:
+<ul>
+<li>Memory to Memory: This creates a reference.</li>
+<li>“Global” Storage to “Local” Storage: This creates a reference.</li>
+<li>Storage and Memory/Calldata: This creates a copy.</li>
+</ul>
+</li>
+<li><code>.selector</code> <a href="https://ethereum.stackexchange.com/questions/72687/explanation-of-appending-selector-in-solidity-smart-contracts">go ethereum - explanation of appending .selector in solidity smart contracts - Ethereum Stack Exchange</a></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://spdx.org/licenses/">SPDX licenses</a></p>
+<p><a href="https://docs.soliditylang.org/en/latest/cheatsheet.html#global-variables">Cheatsheet</a></p>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                How to Speak MIT
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="How to Speak MIT" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        How to Speak MIT<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2025-04-25</time>
+                    
+
+                    
+
+                    
+
+                    :: 264 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/soft-skill/"
+                                   class="post-tag">soft-skill</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+            
+
+            <section class="body">
+                <p>Notes on the MIT video:
+<a href="https://www.youtube.com/watch?v=Unzc731iCUY">How to Speak - YouTube</a></p>
+<p>📏 <strong>As a Rule:</strong> Always tell a story.</p>
+<ol>
+<li><strong>How to Start?</strong>
+<ul>
+<li><strong>Make a Promise</strong> → Give the audience a reason to listen.</li>
+</ul>
+</li>
+<li><strong>Heuristics</strong>
+<ul>
+<li><strong>Cycle Through the Subject</strong> → Restate key points using different phrasing to reinforce ideas.</li>
+<li><strong>Build a Fence</strong> → Differentiate your ideas from others by defining clear boundaries.</li>
+<li><strong>Verbal Punctuation</strong> → Use lists and bullet points to structure your talk’s flow.</li>
+<li><strong>Ask Questions to Engage the Audience</strong>
+<ul>
+<li>Avoid overly complex questions</li>
+<li>Avoid overly obvious questions</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Time and Place</strong>
+<ul>
+<li><strong>Know the Audience’s Schedule</strong> → Avoid problematic times (e.g., 11 AM, post-lunch, post-6 PM).</li>
+<li><strong>Inspect the Venue</strong> → Ensure proper lighting and visualize a full room to reduce anxiety.</li>
+</ul>
+</li>
+<li><strong>Board and Props</strong>
+<ul>
+<li><strong>Whiteboard for Lectures</strong> → Use empathetic mirroring (e.g., analyze a circuit step-by-step to make the audience feel involved).</li>
+<li><strong>Use Physical Objects</strong> → Show real-world examples (e.g., a functional circuit) instead of theoretical descriptions.</li>
+</ul>
+</li>
+<li><strong>Slides</strong>
+<ul>
+<li><strong>Support, Don’t Replace</strong> → Use slides for talks, not lectures.</li>
+<li><strong>Never Read Slides Aloud</strong></li>
+<li><strong>Prioritize Images</strong> → Use simple, high-impact visuals.</li>
+<li><strong>Eliminate Clutter</strong> → Remove names, logos, titles, and dates.</li>
+<li><strong>Use Arrows/Boxes</strong> → Replace laser pointers with graphical guides.</li>
+</ul>
+</li>
+<li><strong>Job Talks</strong>
+<ul>
+<li><strong>Vision + Proof</strong> → Explain your vision and <em>demonstrate</em> contributions (ideally in 5 minutes).</li>
+</ul>
+</li>
+<li><strong>Getting Famous</strong>
+<ul>
+<li><strong>Five Key Elements</strong>
+<ul>
+<li><strong>Narrative Identity</strong> → Frame your life/work as a compelling story.</li>
+<li><strong>Own a Symbol</strong></li>
+<li><strong>Create a Slogan</strong></li>
+<li><strong>Embrace Surprises</strong> → Make them routine, not rare.</li>
+<li><strong>Develop a Signature Idea</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>How to Stop</strong>
+<ul>
+<li><strong>Final Slide</strong> → Acknowledge external contributors.</li>
+<li><strong>Closing Remark</strong> → End with a memorable joke or quip.</li>
+</ul>
+</li>
+</ol>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

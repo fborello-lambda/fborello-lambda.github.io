@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Technical Blogs and Links
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Technical Blogs and Links" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Technical Blogs and Links<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+
+                    
+
+                    
+
+                    :: 516 Words
+
+                    
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/t_blogs_and_links/#electronics">Electronics</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/t_blogs_and_links/#blockchain-software">Blockchain&#x2F;Software</a>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="electronics">Electronics</h2>
+<ul>
+<li>FPGAs
+<ul>
+<li><a href="https://www.fpga4fun.com/">fpga4fun.com - where FPGAs are fun</a></li>
+<li><a href="https://github.com/jrmoserbaltimore/risc-v-cpu-asynchronous">GitHub - jrmoserbaltimore/risc-v-cpu-asynchronous: A RISC-V CPU implementation</a></li>
+</ul>
+</li>
+<li>Low Level
+<ul>
+<li><a href="https://www.lurklurk.org/linkers/linkers.html#namemangling">Beginner's Guide to Linkers</a></li>
+<li><a href="https://blog.thea.codes/the-most-thoroughly-commented-linker-script/">The most thoroughly commented linker script (probably) - Stargirl (Thea) Flowers</a></li>
+<li><a href="https://acg.cis.upenn.edu/milom/cse372-Spring06/labs/lab4.html">Lab 4 - Pipelined Processor</a></li>
+<li><a href="https://stackoverflow.com/questions/55191553/what-actually-happens-when-two-shared-libraries-define-the-same-symbol">c++ - What actually happens when two shared libraries define the same symbol? - Stack Overflow</a></li>
+</ul>
+</li>
+<li>Videos
+<ul>
+<li><a href="https://www.youtube.com/watch?v=W4rroROmcuU">From Rats Nest to a complete PCB layout in 10 steps // Designing a LoRa-GPS tracker in KiCad - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=_1u7IOnivnM">This Is 100% How You Should Be Debugging | How to Use OpenOCD to Debug Embedded Software with GDB - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=1e_ZB8p5n6s">The Simplest Digital Filter (STM32 Implementation) - Phil's Lab #92 - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=01mw0oTHwxg">Hacker's Guide to UART Root Shells - YouTube</a></li>
+<li>FPGAs
+<ul>
+<li><a href="https://www.youtube.com/watch?v=ScnIbCOLcP4">Tech Talk: eFPGA LUTs - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=hVMeU2ThgNw&amp;list=PL9K1-gZiaFsM7kZuaGGR5rDH2TbMJ56Mh">10 tips for writing a clear state machine in Verilog: A UART transmitter example. - YouTube</a></li>
+</ul>
+</li>
+<li>LowLevel
+<ul>
+<li><a href="https://www.youtube.com/watch?v=IYZDIhfAUM0">Become a shell wizard in ~12 mins - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=dOfucXtyEsU">CppCon 2018: Matt Godbolt “The Bits Between the Bits: How We Get to main()” - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=nC1U1LJQL8o">In-depth: ELF - The Extensible &amp; Linkable Format - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=JTjNoejn4iA">Is this the Future of Programming Languages? - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=vcSijrRsrY0">Let's Create a Compiler (Pt.1) - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=juKv1aHEikI">Why I like C programming more than Web Dev (rant) - YouTube</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="blockchain-software">Blockchain/Software</h2>
+<ul>
+<li>Blogs
+<ul>
+<li>Distributed Systems
+<ul>
+<li><a href="https://ferd.ca/a-distributed-systems-reading-list.html">A Distributed Systems Reading List</a></li>
+<li><a href="https://www.varunsrinivasan.com/writing/">Decentralized Concepts</a></li>
+<li><a href="https://www.datadoghq.com/blog/engineering/formal-modeling-and-simulation/">How We Use Formal Modeling, Lightweight Simulations, and Chaos Testing to Design Reliable Distributed Systems | Datadog</a></li>
+</ul>
+</li>
+<li>Blockchain
+<ul>
+<li><a href="https://www.youtube.com/watch?v=5gfNUVmX3Es">Ethereum's Proof of Stake consensus explained - YouTube</a></li>
+<li><a href="https://blog.init4.technology/p/the-hand-off-problem">The Hand-off Problem - by init4 - the technology</a></li>
+<li><a href="https://www.youtube.com/watch?v=WiKPlNGrUzU">Wtf are based rollups and preconfs? - YouTube</a></li>
+</ul>
+</li>
+<li>Machine Learning
+<ul>
+<li><a href="https://ludwigabap.bearblog.dev/resources-for-ml/">Resources for ML | Ludwig</a></li>
+</ul>
+</li>
+<li>Misc
+<ul>
+<li><a href="https://blog.codingconfessions.com/p/the-magic-of-fork">Disillusioning the Magic of the fork System Call</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Hardware
+<ul>
+<li><a href="https://www.youtube.com/watch?v=JJMZQzVhCvY"><strong>GPU acceleration in ZK crypto</strong></a></li>
+<li><a href="https://www.youtube.com/watch?v=mUo0WtLnEHU"><strong>Talk on Icicle by Ingonyama</strong></a></li>
+</ul>
+</li>
+<li>Videos
+<ul>
+<li>Distributed Systems
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Y6Ev8GIlbxc">Distributed Systems in One Lesson by Tim Berglund - YouTube</a></li>
+</ul>
+</li>
+<li>Machine Learning
+<ul>
+<li><a href="https://www.youtube.com/watch?v=UGO_Ehywuxc">The Dark Matter of AI [Mechanistic Interpretability] - YouTube</a></li>
+</ul>
+</li>
+<li>Misc
+<ul>
+<li><a href="https://www.youtube.com/watch?v=b5VhYkvOk30&amp;list=PLoyEIY-nZq_uipRkxG79uzAgfqDuHzot-">Intro to Lambda Calculus: Syntax, evaluation, terminology (compared to Haskell, Python, JavaScript) - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=9qLACD9Bfbk">Type Theory for Busy Engineers - Niko Matsakis - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=BJjsfNO5JTo&amp;t=426s">How To Get The Most Out Of Vibe Coding | Startup School - YouTube</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

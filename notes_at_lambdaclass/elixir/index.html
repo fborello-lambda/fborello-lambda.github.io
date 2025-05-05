@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Elixir - Phoenix
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Elixir - Phoenix" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Elixir - Phoenix<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-05-01</time>
+                    
+
+                    
+
+                    
+
+                    :: 1208 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/programming/"
+                                   class="post-tag">programming</a>
+                                ,
+                            
+                                <a href="https://fborello-lambda.github.io/tags/phx/"
+                                   class="post-tag">phx</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#elixir">Elixir</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#phoenix">Phoenix</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#phoenix-structure-how-it-works">Phoenix Structure &#x2F;&#x2F; How it works?</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#phoenix-in-action">Phoenix in Action</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#creating-a-form">Creating a form</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#easy-redirection">Easy redirection</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#handle-errors-with-the-case-statement">Handle Errors with the case statement</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#how-to-edit-similar-to-new-and-create-but-with-edit-and-update">How to edit? Similar to new and create but with edit and update</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#phoenix-in-action-summary-of-chapter-9">Phoenix in Action Summary of chapter 9</a>
+                                    
+                                        <ul>
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#good-workflow">Good workflow</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#recap">Recap</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#chapter-10">Chapter 10</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#chapter-11">Chapter 11</a>
+                                                </li>
+
+                                                
+                                            
+                                        </ul>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/elixir/#code-an-api-on-top-of-the-html-web-app">Code an API on top of the HTML web_app</a>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="elixir"><a class="zola-anchor" href="#elixir" aria-label="Anchor link for: elixir">Elixir</a></h2>
+<p><code>spawn(&lt;function&gt;)</code> → runs the function asynchronously.</p>
+<p>scope of anonymous functions, variables after the function can be accessed (closures). AVOID</p>
+<p>Parenthesis can be omitted when calling named functions:</p>
+<p><code>IO.puts("with parens")</code> <code>IO.puts "no parens"</code></p>
+<p>Modules: <code>Module.&lt;function&gt;(parameters)</code> They use CamelCase and module’s filenames use snake_case.</p>
+<p>Function arities → number of arguments a function receives.</p>
+<p><a href="https://stackoverflow.com/questions/44266193/why-do-we-need-a-function-capture-operator-in-elixir">Capture operator</a></p>
+<p>Creating an anonymous function:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>iex(</span><span style="color:#ff8f40;">5</span><span>)</span><span style="color:#ed9366;">&gt;</span><span> mult </span><span style="color:#ed9366;">=</span><span> &amp;(</span><span style="color:#ed9366;">&amp;</span><span style="color:#ff8f40;">1 </span><span style="color:#ed9366;">* &amp;</span><span style="color:#ff8f40;">2</span><span>)
+</span><span style="color:#ed9366;">&gt;</span><span> &amp;</span><span style="color:#86b300;">:erlang</span><span style="color:#61676ccc;">.</span><span style="color:#ed9366;">*/</span><span style="color:#ff8f40;">2
+</span><span>iex(</span><span style="color:#ff8f40;">6</span><span>)</span><span style="color:#ed9366;">&gt;</span><span> mult</span><span style="color:#61676ccc;">.</span><span>(</span><span style="color:#ff8f40;">10</span><span style="color:#61676ccc;">,</span><span style="color:#ff8f40;">5</span><span>)
+</span><span style="color:#ed9366;">&gt; </span><span style="color:#ff8f40;">50
+</span></code></pre>
+<p>Control Flow with Functions:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#fa6e32;">defmodule </span><span style="color:#399ee6;">Compare </span><span style="color:#fa6e32;">do
+</span><span>  </span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">greater</span><span>(left</span><span style="color:#61676ccc;">,</span><span> right) </span><span style="color:#fa6e32;">do
+</span><span>    check(left </span><span style="color:#ed9366;">&gt;=</span><span> right</span><span style="color:#61676ccc;">,</span><span> left</span><span style="color:#61676ccc;">,</span><span> right)
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span>
+</span><span>  </span><span style="color:#fa6e32;">defp </span><span style="color:#f29718;">check</span><span>(</span><span style="color:#ff8f40;">true</span><span style="color:#61676ccc;">,</span><span> left</span><span style="color:#61676ccc;">,</span><span> _)</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">do:</span><span> left
+</span><span>  </span><span style="color:#fa6e32;">defp </span><span style="color:#f29718;">check</span><span>(</span><span style="color:#ff8f40;">false</span><span style="color:#61676ccc;">,</span><span> _</span><span style="color:#61676ccc;">,</span><span> right)</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">do:</span><span> right
+</span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>Elixir’s compiler needs the <code>require</code> directive to use the module in the compilation phase when using macros.</p>
+<p>Tail Recursive Functions → limits the amount of memory used (sometimes the memory usage is excessive if recursion is used).</p>
+<p>Some recursive functions don’t have boundaries. “Timers” or “Max_depth” can be used, max_depth stands for the amount of recursive function.</p>
+<p>An anonymous recursive function can be created with a named function and the <code>&amp;</code> (capture operator) to capture de function’s reference.</p>
+<p>Comprehensions:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>iex(</span><span style="color:#ff8f40;">32</span><span>)</span><span style="color:#ed9366;">&gt; </span><span style="color:#fa6e32;">for</span><span> x </span><span style="color:#ed9366;">&lt;- </span><span>[</span><span style="color:#86b300;">&quot;a&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;b&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;c&quot;</span><span>]</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">do: </span><span style="color:#399ee6;">String</span><span style="color:#61676ccc;">.</span><span>upcase(x)
+</span><span style="color:#ed9366;">&gt; </span><span>[</span><span style="color:#86b300;">&quot;A&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;B&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;C&quot;</span><span>]
+</span></code></pre>
+<p>Elixir has Structs and Polymorphic functions with “Protocols”.</p>
+<p>Erlang’s Dialyzer tool → analyzes code → “dialyxir” module for Elixir</p>
+<ul>
+<li>Key Aspects of elixir:
+<ul>
+<li>Persistent Data Structures → Immutability</li>
+<li>Preemptive scheduler</li>
+<li>Testing: properties to test for your code and writing good generators for the data over which you want to test.</li>
+</ul>
+</li>
+<li><a href="https://hexdocs.pm/elixir/1.16/enum-cheat.html">Enum Cheatsheet</a></li>
+</ul>
+<h2 id="phoenix"><a class="zola-anchor" href="#phoenix" aria-label="Anchor link for: phoenix">Phoenix</a></h2>
+<ul>
+<li>[Phoenix in Action Repo w v1.7.10](https://github.com/fborello-lambda/phoenix_in_action</li>
+<li>[Phoenix LiveView simple project](https://fly.io/phoenix-files/dynamic-forms-with-streams/</li>
+<li><a href="https://youtube.com/playlist?list=PL2Rv8vpZJz4zM3Go3X-dda478p-6xrmEl&amp;feature=shared">Phoenix Playlist</a> → Useful</li>
+<li><a href="https://elixirforum.com/t/phoenix-in-action-book-running-the-code-in-2023/55828">Phoenix in Action comments</a></li>
+</ul>
+<p>Set up Postgres docker container:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">docker</span><span> run </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">	--name</span><span> phx_db </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">	-e</span><span> POSTGRES_USER=phx_db </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">	-e</span><span> POSTGRES_PASSWORD=phx_test </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">	-p</span><span> 5432:5432 </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">	-d</span><span> postgres
+</span></code></pre>
+<p>Inside <code>/phx_app/config/dev.exs</code> if using a standalone phx-app change:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="font-style:italic;color:#abb0b6;"># Configure your database
+</span><span>config </span><span style="color:#86b300;">:demo</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">Demo</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">Repo</span><span style="color:#61676ccc;">,
+</span><span>  </span><span style="color:#ff8f40;">username: </span><span style="color:#86b300;">&quot;phx_db&quot;</span><span style="color:#61676ccc;">,   </span><span style="font-style:italic;color:#abb0b6;">#POSTGRES_USER
+</span><span>  </span><span style="color:#ff8f40;">password: </span><span style="color:#86b300;">&quot;phx_test&quot;</span><span style="color:#61676ccc;">, </span><span style="font-style:italic;color:#abb0b6;">#POSTGRES_PASSWORD
+</span><span>  </span><span style="color:#ff8f40;">hostname: </span><span style="color:#86b300;">&quot;localhost&quot;</span><span style="color:#61676ccc;">,
+</span><span>  </span><span style="color:#ff8f40;">database: </span><span style="color:#86b300;">&quot;demo_dev&quot;</span><span style="color:#61676ccc;">,
+</span><span>  </span><span style="color:#ff8f40;">stacktrace: true</span><span style="color:#61676ccc;">,
+</span><span>  </span><span style="color:#ff8f40;">show_sensitive_data_on_connection_error: true</span><span style="color:#61676ccc;">,
+</span><span>  </span><span style="color:#ff8f40;">pool_size: 10
+</span></code></pre>
+<p>(Only used when developing). Now <code>mix ecto.create</code> can be used to create de Postgres database.</p>
+<p>If using an umbrella mix app → the database is “handled” by the non-web app.</p>
+<p>Users table and Accounts table separated? why is it a terrible practice to merge both?</p>
+<h2 id="phoenix-structure-how-it-works"><a class="zola-anchor" href="#phoenix-structure-how-it-works" aria-label="Anchor link for: phoenix-structure-how-it-works">Phoenix Structure // How it works?</a></h2>
+<script src=https://fborello-lambda.github.io/js/mermaid.js></script>
+
+<pre class="mermaid">
+  flowchart TD
+
+    subgraph PhoenixProcess
+    		direction TB
+    		subgraph Router
+    				direction TB
+    			r1(["'pipelines'"]) --> r2(["Searches the route by  'scope'"])
+    		end
+    		e1(["Using 'plugs'"]) --> Endpoint --> Router --> ControllerProcess
+
+    		subgraph ControllerProcess
+    			direction TB
+    			Controller --> index
+    			Controller --> new
+    			Controller --> create
+    			Controller --> show
+    			Controller --> edit
+    			Controller --> delete
+    			Controller --> update
+    		end
+
+    		subgraph View
+    				direction TB
+    			v1(["'Render Function'"])
+    		end
+
+    		DB[("DataBase")] <-- ConnectsTo --> ControllerProcess --> View --> Templates
+
+
+
+
+    end
+    WebRequest --> PhoenixProcess --> SendRequest
+</pre>
+<p>If the the Phoenix App is named <code>demo</code> → <code>demo_web</code> is the dir in which all the components, controllers, and routes are specified.</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>/demo/lib
+</span><span>├── demo
+</span><span>│   ├── application.ex
+</span><span>│   ├── mailer.ex
+</span><span>│   └── repo.ex
+</span><span>├── demo.ex
+</span><span>├── demo_web
+</span><span>│   ├── components
+</span><span>│   ├── controllers
+</span><span>│   ├── endpoint.ex
+</span><span>│   ├── gettext.ex
+</span><span>│   ├── router.ex
+</span><span>│   └── telemetry.ex
+</span><span>└── demo_web.ex
+</span></code></pre>
+<p><code>pipelines</code> group <code>plugs</code></p>
+<p>If a scope is defined in<code>router.ex</code>, such as the following one:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="font-style:italic;color:#abb0b6;">#[...]
+</span><span>scope </span><span style="color:#86b300;">&quot;/demo&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">DemoWeb </span><span style="color:#fa6e32;">do
+</span><span>    pipe_through(</span><span style="color:#86b300;">:browser</span><span>)
+</span><span>
+</span><span>    get(</span><span style="color:#86b300;">&quot;/&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">TestController</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:index</span><span>)
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span style="font-style:italic;color:#abb0b6;">#[...]
+</span></code></pre>
+<p>means that the route “/demo” will “open” the <code>TestController</code> controller defined inside <code>/demo_web/controllers</code>. Now, following the guidelines another module to specify the path to the html files should be created <code>/demo_web/controllers/test_html.ex</code> inside it:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#fa6e32;">defmodule </span><span style="color:#399ee6;">AuctionWeb</span><span>.</span><span style="color:#399ee6;">TestHTML </span><span style="color:#fa6e32;">do
+</span><span>  </span><span style="color:#fa6e32;">use </span><span style="color:#399ee6;">AuctionWeb</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:html
+</span><span>
+</span><span>  embed_templates </span><span style="color:#86b300;">&quot;test_html/*&quot;
+</span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>The <code>embed_templates</code> function is trying to bind the htmls inside the path <code>/demo_web/controllers/test_html</code> to the controller. The <code>html.heex</code> templates have to be placed in that dir.</p>
+<h2 id="phoenix-in-action"><a class="zola-anchor" href="#phoenix-in-action" aria-label="Anchor link for: phoenix-in-action">Phoenix in Action</a></h2>
+<p>Phoenix in action chapter6 → <code>{Phoenix.PubSub, name: AuctionWeb.PubSub}</code> above<code>AuctionWeb.Endpoint,</code> in <code>&lt;umbrella&gt;/apps/auction_web/lib/auction_web/application.ex</code> . This handles the pubsub error.</p>
+<p><a href="https://hexdocs.pm/phoenix/routing.html">Phoenix 1.7.x Routing</a> → Useful, links can be done like this:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#ed9366;">&lt;</span><span>%</span><span style="color:#ed9366;">= </span><span style="color:#fa6e32;">for</span><span> item </span><span style="color:#ed9366;">&lt;- @</span><span>items </span><span style="color:#fa6e32;">do</span><span> %</span><span style="color:#ed9366;">&gt;
+</span><span>    </span><span style="color:#ed9366;">&lt;</span><span>li</span><span style="color:#ed9366;">&gt;
+</span><span>      </span><span style="color:#ed9366;">&lt;</span><span>strong class</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;bg-brand/5 text-[0.8125rem] ml-3 rounded-full px-2 font-medium leading-6 text-orange-400	&quot;</span><span style="color:#ed9366;">&gt;
+</span><span>        </span><span style="color:#ed9366;">&lt;</span><span style="color:#61676ccc;">.</span><span>link href</span><span style="color:#ed9366;">=</span><span>{</span><span style="color:#fa6e32;">~p</span><span style="color:#86b300;">&quot;/items/</span><span>#{item</span><span style="color:#61676ccc;">.</span><span>id}</span><span style="color:#86b300;">&quot;</span><span>}</span><span style="color:#ed9366;">&gt;&lt;</span><span>%</span><span style="color:#ed9366;">=</span><span> item</span><span style="color:#61676ccc;">.</span><span>title %</span><span style="color:#ed9366;">&gt;&lt;/</span><span style="color:#61676ccc;">.</span><span>link</span><span style="color:#ed9366;">&gt;
+</span><span>      </span><span style="color:#ed9366;">&lt;/</span><span>strong</span><span style="color:#ed9366;">&gt;
+</span><span>      </span><span style="color:#ed9366;">- &lt;</span><span>%</span><span style="color:#ed9366;">=</span><span> item</span><span style="color:#61676ccc;">.</span><span>description %</span><span style="color:#ed9366;">&gt;
+</span><span>    </span><span style="color:#ed9366;">&lt;/</span><span>li</span><span style="color:#ed9366;">&gt;
+</span><span style="color:#ed9366;">&lt;</span><span>% </span><span style="color:#fa6e32;">end</span><span> %</span><span style="color:#ed9366;">&gt;
+</span></code></pre>
+<p><code>/items</code> is the route specified inside <code>router.ex</code></p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>scope </span><span style="color:#86b300;">&quot;/&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">AuctionWeb </span><span style="color:#fa6e32;">do
+</span><span>    pipe_through </span><span style="color:#86b300;">:browser
+</span><span>
+</span><span>    get </span><span style="color:#86b300;">&quot;/&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">PageController</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:home
+</span><span>    resources </span><span style="color:#86b300;">&quot;/items&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">ItemController</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">only: </span><span>[</span><span style="color:#86b300;">:index</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:show</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:create</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:new</span><span>]
+</span><span>  </span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>And <code>controllers/item_controller.ex</code></p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#fa6e32;">defmodule </span><span style="color:#399ee6;">AuctionWeb</span><span>.</span><span style="color:#399ee6;">ItemController </span><span style="color:#fa6e32;">do
+</span><span>  </span><span style="color:#fa6e32;">use </span><span style="color:#399ee6;">AuctionWeb</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:controller
+</span><span>
+</span><span>  </span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">index</span><span>(conn</span><span style="color:#61676ccc;">,</span><span> _params) </span><span style="color:#fa6e32;">do
+</span><span style="font-style:italic;color:#abb0b6;">    # The home page is often custom made,
+</span><span style="font-style:italic;color:#abb0b6;">    # so skip the default app layout.
+</span><span>    render(conn</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:test</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">layout: false</span><span>)
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span>
+</span><span>  </span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">show</span><span>(conn</span><span style="color:#61676ccc;">,</span><span> %{</span><span style="color:#86b300;">&quot;id&quot; </span><span style="color:#ed9366;">=&gt;</span><span> id}) </span><span style="color:#fa6e32;">do
+</span><span style="font-style:italic;color:#abb0b6;">    # The home page is often custom made,
+</span><span style="font-style:italic;color:#abb0b6;">    # so skip the default app layout.
+</span><span>    item </span><span style="color:#ed9366;">= </span><span style="color:#399ee6;">Auction</span><span style="color:#61676ccc;">.</span><span>get_item(id)
+</span><span>    render(conn</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:show</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">item:</span><span> items</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">layout: false</span><span>)
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>And the views are defined inside <code>controllers/item_html.ex</code></p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#fa6e32;">defmodule </span><span style="color:#399ee6;">AuctionWeb</span><span>.</span><span style="color:#399ee6;">ItemHTML </span><span style="color:#fa6e32;">do
+</span><span>  </span><span style="color:#fa6e32;">use </span><span style="color:#399ee6;">AuctionWeb</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:html
+</span><span>
+</span><span>  embed_templates </span><span style="color:#86b300;">&quot;item_html/*&quot;
+</span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>The controller calls the function render/3 with the Plug.conn, the html template specified as an atom. <code>:test</code> → refers to →<code>item_html/test.html.heex</code>. A variable can be passed to the template, for example, the function <code>show()</code> calls <code>render(conn, :show, item: items).</code> , now the variable “item” can be accessed inside the template == <code>:show</code> == <code>show.html.heex</code> as follows: <code>@items</code>. The first line showing how to code links,<code>&lt;%= for item &lt;- @items do %&gt;</code>, demonstrates how to use the variable passes to the template.</p>
+<h2 id="creating-a-form"><a class="zola-anchor" href="#creating-a-form" aria-label="Anchor link for: creating-a-form">Creating a form</a></h2>
+<p>I’m going to call the “controller” the <code>controller/items_controller.ex</code> file and the “view” will be the <code>page_html/:atom.html.heex"</code> . Using LiveView is maybe easier and gives you more possibilities, but if only HTML is wanted we can do the following, according to Phoenix’s Docs:</p>
+<p><a href="https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#form/1-example-outside-liveview-regular-http-requests">Phoenix Docs</a></p>
+<p>Inside the view:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="font-style:italic;color:#abb0b6;"># [...]
+</span><span style="color:#ed9366;">&lt;</span><span style="color:#61676ccc;">.</span><span>form </span><span style="color:#fa6e32;">for</span><span style="color:#ed9366;">=</span><span>{</span><span style="color:#ed9366;">@</span><span>form} action</span><span style="color:#ed9366;">=</span><span>{</span><span style="color:#fa6e32;">~p</span><span style="color:#86b300;">&quot;/items&quot;</span><span>}</span><span style="color:#ed9366;">&gt;
+</span><span>  </span><span style="color:#ed9366;">&lt;</span><span style="color:#61676ccc;">.</span><span>input field</span><span style="color:#ed9366;">=</span><span>{</span><span style="color:#ed9366;">@</span><span>form[</span><span style="color:#86b300;">:title</span><span>]} </span><span style="color:#ed9366;">/&gt;
+</span><span>	</span><span style="color:#ed9366;">&lt;</span><span style="color:#61676ccc;">.</span><span>input
+</span><span>    type</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;datetime-local&quot;
+</span><span>    value</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;2024-01-24T19:30&quot;
+</span><span>    min</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;2024-01-24T00:00&quot;
+</span><span>    max</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;2024-06-24T00:00&quot;
+</span><span>    field</span><span style="color:#ed9366;">=</span><span>{</span><span style="color:#ed9366;">@</span><span>form[</span><span style="color:#86b300;">:ends_at</span><span>]}
+</span><span>  </span><span style="color:#ed9366;">/&gt; </span><span style="font-style:italic;color:#abb0b6;"># &lt;- input datetime with calendar gui
+</span><span>	</span><span style="color:#ed9366;">&lt;</span><span>button</span><span style="color:#ed9366;">&gt;</span><span style="color:#399ee6;">Save</span><span style="color:#ed9366;">&lt;/</span><span>button</span><span style="color:#ed9366;">&gt;
+</span><span style="color:#ed9366;">&lt;/</span><span style="color:#61676ccc;">.</span><span>form</span><span style="color:#ed9366;">&gt;
+</span><span style="font-style:italic;color:#abb0b6;"># [...]
+</span></code></pre>
+<p>Inside the controller:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="font-style:italic;color:#abb0b6;"># [...]
+</span><span style="color:#fa6e32;">use </span><span style="color:#399ee6;">AuctionWeb</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:live_view </span><span style="font-style:italic;color:#abb0b6;"># important, makes the function &quot;to_form()&quot; usable
+</span><span>
+</span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">new</span><span>(conn</span><span style="color:#61676ccc;">,</span><span> _params) </span><span style="color:#fa6e32;">do
+</span><span>	item </span><span style="color:#ed9366;">= </span><span style="color:#399ee6;">Auction</span><span style="color:#61676ccc;">.</span><span>new_item()
+</span><span>	render(conn</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:new</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">form:</span><span> to_form(item)</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">layout: false</span><span>)
+</span><span style="color:#fa6e32;">end
+</span><span style="font-style:italic;color:#abb0b6;"># [...]
+</span></code></pre>
+<p>And <code>Auction.new_item()</code> returns an <code>Ecto.Changeset</code>:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="font-style:italic;color:#abb0b6;"># [...]
+</span><span style="color:#fa6e32;">import </span><span style="color:#399ee6;">Ecto</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">Changeset
+</span><span>
+</span><span>  </span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">changeset</span><span>(item</span><span style="color:#61676ccc;">,</span><span> params </span><span style="color:#ed9366;">\\</span><span> %{}) </span><span style="color:#fa6e32;">do
+</span><span>    item
+</span><span>    </span><span style="color:#ed9366;">|&gt;</span><span> cast(params</span><span style="color:#61676ccc;">, </span><span>[</span><span style="color:#86b300;">:title</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:description</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:ends_at</span><span>])
+</span><span>    </span><span style="color:#ed9366;">|&gt;</span><span> validate_required(</span><span style="color:#86b300;">:title</span><span>)
+</span><span>    </span><span style="color:#ed9366;">|&gt;</span><span> validate_length(</span><span style="color:#86b300;">:title</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">min: 3</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">max: 200</span><span>)
+</span><span>    </span><span style="color:#ed9366;">|&gt;</span><span> validate_length(</span><span style="color:#86b300;">:description</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">min: 3</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">max: 200</span><span>)
+</span><span>    </span><span style="color:#ed9366;">|&gt;</span><span> validate_change(</span><span style="color:#86b300;">:ends_at</span><span style="color:#61676ccc;">, </span><span style="color:#ed9366;">&amp;</span><span>validate_date</span><span style="color:#ed9366;">/</span><span style="color:#ff8f40;">2</span><span>)
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span style="font-style:italic;color:#abb0b6;"># [...]
+</span></code></pre>
+<p>Take into account that <code>\items</code> should have “RESTful” routes, those where defined inside <code>router.ex</code>:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="font-style:italic;color:#abb0b6;"># [...]
+</span><span>resources </span><span style="color:#86b300;">&quot;/items&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">ItemController</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">only: </span><span>[</span><span style="color:#86b300;">:index</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:show</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:create</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:new</span><span>]
+</span><span style="font-style:italic;color:#abb0b6;"># [...]
+</span></code></pre>
+<h2 id="easy-redirection"><a class="zola-anchor" href="#easy-redirection" aria-label="Anchor link for: easy-redirection">Easy redirection</a></h2>
+<p><a href="https://hexdocs.pm/phoenix/controllers.html#redirection">Phoenix Docs</a></p>
+<p>If a form has been created, the controller will be “using” the module <code>:liveview</code> and <code>:controller</code>, to specify the <code>redirect</code> function from the controller module the following can be done:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="font-style:italic;color:#abb0b6;"># [...]
+</span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">show</span><span>(conn</span><span style="color:#61676ccc;">,</span><span> %{</span><span style="color:#86b300;">&quot;id&quot; </span><span style="color:#ed9366;">=&gt;</span><span> id}) </span><span style="color:#fa6e32;">do
+</span><span>    item </span><span style="color:#ed9366;">= </span><span style="color:#399ee6;">Auction</span><span style="color:#61676ccc;">.</span><span>get_item(id)
+</span><span>    render(conn</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:show</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">item:</span><span> item</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">layout: false</span><span>)
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span>
+</span><span>  </span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">new</span><span>(conn</span><span style="color:#61676ccc;">,</span><span> _params) </span><span style="color:#fa6e32;">do
+</span><span>    item </span><span style="color:#ed9366;">= </span><span style="color:#399ee6;">Auction</span><span style="color:#61676ccc;">.</span><span>new_item()
+</span><span>    render(conn</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:new</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">form:</span><span> to_form(item)</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">layout: false</span><span>)
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span>
+</span><span>  </span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">create</span><span>(conn</span><span style="color:#61676ccc;">,</span><span> %{</span><span style="color:#86b300;">&quot;item&quot; </span><span style="color:#ed9366;">=&gt;</span><span> item_params}) </span><span style="color:#fa6e32;">do
+</span><span>    {</span><span style="color:#86b300;">:ok</span><span style="color:#61676ccc;">,</span><span> item} </span><span style="color:#ed9366;">= </span><span style="color:#399ee6;">Auction</span><span style="color:#61676ccc;">.</span><span>insert_item(item_params)
+</span><span>    </span><span style="color:#399ee6;">Phoenix</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">Controller</span><span style="color:#61676ccc;">.</span><span>redirect(conn</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">to: </span><span style="color:#fa6e32;">~p</span><span style="color:#86b300;">&quot;/items/</span><span>#{item</span><span style="color:#61676ccc;">.</span><span>id}</span><span style="color:#86b300;">&quot;</span><span>) </span><span style="font-style:italic;color:#abb0b6;"># &lt;- Redirection
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span style="font-style:italic;color:#abb0b6;"># [...]
+</span></code></pre>
+<p>The “sigil”p == ~p makes this task easy. Here, in this module, we have the route <code>items/new</code> which “triggers” the <code>new()</code> function, whose view has the form previously defined, the form redirects to <code>~p"/items"</code> with a POST request, this triggers the <code>create()</code> function. Finally, a redirection is performed to <code>~p"/items/#{item.id}"</code>, this route triggers the <code>show()</code> function. All this “operation” is possible because RESTful paths are defined in <code>router.ex</code>.</p>
+<h2 id="handle-errors-with-the-case-statement"><a class="zola-anchor" href="#handle-errors-with-the-case-statement" aria-label="Anchor link for: handle-errors-with-the-case-statement">Handle Errors with the case statement</a></h2>
+<p>This expression is really useful. If the insertion is made without errors, based on the Ecto.Changeset, it redirects to the <code>show()</code> function, else it redirects again to the <code>new()</code> function.</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#fa6e32;">def </span><span style="color:#f29718;">create</span><span>(conn</span><span style="color:#61676ccc;">,</span><span> %{</span><span style="color:#86b300;">&quot;item&quot; </span><span style="color:#ed9366;">=&gt;</span><span> item_params}) </span><span style="color:#fa6e32;">do
+</span><span>  </span><span style="color:#fa6e32;">case </span><span style="color:#399ee6;">Auction</span><span style="color:#61676ccc;">.</span><span>insert_item(item_params) </span><span style="color:#fa6e32;">do
+</span><span>    {</span><span style="color:#86b300;">:ok</span><span style="color:#61676ccc;">,</span><span> item} </span><span style="color:#ed9366;">-&gt; </span><span style="color:#399ee6;">Phoenix</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">Controller</span><span style="color:#61676ccc;">.</span><span>redirect(conn</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">to: </span><span style="color:#fa6e32;">~p</span><span style="color:#86b300;">&quot;/items/</span><span>#{item</span><span style="color:#61676ccc;">.</span><span>id}</span><span style="color:#86b300;">&quot;</span><span>)
+</span><span>    {</span><span style="color:#86b300;">:error</span><span style="color:#61676ccc;">,</span><span> item} </span><span style="color:#ed9366;">-&gt;</span><span> conn
+</span><span>      </span><span style="color:#ed9366;">|&gt; </span><span style="color:#399ee6;">Phoenix</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">Controller</span><span style="color:#61676ccc;">.</span><span>put_flash(</span><span style="color:#86b300;">:error</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;Try again&quot;</span><span>) </span><span style="font-style:italic;color:#abb0b6;"># &lt;- inserts a flash msg
+</span><span>      </span><span style="color:#ed9366;">|&gt; </span><span style="color:#399ee6;">Phoenix</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">Controller</span><span style="color:#61676ccc;">.</span><span>redirect(</span><span style="color:#ff8f40;">to: </span><span style="color:#fa6e32;">~p</span><span style="color:#86b300;">&quot;/items/new&quot;</span><span>)
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span> </span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>Inside the view:</p>
+<p><a href="https://hexdocs.pm/phoenix/controllers.html#flash-messages">Phoenix Docs</a></p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="font-style:italic;color:#abb0b6;">#[...]
+</span><span style="color:#ed9366;">&lt;</span><span style="color:#61676ccc;">.</span><span>flash_group flash</span><span style="color:#ed9366;">=</span><span>{</span><span style="color:#ed9366;">@</span><span>flash} </span><span style="color:#ed9366;">/&gt;
+</span><span style="font-style:italic;color:#abb0b6;">#[...]
+</span></code></pre>
+<h2 id="how-to-edit-similar-to-new-and-create-but-with-edit-and-update"><a class="zola-anchor" href="#how-to-edit-similar-to-new-and-create-but-with-edit-and-update" aria-label="Anchor link for: how-to-edit-similar-to-new-and-create-but-with-edit-and-update">How to edit? Similar to new and create but with edit and update</a></h2>
+<p>→ Note: <code>Auction.edit_item()</code> has to be defined in the non-web app:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#fa6e32;">def </span><span style="color:#f29718;">edit_item</span><span>(id) </span><span style="color:#fa6e32;">do
+</span><span>  get_item(id)
+</span><span>  </span><span style="color:#ed9366;">|&gt; </span><span style="color:#399ee6;">Item</span><span style="color:#61676ccc;">.</span><span>changeset()
+</span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>Create a new html → <code>edit.html.heex</code> (the view) and copy to it the <code>new.html.heex</code> contents. Now, inside the controller:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#fa6e32;">def </span><span style="color:#f29718;">edit</span><span>(conn</span><span style="color:#61676ccc;">,</span><span> %{</span><span style="color:#86b300;">&quot;id&quot; </span><span style="color:#ed9366;">=&gt;</span><span> id}) </span><span style="color:#fa6e32;">do
+</span><span>    item </span><span style="color:#ed9366;">= </span><span style="color:#399ee6;">Auction</span><span style="color:#61676ccc;">.</span><span>edit_item(id)
+</span><span>    render(conn</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:edit</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">form:</span><span> to_form(item)</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">id:</span><span> id</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">layout: false</span><span>) </span><span style="font-style:italic;color:#abb0b6;"># &lt;- the id is passed
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span>
+</span><span>  </span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">update</span><span>(conn</span><span style="color:#61676ccc;">,</span><span> %{</span><span style="color:#86b300;">&quot;id&quot; </span><span style="color:#ed9366;">=&gt;</span><span> id</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;item&quot; </span><span style="color:#ed9366;">=&gt;</span><span> item_params}) </span><span style="color:#fa6e32;">do
+</span><span>    item </span><span style="color:#ed9366;">= </span><span style="color:#399ee6;">Auction</span><span style="color:#61676ccc;">.</span><span>get_item(id)
+</span><span>
+</span><span>    </span><span style="color:#fa6e32;">case </span><span style="color:#399ee6;">Auction</span><span style="color:#61676ccc;">.</span><span>update_item(item</span><span style="color:#61676ccc;">,</span><span> item_params) </span><span style="color:#fa6e32;">do
+</span><span>      {</span><span style="color:#86b300;">:ok</span><span style="color:#61676ccc;">,</span><span> item} </span><span style="color:#ed9366;">-&gt;
+</span><span>        </span><span style="color:#399ee6;">Phoenix</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">Controller</span><span style="color:#61676ccc;">.</span><span>redirect(conn</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">to: </span><span style="color:#fa6e32;">~p</span><span style="color:#86b300;">&quot;/items/</span><span>#{item</span><span style="color:#61676ccc;">.</span><span>id}</span><span style="color:#86b300;">&quot;</span><span>)
+</span><span>
+</span><span>      {</span><span style="color:#86b300;">:error</span><span style="color:#61676ccc;">,</span><span> item} </span><span style="color:#ed9366;">-&gt;
+</span><span>        conn
+</span><span>        </span><span style="color:#ed9366;">|&gt; </span><span style="color:#399ee6;">Phoenix</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">Controller</span><span style="color:#61676ccc;">.</span><span>put_flash(</span><span style="color:#86b300;">:error</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;Try again&quot;</span><span>)
+</span><span>        </span><span style="color:#ed9366;">|&gt; </span><span style="color:#399ee6;">Phoenix</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">Controller</span><span style="color:#61676ccc;">.</span><span>redirect(</span><span style="color:#ff8f40;">to: </span><span style="color:#fa6e32;">~p</span><span style="color:#86b300;">&quot;/items/edit/</span><span>#{item</span><span style="color:#61676ccc;">.</span><span>id}</span><span style="color:#86b300;">&quot;</span><span>)
+</span><span>    </span><span style="color:#fa6e32;">end
+</span><span>  </span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>Look, the id is passed to the view, inside the view the following can be done:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#ed9366;">&lt;</span><span style="color:#61676ccc;">.</span><span>form </span><span style="color:#fa6e32;">for</span><span style="color:#ed9366;">=</span><span>{</span><span style="color:#ed9366;">@</span><span>form} action</span><span style="color:#ed9366;">=</span><span>{</span><span style="color:#fa6e32;">~p</span><span style="color:#86b300;">&quot;/items/</span><span>#{</span><span style="color:#ed9366;">@</span><span>id}</span><span style="color:#86b300;">&quot;</span><span>} method</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;put&quot;</span><span style="color:#ed9366;">&gt; </span><span style="font-style:italic;color:#abb0b6;"># &lt;- only this line is modified
+</span><span style="font-style:italic;color:#abb0b6;">																														# compared to new.html.heex
+</span><span>	</span><span style="color:#ed9366;">&lt;</span><span style="color:#61676ccc;">.</span><span>input type</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;text&quot;</span><span> field</span><span style="color:#ed9366;">=</span><span>{</span><span style="color:#ed9366;">@</span><span>form[</span><span style="color:#86b300;">:title</span><span>]} </span><span style="color:#ed9366;">/&gt;
+</span><span>	</span><span style="color:#ed9366;">&lt;</span><span style="color:#61676ccc;">.</span><span>input type</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;text&quot;</span><span> field</span><span style="color:#ed9366;">=</span><span>{</span><span style="color:#ed9366;">@</span><span>form[</span><span style="color:#86b300;">:description</span><span>]} </span><span style="color:#ed9366;">/&gt;
+</span><span>	</span><span style="color:#ed9366;">&lt;</span><span style="color:#61676ccc;">.</span><span>input
+</span><span>	  type</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;datetime-local&quot;
+</span><span>	  value</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;2024-01-24T19:30&quot;
+</span><span>	  min</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;2024-01-24T00:00&quot;
+</span><span>	  max</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;2024-06-24T00:00&quot;
+</span><span>	  field</span><span style="color:#ed9366;">=</span><span>{</span><span style="color:#ed9366;">@</span><span>form[</span><span style="color:#86b300;">:ends_at</span><span>]}
+</span><span style="color:#ed9366;">/&gt;
+</span></code></pre>
+<p>Phoenix seems smart enough to detect that the form was generated with an “edit” trigger, so the form will generate automatically a PUT response, but it can be explicitly defined with the “method” keyword.</p>
+<h2 id="phoenix-in-action-summary-of-chapter-9"><a class="zola-anchor" href="#phoenix-in-action-summary-of-chapter-9" aria-label="Anchor link for: phoenix-in-action-summary-of-chapter-9">Phoenix in Action Summary of chapter 9</a></h2>
+<h3 id="good-workflow"><a class="zola-anchor" href="#good-workflow" aria-label="Anchor link for: good-workflow">Good workflow</a></h3>
+<ul>
+<li>Add the routes</li>
+<li>Create the Controller and Add the functions</li>
+<li>Create the html template (Views)</li>
+</ul>
+<h3 id="recap"><a class="zola-anchor" href="#recap" aria-label="Anchor link for: recap">Recap</a></h3>
+<ul>
+<li>A RESTful resource contains actions for <code>index</code>, <code>show</code>, <code>new</code>, <code>create</code>, <code>edit</code>, <code>update</code> and <code>delete</code>.</li>
+<li>Each controller accepts two parameters, a Plug.Conn struct and the parameters from the user request.</li>
+</ul>
+<p>→ Note: Ecto.Schema virtual field for non-hashed passwords. Multiple changesets help to provide more security limiting the access to the password.</p>
+<p>→ Plugs are powerful to handle sessions.</p>
+<h3 id="chapter-10"><a class="zola-anchor" href="#chapter-10" aria-label="Anchor link for: chapter-10">Chapter 10</a></h3>
+<p>I couldn’t make it work the following: <code>delete "/logout", SessionController, :delete.</code>. I changed it to handle “GET” requests, which are triggered with a simple form with a button, whose action is <code>"login"</code></p>
+<h3 id="chapter-11"><a class="zola-anchor" href="#chapter-11" aria-label="Anchor link for: chapter-11">Chapter 11</a></h3>
+<p>Define global functions embedded in the htmls, inside <code>auction_web/lib/auction_web.ex</code>:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#fa6e32;">defp </span><span style="color:#f29718;">html_helpers </span><span style="color:#fa6e32;">do
+</span><span>  </span><span style="color:#fa6e32;">quote do
+</span><span style="font-style:italic;color:#abb0b6;">		#[...]
+</span><span>    </span><span style="color:#fa6e32;">import </span><span style="color:#399ee6;">AuctionWeb</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">GlobalHelpers
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>And the module <code>AuctionWeb.GlobalHelpers</code> can be defined inside a file named <code>auction_web/lib/global_helpers.ex</code>. The functions defined inside the module can be accesed directly inside the html.</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#ed9366;">&lt;</span><span>%</span><span style="color:#ed9366;">= </span><span style="color:#86b300;">&quot;</span><span>#{integer_to_currency(bid</span><span style="color:#61676ccc;">.</span><span>amount)}</span><span style="color:#86b300;">&quot;</span><span> %</span><span style="color:#ed9366;">&gt;
+</span></code></pre>
+<p>In the example above, <code>integer_to_currency()</code> is a function from the <code>GlobalHelpers</code> module.</p>
+<h2 id="code-an-api-on-top-of-the-html-web-app"><a class="zola-anchor" href="#code-an-api-on-top-of-the-html-web-app" aria-label="Anchor link for: code-an-api-on-top-of-the-html-web-app">Code an API on top of the HTML web_app</a></h2>
+<p><a href="https://hexdocs.pm/phoenix/json_and_apis.html#rendering-json">Phoenix Docs</a></p>
+<p>Create a new folder named api and add the following files → <code>/controllers/api/item_controller.ex</code> and <code>/controllers/api/item_json.ex</code></p>
+<p>Inside <code>item_controller.ex</code>:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#fa6e32;">defmodule </span><span style="color:#399ee6;">AuctionWeb</span><span>.</span><span style="color:#399ee6;">Api</span><span>.</span><span style="color:#399ee6;">ItemController </span><span style="color:#fa6e32;">do
+</span><span>  </span><span style="color:#fa6e32;">use </span><span style="color:#399ee6;">AuctionWeb</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:controller
+</span><span>
+</span><span>  </span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">index</span><span>(conn</span><span style="color:#61676ccc;">,</span><span> _params) </span><span style="color:#fa6e32;">do
+</span><span>    items </span><span style="color:#ed9366;">= </span><span style="color:#399ee6;">Auction</span><span style="color:#61676ccc;">.</span><span>list_items()
+</span><span>    render(conn</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:index</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">items:</span><span> items)
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>Inside <code>item_json.ex</code>:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#fa6e32;">defmodule </span><span style="color:#399ee6;">AuctionWeb</span><span>.</span><span style="color:#399ee6;">Api</span><span>.</span><span style="color:#399ee6;">ItemJSON </span><span style="color:#fa6e32;">do
+</span><span>  </span><span style="color:#fa6e32;">alias </span><span style="color:#399ee6;">Auction</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">Item
+</span><span>
+</span><span>  </span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">index</span><span>(%{</span><span style="color:#ff8f40;">items:</span><span> items}) </span><span style="color:#fa6e32;">do
+</span><span>    %{</span><span style="color:#ff8f40;">data: </span><span style="color:#fa6e32;">for</span><span>(item </span><span style="color:#ed9366;">&lt;-</span><span> items</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">do:</span><span> data(item))}
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span>
+</span><span>  </span><span style="color:#fa6e32;">defp </span><span style="color:#f29718;">data</span><span>(%</span><span style="color:#399ee6;">Item</span><span>{} </span><span style="color:#ed9366;">=</span><span> item) </span><span style="color:#fa6e32;">do
+</span><span>    %{
+</span><span>      </span><span style="color:#ff8f40;">id:</span><span> item</span><span style="color:#61676ccc;">.</span><span>id</span><span style="color:#61676ccc;">,
+</span><span>      </span><span style="color:#ff8f40;">title:</span><span> item</span><span style="color:#61676ccc;">.</span><span>title</span><span style="color:#61676ccc;">,
+</span><span>      </span><span style="color:#ff8f40;">descr:</span><span> item</span><span style="color:#61676ccc;">.</span><span>description</span><span style="color:#61676ccc;">,
+</span><span>      </span><span style="color:#ff8f40;">ends_at:</span><span> item</span><span style="color:#61676ccc;">.</span><span>ends_at
+</span><span>    }
+</span><span>  </span><span style="color:#fa6e32;">end
+</span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>The index function inside the <code>item_json.ex</code> is called by the controller automatically whenever the render function is called with the <code>:index</code> atom.</p>
+<p>Finally, in <code>router.ex</code> uncomment the ”/api” scope and add the following:</p>
+<pre data-lang="elixir" style="background-color:#fafafa;color:#61676c;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>scope </span><span style="color:#86b300;">&quot;/api&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">AuctionWeb </span><span style="color:#fa6e32;">do
+</span><span>  pipe_through </span><span style="color:#86b300;">:api
+</span><span>
+</span><span>  resources </span><span style="color:#86b300;">&quot;/items&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">Api</span><span style="color:#61676ccc;">.</span><span style="color:#399ee6;">ItemController</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">only: </span><span>[</span><span style="color:#86b300;">:index</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">:show</span><span>]
+</span><span style="color:#fa6e32;">end
+</span></code></pre>
+<p>How to use the repo:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">git</span><span> clone git@github.com:fborello-lambda/phoenix_in_action.git
+</span><span style="color:#f07171;">cd</span><span> phoenix_in_action
+</span><span style="color:#f29718;">mix</span><span> deps.get
+</span><span style="color:#f29718;">mix</span><span> phx.server
+</span></code></pre>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

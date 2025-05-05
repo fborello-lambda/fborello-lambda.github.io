@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                K8S ConfigMap and NGINX
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="K8S ConfigMap and NGINX" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        K8S ConfigMap and NGINX<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-07-30</time>
+                    
+
+                    
+
+                    
+
+                    :: 86 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/devops/"
+                                   class="post-tag">devops</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/k8s-configmap-and-nginx/#configmap-as-a-volume">ConfigMap as a &quot;Volume&quot;</a>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="configmap-as-a-volume"><a class="zola-anchor" href="#configmap-as-a-volume" aria-label="Anchor link for: configmap-as-a-volume">ConfigMap as a "Volume"</a></h2>
+<p>We can use a <code>ConfigMap</code> to declare a file and then mount it as a volume to any container:</p>
+<p>The ConfigMap is specified in the <code>volumes</code> section, the name of the volume has to match the <code>volumeMounts</code> name.</p>
+<p>Two things to take into account, the <code>mountPath</code> could have been any path, the <code>subPath</code> must match the <code>ConfigMap</code>→<code>data</code>→<code>key/file</code>(index.html, in this case) defined.</p>
+<p>The <code>Service</code> can be used to attach to an existing <code>Ingress</code> or any networking resource.</p>
+<pre data-lang="yaml" style="background-color:#fafafa;color:#61676c;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>  </span><span style="color:#399ee6;">volumeMounts</span><span style="color:#61676ccc;">:
+</span><span>  - </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">html-volume
+</span><span>    </span><span style="color:#399ee6;">mountPath</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">/usr/share/nginx/html/index.html
+</span><span>    </span><span style="color:#399ee6;">subPath</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">index.html
+</span><span>  </span><span style="color:#399ee6;">ports</span><span style="color:#61676ccc;">:
+</span><span>  - </span><span style="color:#399ee6;">containerPort</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">80
+</span><span style="color:#399ee6;">volumes</span><span style="color:#61676ccc;">:
+</span><span>- </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">html-volume
+</span><span>  </span><span style="color:#399ee6;">configMap</span><span style="color:#61676ccc;">:
+</span><span>    </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">html
+</span></code></pre>
+<pre data-lang="yaml" style="background-color:#fafafa;color:#61676c;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#399ee6;">apiVersion</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">v1
+</span><span style="color:#399ee6;">kind</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">ConfigMap
+</span><span style="color:#399ee6;">metadata</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">html
+</span><span style="color:#399ee6;">data</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">index.html</span><span style="color:#61676ccc;">: </span><span style="color:#fa6e32;">|
+</span><span style="color:#86b300;">    &lt;!doctype html&gt;
+</span><span style="color:#86b300;">    &lt;html lang=&quot;en&quot;&gt;
+</span><span style="color:#86b300;">    &lt;head&gt;
+</span><span style="color:#86b300;">      &lt;meta charset=&quot;utf-8&quot;&gt;
+</span><span style="color:#86b300;">      &lt;title&gt;Hello World&lt;/title&gt;
+</span><span style="color:#86b300;">    &lt;/head&gt;
+</span><span style="color:#86b300;">    &lt;body&gt;
+</span><span style="color:#86b300;">      &lt;h2&gt;Hello&lt;/h2&gt;
+</span><span style="color:#86b300;">    &lt;/body&gt;
+</span><span style="color:#86b300;">    &lt;/html&gt;
+</span><span>---
+</span><span style="color:#399ee6;">apiVersion</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">apps/v1
+</span><span style="color:#399ee6;">kind</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">Deployment
+</span><span style="color:#399ee6;">metadata</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">simple-web-server
+</span><span style="color:#399ee6;">spec</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">selector</span><span style="color:#61676ccc;">:
+</span><span>    </span><span style="color:#399ee6;">matchLabels</span><span style="color:#61676ccc;">:
+</span><span>      </span><span style="color:#399ee6;">app</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">simple-web-server
+</span><span>  </span><span style="color:#399ee6;">template</span><span style="color:#61676ccc;">:
+</span><span>    </span><span style="color:#399ee6;">metadata</span><span style="color:#61676ccc;">:
+</span><span>      </span><span style="color:#399ee6;">labels</span><span style="color:#61676ccc;">:
+</span><span>        </span><span style="color:#399ee6;">app</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">simple-web-server
+</span><span>
+</span><span>    </span><span style="color:#399ee6;">spec</span><span style="color:#61676ccc;">:
+</span><span>      </span><span style="color:#399ee6;">containers</span><span style="color:#61676ccc;">:
+</span><span>        - </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">simple-web-server
+</span><span>          </span><span style="color:#399ee6;">image</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">nginx:latest
+</span><span>          </span><span style="color:#399ee6;">resources</span><span style="color:#61676ccc;">:
+</span><span>            </span><span style="color:#399ee6;">limits</span><span style="color:#61676ccc;">:
+</span><span>              </span><span style="color:#399ee6;">memory</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;128Mi&quot;
+</span><span>              </span><span style="color:#399ee6;">cpu</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;500m&quot;
+</span><span>          </span><span style="color:#399ee6;">volumeMounts</span><span style="color:#61676ccc;">:
+</span><span>            - </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">html-volume
+</span><span>              </span><span style="color:#399ee6;">mountPath</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">/usr/share/nginx/html/index.html
+</span><span>              </span><span style="color:#399ee6;">subPath</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">index.html
+</span><span>          </span><span style="color:#399ee6;">ports</span><span style="color:#61676ccc;">:
+</span><span>            - </span><span style="color:#399ee6;">containerPort</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">80
+</span><span>      </span><span style="color:#399ee6;">volumes</span><span style="color:#61676ccc;">:
+</span><span>        - </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">html-volume
+</span><span>          </span><span style="color:#399ee6;">configMap</span><span style="color:#61676ccc;">:
+</span><span>            </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">html
+</span><span>---
+</span><span style="color:#399ee6;">apiVersion</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">v1
+</span><span style="color:#399ee6;">kind</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">Service
+</span><span style="color:#399ee6;">metadata</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">simple-web-server-service
+</span><span style="color:#399ee6;">spec</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">type</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">NodePort
+</span><span>  </span><span style="color:#399ee6;">selector</span><span style="color:#61676ccc;">:
+</span><span>    </span><span style="color:#399ee6;">app</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">simple-web-server
+</span><span>  </span><span style="color:#399ee6;">ports</span><span style="color:#61676ccc;">:
+</span><span>    - </span><span style="color:#399ee6;">port</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">80
+</span><span>      </span><span style="color:#399ee6;">targetPort</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">80
+</span><span>      </span><span style="color:#399ee6;">protocol</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">TCP
+</span></code></pre>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

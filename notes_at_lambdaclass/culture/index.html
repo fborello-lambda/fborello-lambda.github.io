@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                LambdaClass&#x27; Culture
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="LambdaClass&#x27; Culture" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        LambdaClass&#x27; Culture<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-05-01</time>
+                    
+
+                    
+
+                    
+
+                    :: 867 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/philosophy/"
+                                   class="post-tag">philosophy</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#lambda-s-engineering-philosophy">Lambda’s engineering philosophy</a>
+                                    
+                                        <ul>
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#principles-for-success-by-ray-dalio">Principles for success by Ray Dalio</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#antifragile-things-that-gain-from-disorder">Antifragile: Things That Gain from Disorder</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#charity-majors-the-sociotechnical-path-to-high-performing-teams">Charity Majors - The Sociotechnical Path to High-Performing Teams</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#citogenesis-in-science-and-the-importance-of-real-problems">Citogenesis in science and the importance of real problems</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#how-to-make-your-code-reviewer-fall-in-love-with-you">How to Make Your Code Reviewer Fall in Love with You</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#the-xy-problem">The XY Problem</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#the-biggest-mistake-i-see-engineers-make">The Biggest Mistake I See Engineers Make</a>
+                                                </li>
+
+                                                
+                                            
+                                        </ul>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#the-sunk-cost-fallacy">The Sunk Cost Fallacy</a>
+                                    
+                                        <ul>
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#kiss-dtsttcpw-do-the-simplest-thing-that-could-possibly-work">KISS &#x2F; DTSTTCPW (Do the simplest thing that could possibly work)</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#yagni-you-aren-t-gonna-need-it">YAGNI → You Aren&#x27;t Gonna Need It</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/culture/#design-and-coding-standards">Design and coding standards</a>
+                                                </li>
+
+                                                
+                                            
+                                        </ul>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h1 id="lambda-s-engineering-philosophy"><a class="zola-anchor" href="#lambda-s-engineering-philosophy" aria-label="Anchor link for: lambda-s-engineering-philosophy"><a href="https://blog.lambdaclass.com/lambdas-engineering-philosophy/">Lambda’s engineering philosophy</a></a></h1>
+<ul>
+<li>Observe and Measure</li>
+<li><a href="https://www.youtube.com/watch?v=tkm0TNFzIeg">The Feynman Technique - YouTube</a> → Describe the problem or algorithm without technical jargon to facilitate discussion and understanding from various perspectives.</li>
+<li>“The History Written by the Losers”: Those actively involved in activities often lack time for documentation. Consequently, non-practitioners tend to document the findings of others, leading society to believe extensive intellectual and academic work precedes implementation.</li>
+</ul>
+<h2 id="principles-for-success-by-ray-dalio"><a class="zola-anchor" href="#principles-for-success-by-ray-dalio" aria-label="Anchor link for: principles-for-success-by-ray-dalio"><a href="https://www.youtube.com/embed/B9XGUpQZY38">Principles for success by Ray Dalio</a></a></h2>
+<ul>
+<li>Gain alternative perspectives through “other people’s eyes”.</li>
+</ul>
+<h2 id="antifragile-things-that-gain-from-disorder"><a class="zola-anchor" href="#antifragile-things-that-gain-from-disorder" aria-label="Anchor link for: antifragile-things-that-gain-from-disorder"><a href="https://www.amazon.com/Antifragile-Things-That-Disorder-Incerto/dp/0812979680">Antifragile: Things That Gain from Disorder</a></a></h2>
+<ul>
+<li>Aim to be a Phoenix or possibly Hydra to avoid the sword of Damocles.</li>
+<li>“<a href="https://en.wikipedia.org/wiki/Hormesis">Hormesis</a>”: Small doses of stressors may prove beneficial.</li>
+<li>Consider domain dependence or environmental context.</li>
+<li>“Practice coming before research”: Embrace trial and error.</li>
+<li>“So practice and rediscovery had to be the cause of the interest in Hero’s blueprint, not the other way around.”: Hobbyists can yield disruptive outcomes.</li>
+<li>“The payoff can be so large that you can’t afford not to be in everything.”</li>
+<li>“Planning—it makes the corporation option-blind, as it gets locked into a non-opportunistic course of action.”</li>
+<li>Option = asymmetry + rationality. “The fragile has no option. But the antifragile needs to select what’s best—the best option.”</li>
+<li>“When engaging in tinkering, you incur a lot of small losses, then once in a while you find something rather significant.”</li>
+<li>“(i) Look for optionality; in fact, rank things according to optionality, (ii) preferably with open-ended, not closed-ended, payoffs; (iii) Do not invest in business plans but in people, so look for someone capable of changing six or seven times over his career, or more (an idea that is part of the modus operandi of the venture capitalist Marc Andreessen); one gets immunity from the backfit narratives of the business plan by investing in people. It is simply more robust to do so; (iv) Make sure you are barbelled, whatever that means in your business.”</li>
+<li>Charlatan → An Empiric → Not so intelligent → But trial and error sometimes yield disruptive outcomes.</li>
+</ul>
+<h2 id="charity-majors-the-sociotechnical-path-to-high-performing-teams"><a class="zola-anchor" href="#charity-majors-the-sociotechnical-path-to-high-performing-teams" aria-label="Anchor link for: charity-majors-the-sociotechnical-path-to-high-performing-teams"><a href="https://www.youtube.com/watch?v=4lLl5B8Oazw">Charity Majors - The Sociotechnical Path to High-Performing Teams</a></a></h2>
+<ul>
+<li>“The teams you join will define your career, more than any other single factor.”</li>
+<li>“Being performant is a sign that the majority of your time is spent on things that make life worth living.”</li>
+<li>High-performing teams create exceptional engineers.</li>
+<li>Observability ≠ Monitoring: Observability involves understanding the problem.</li>
+</ul>
+<h2 id="citogenesis-in-science-and-the-importance-of-real-problems"><a class="zola-anchor" href="#citogenesis-in-science-and-the-importance-of-real-problems" aria-label="Anchor link for: citogenesis-in-science-and-the-importance-of-real-problems"><a href="https://lemire.me/blog/2023/06/14/citogenesis-in-science-and-the-importance-of-real-problems/">Citogenesis in science and the importance of real problems</a></a></h2>
+<ul>
+<li>“It is what happens when the truth is determined solely by the literature, not by independent experiments. Everyone assumes, implicitly, that <em>X</em>+ is better than <em>X”</em>: Test theories and algorithms rather than assuming that one method (<em>X+</em>) is inherently superior.</li>
+<li>“A science paper is like a map → […] → we need actual explorers, not just map makers.”</li>
+</ul>
+<h2 id="how-to-make-your-code-reviewer-fall-in-love-with-you"><a class="zola-anchor" href="#how-to-make-your-code-reviewer-fall-in-love-with-you" aria-label="Anchor link for: how-to-make-your-code-reviewer-fall-in-love-with-you"><a href="https://mtlynch.io/code-review-love/">How to Make Your Code Reviewer Fall in Love with You</a></a></h2>
+<ol>
+<li>Review your code first.</li>
+<li>Write a clear changelist, provide background references, and consider the reader.</li>
+<li>Automate simple tasks using linters, GitHub actions/hooks, etc.</li>
+<li>Attach the code when asking questions. Code comments are acceptable but are inferior to naturally self-documenting code.</li>
+<li>Changelists that focus on a single change are easier to review and can be reviewed in parallel by teammates.</li>
+<li>Separate functional and non-functional changes. Beware of unnecessary reformatting that inflates the changelist.</li>
+<li>Break up large changelists.</li>
+<li>Artfully solicit missing information: “What would be helpful?”</li>
+<li>Minimize delay between reviews.</li>
+</ol>
+<h2 id="the-xy-problem"><a class="zola-anchor" href="#the-xy-problem" aria-label="Anchor link for: the-xy-problem"><a href="https://xyproblem.info/">The XY Problem</a></a></h2>
+<ul>
+<li>The issue arises when individuals fixate on what they believe is the solution, neglecting to step back and fully explain the problem.</li>
+</ul>
+<h2 id="the-biggest-mistake-i-see-engineers-make"><a class="zola-anchor" href="#the-biggest-mistake-i-see-engineers-make" aria-label="Anchor link for: the-biggest-mistake-i-see-engineers-make"><a href="https://web.archive.org/web/20220125174724/https://www.thezbook.com/the-biggest-mistake-i-see-engineers-make/">The Biggest Mistake I See Engineers Make</a></a></h2>
+<ul>
+<li>In summary, just as a product benefits from iterative development with users, an engineer’s work improves with iterative collaboration with the product team.</li>
+</ul>
+<h1 id="the-sunk-cost-fallacy"><a class="zola-anchor" href="#the-sunk-cost-fallacy" aria-label="Anchor link for: the-sunk-cost-fallacy"><a href="https://thedecisionlab.com/biases/the-sunk-cost-fallacy/">The Sunk Cost Fallacy</a></a></h1>
+<h2 id="kiss-dtsttcpw-do-the-simplest-thing-that-could-possibly-work"><a class="zola-anchor" href="#kiss-dtsttcpw-do-the-simplest-thing-that-could-possibly-work" aria-label="Anchor link for: kiss-dtsttcpw-do-the-simplest-thing-that-could-possibly-work">KISS / DTSTTCPW (Do the simplest thing that could possibly work)</a></h2>
+<ul>
+<li>Simplicity does not equate to speed or ease.</li>
+</ul>
+<h2 id="yagni-you-aren-t-gonna-need-it"><a class="zola-anchor" href="#yagni-you-aren-t-gonna-need-it" aria-label="Anchor link for: yagni-you-aren-t-gonna-need-it">YAGNI → You Aren't Gonna Need It</a></h2>
+<ul>
+<li>If a feature is unnecessary, avoid adding it as it increases deployment time.</li>
+<li>For instance, using lookup tables for error messages simplifies later translations.</li>
+</ul>
+<h2 id="design-and-coding-standards"><a class="zola-anchor" href="#design-and-coding-standards" aria-label="Anchor link for: design-and-coding-standards"><a href="https://github.com/lambdaclass/lambdaclass_hacking_learning_path#design-and-coding-standards">Design and coding standards</a></a></h2>
+<ul>
+<li><a href="https://medium.com/@jlouis666/how-to-build-stable-systems-6fe9dcf32fc4#e398">make is the build tool</a>.</li>
+<li>Consider <a href="http://gromnitsky.users.sourceforge.net/articles/notes-for-new-make-users/">these notes</a>: "Always remember the power of copying a function, thus breaking a dependency. Fewer dependencies can sometimes be beneficial."</li>
+<li>Code Quality &gt; Speed // Elegance &gt; Speed // Correctness &gt; Speed</li>
+<li>Erlang’s robustness makes it a valuable tool. Other languages should replicate this robustness.</li>
+<li>“A language’s success hinges on its deployment ease. Establish deployment tooling before utilization.”</li>
+<li>Embrace the “Zen of Python”.</li>
+<li>Utilize Git. Use Mermaid for flowcharts, diagrams, and Git graphs.</li>
+</ul>
+<script src=https://fborello-lambda.github.io/js/mermaid.js></script>
+
+<pre class="mermaid">
+  gitGraph:
+  commit id: "1"
+  branch "feat1"
+  checkout "feat1"
+  commit id: "2"
+  commit id: "3"
+  checkout main
+  commit type: HIGHLIGHT id: "4"
+  merge "feat1"
+</pre>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

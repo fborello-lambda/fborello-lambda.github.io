@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Important Links
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Important Links" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Important Links<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-11-19</time>
+                    
+
+                    
+
+                    
+
+                    :: 1583 Words
+
+                    
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+            
+
+            <section class="body">
+                <ul>
+<li>BASICS
+<ul>
+<li><a href="https://registerspill.thorstenball.com/p/the-basics">The Basics - by Thorsten Ball - Register Spill</a></li>
+<li><a href="https://www.bytedrum.com/posts/art-of-finishing/">The Art of Finishing | ByteDrum</a></li>
+<li><a href="https://www.youtube.com/watch?v=pL3Yzjk5R4M">The Original Skunk Works – Nickolas Means | The Lead Developer UK 2017 - YouTube</a></li>
+<li><a href="https://mtlynch.io/human-code-reviews-1/">How to Do Code Reviews Like a Human (Part One) · mtlynch.io</a></li>
+<li><a href="https://registerspill.thorstenball.com/p/how-i-use-git">How I use git - by Thorsten Ball - Register Spill</a></li>
+<li><a href="https://matklad.github.io/2024/07/25/git-worktrees.html">How I Use Git Worktrees</a></li>
+</ul>
+</li>
+<li>C/ASM/Compilers
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Duff%27s_device">Duff's device - Wikipedia</a></li>
+<li><a href="https://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf">single.dvi</a></li>
+<li><a href="https://mlir.llvm.org/">MLIR</a></li>
+<li><a href="https://lldb.llvm.org/use/map.html">GDB to LLDB command map - 🐛 LLDB</a></li>
+<li><a href="https://fmash16.github.io/content/posts/riscv-emulator-in-c.html">Writing a simple RISC-V emulator in C</a></li>
+<li><a href="https://lwn.net/Articles/250967/">What every programmer should know about memory, Part 1 [LWN.net]</a></li>
+<li><a href="https://cpu.land/the-basics">The "Basics" | Putting the "You" in CPU</a></li>
+</ul>
+</li>
+<li>Blogs
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Game_theory">Game theory - Wikipedia</a></li>
+<li><a href="https://agilemanifesto.org/">Manifesto for Agile Software Development</a></li>
+<li><a href="https://ntietz.com/blog/">technically a blog | nicole@web</a></li>
+<li><a href="https://www.sophiajt.com/search-for-easier-safe-systems-programming/">The search for easier safe systems programming</a></li>
+<li><a href="https://nutjs.dev/blog/i-give-up">I'm giving up — on open source - Blog</a></li>
+<li><a href="https://toaster.llc/blog/architecture/index.html">Zero to Photon: Photon's high-level architecture</a></li>
+<li><a href="https://codspeed.io/blog/rust-1-78-performance-impact-of-the-128-bit-memory-alignment-fix">Rust 1.78: Performance Impact of the 128-bit Memory Alignment Fix - CodSpeed</a></li>
+<li><a href="https://jzhao.xyz/posts/networked-thought">Networked Thought</a></li>
+<li><a href="https://arighi.blogspot.com/2024/05/extend-your-battery-life-with.html?m=1">arighi's blog: Extend your battery life with scx_rustland</a></li>
+<li><a href="https://vojtechkral.github.io/blag/rust-drop-order/">Drop order in Rust: It's tricky - vojtechkral.github.io</a></li>
+<li><a href="https://briancallahan.net/blog/archive.html">Blog archives - Dr. Brian Robert Callahan</a></li>
+<li><a href="https://ingenieria-de-software-i.github.io/assets/bibliografia/no-silver-bullet.pdf">No Silver Bullet – Essence and Accident in Software Engineering</a></li>
+<li><a href="https://en.algorithmica.org/hpc/architecture/">Computer Architecture - Algorithmica</a></li>
+<li><a href="https://www.youtube.com/watch?v=XqpFCuPAEPo">My Best Decision Professionally - YouTube</a></li>
+<li><a href="https://www.evm-function-selector.click/">Function Selector Calculator</a></li>
+<li><a href="https://rakyll.medium.com/things-i-wished-more-developers-knew-about-databases-2d0178464f78">Things I Wished More Developers Knew About Databases | by Jaana Dogan | Medium</a></li>
+<li><a href="https://matklad.github.io/2023/11/15/push-ifs-up-and-fors-down.html">Push Ifs Up And Fors Down</a></li>
+<li><a href="https://pimbook.org/">A Programmer's Introduction to Mathematics</a></li>
+<li><a href="https://programmingisterrible.com/post/139222674273/write-code-that-is-easy-to-delete-not-easy-to">Write code that is easy to delete, not easy to... — programming is terrible</a></li>
+<li><a href="https://github.com/Cyan4973/Writing_Safer_C_code">Cyan4973/Writing_Safer_C_code: Collection of articles on good practices and tools to improve C code quality</a></li>
+<li><a href="https://browser.engineering/index.html">Web Browser Engineering</a></li>
+<li><a href="https://users.cs.northwestern.edu/~robby/courses/322-2013-spring/mytkowicz-wrong-data.pdf">users.cs.northwestern.edu/~robby/courses/322-2013-spring/mytkowicz-wrong-data.pdf</a></li>
+<li><a href="https://github.com/orgs/lambdaclass/projects/37">ethereum_rust_l2</a></li>
+<li><a href="https://vitalik.eth.limo/general/2022/02/28/complexity.html">Encapsulated vs systemic complexity in protocol design</a></li>
+<li><a href="https://sepolia.etherscan.io/tx/0xd6e0b1c92b5d70da40c312cafaa398aa88c5b78fae9bc08053b2a019f050f026">Sepolia Transaction Hash (Txhash) Details | Etherscan</a></li>
+<li><a href="https://olano.dev/blog/my-software-bookshelf/#footnote-1">My Software Bookshelf | olano.dev</a></li>
+</ul>
+</li>
+<li>DevOps
+<ul>
+<li><a href="https://docs.docker.com/desktop/features/kubernetes/">Deploy on Kubernetes with Docker Desktop | Docker Docs</a></li>
+<li><a href="https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Fx86-64%2Fstable%2Fbinary+download">minikube start | minikube</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/">Install Tools | Kubernetes</a></li>
+<li><a href="https://medium.com/@towerspro/kubernetes-in-local-the-easy-way-f8ef2b98be68">Kubernetes in local the easy way: Docker Desktop (on Mac) | by Andrés Torres García | Medium</a></li>
+<li><a href="https://kodekloud.com/blog/kubectl-change-context/">How to Use Kubectl Config Set-Context</a></li>
+<li><a href="https://dba.stackexchange.com/questions/123240/create-database-with-template-seems-to-lose-relations-in-postgresql?rq=1">copy - CREATE DATABASE ... WITH TEMPLATE seems to lose relations in PostgreSQL - Database Administrators Stack Exchange</a></li>
+<li><a href="https://www.youtube.com/watch?v=r2zuL9MW6wc">Kubernetes Explained in 15 Minutes | Hands On (2024 Edition) - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=DCoBcpOA7W4">KUBERNETES De NOVATO a PRO! (CURSO COMPLETO EN ESPAÑOL) - YouTube</a></li>
+<li><a href="https://stackoverflow.com/questions/56582446/how-to-use-host-network-for-docker-compose">How to use host network for docker compose? - Stack Overflow</a></li>
+<li><a href="https://huzaima.io/blog/connect-localhost-docker">How to Connect to Localhost from Docker Container</a></li>
+<li><a href="https://stackoverflow.com/questions/40447029/docker-compose-environment-variable-for-command">docker compose environment variable for command - Stack Overflow</a></li>
+<li><a href="https://gist.github.com/kizzx2/782b500a81ce46b889903b1f80353f21">Restart a docker container periodically with docker-compose</a></li>
+<li><a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/scale/scale-intro/">Running Multiple Instances of Your App | Kubernetes</a></li>
+<li><a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/">Performing a Rolling Update | Kubernetes</a></li>
+<li><a href="https://www.youtube.com/watch?v=7xngnjfIlK4">Complete Terraform Course - From BEGINNER to PRO! (Learn Infrastructure as Code) - YouTube</a></li>
+<li><a href="https://cloud.google.com/docs/terraform/iac-overview">Infrastructure as Code on Google Cloud  |  Terraform</a></li>
+<li><a href="https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-destroy">Destroy infrastructure | Terraform | HashiCorp Developer</a></li>
+<li><a href="https://antonputra.com/google/gcp-how-to-ssh-into-your-vm/">How To SSH into your VM? - Google Cloud Platform (GCP | IAP tunnel | OS Login | Audit | Google IAM) - DevOps by Example</a></li>
+<li><a href="https://github.com/antonputra/tutorials?tab=readme-ov-file">antonputra/tutorials: DevOps Tutorials</a></li>
+<li><a href="https://www.youtube.com/watch?v=O8xLxNje30M">AWS re:Invent 2018: Close Loops &amp; Opening Minds: How to Take Control of Systems, Big &amp; Small ARC337 - YouTube</a></li>
+<li><a href="https://stackoverflow.com/questions/38645002/how-to-add-an-ssh-key-to-an-gcp-instance-using-terraform">google cloud platform - How to add an ssh key to an GCP instance using terraform? - Stack Overflow</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/">CronJob | Kubernetes</a></li>
+<li><a href="https://serverfault.com/questions/992199/cannot-connect-to-cloud-sql-postgres-from-gke-via-private-ip">google kubernetes engine - Cannot connect to Cloud SQL Postgres from GKE via Private IP - Server Fault</a></li>
+<li><a href="https://it-notes.dragas.net/2024/07/04/from-cloud-chaos-to-freebsd-efficiency/">From Cloud Chaos to FreeBSD Efficiency - IT Notes</a></li>
+<li><a href="https://www.youtube.com/watch?v=X_IK0GBbBTw">How to Create GKE Cluster Using TERRAFORM? (Google Kubernetes Engine &amp; Workload Identity) - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=VCayKl82Lt8">Learn Terraform with Google Cloud Platform – Infrastructure as Code Course - YouTube</a></li>
+<li><a href="https://stackoverflow.com/questions/39484653/mapping-incoming-port-in-kubernetes-service-to-different-port-on-docker-containe">portforwarding - Mapping incoming port in kubernetes service to different port on docker container - Stack Overflow</a></li>
+<li><a href="https://frank.sauerburger.io/2021/12/01/inspect-k8s-pvc.html">Inspect a Kubernetes PersistentVolumeClaim | Frank Sauerburger</a></li>
+<li><a href="https://frank.sauerburger.io/2024/01/03/Kubernetes-tricks.html">Kubernetes tricks | Frank Sauerburger</a></li>
+<li><a href="https://medium.com/@nnilesh7756/copy-directories-and-files-to-and-from-kubernetes-container-pod-19612fa74660">Copy directories and files to and from Kubernetes Container [POD] | by Nilesh Suryavanshi | Medium</a></li>
+<li><a href="https://carlos.mendible.com/2019/02/10/kubernetes-mount-file-pod-with-configmap/">Kubernetes: Mount a file in your Pod using a ConfigMap - Code it Yourself...</a></li>
+<li><a href="https://stackoverflow.com/questions/54649401/kubernetes-how-to-create-and-use-configmap-from-multiple-files">kubernetes: How to create and use configmap from multiple files - Stack Overflow</a></li>
+<li><a href="https://stackoverflow.com/questions/66424930/split-configmap-in-two-with-using-kustomize">kubernetes - Split ConfigMap in two with using Kustomize - Stack Overflow</a></li>
+<li><a href="https://stackoverflow.com/questions/58731019/reference-previously-declared-value-in-helm-values-yaml/67872642#67872642">Reference previously declared value in HELM values.yaml - Stack Overflow</a></li>
+<li><a href="https://codapi.org/try/caddy/">Try Caddy in Y minutes</a></li>
+<li><a href="https://codapi.org/try/curl/">Try curl in Y minutes</a></li>
+<li><a href="https://blog.palark.com/k9s-the-powerful-terminal-ui-for-kubernetes/">K9s — the powerful terminal UI for Kubernetes – Palark | Blog</a></li>
+</ul>
+</li>
+<li>Dev
+<ul>
+<li><a href="https://direnv.net/">direnv – unclutter your .profile | direnv</a></li>
+<li><a href="https://github.com/Wilfred/difftastic">Wilfred/difftastic: a structural diff that understands syntax 🟥🟩</a></li>
+<li><a href="https://education.github.com/git-cheat-sheet-education.pdf">git-cheat-sheet-education</a></li>
+<li><a href="https://burnicki.pl/en/2021/07/04/dump-tmux-pane-history-to-a-file.html">Dump tmux pane history to a file | Mateusz Burnicki</a></li>
+<li><a href="https://stackoverflow.com/questions/35790561/working-while-waiting-for-pending-pr#comment69722216_35793095">git - Working while waiting for pending PR - Stack Overflow</a></li>
+<li><a href="https://ibraheem.ca/posts/too-many-web-servers/">Learning Async Rust With Entirely Too Many Web Servers</a></li>
+<li><a href="https://ludwigabap.bearblog.dev/2024-collection-of-zig-resources/">2024 Collection of Zig resources | Ludwig</a></li>
+<li><a href="https://github.com/the-nix-way/dev-templates?tab=readme-ov-file">the-nix-way/dev-templates: Dev environments for numerous languages based on Nix flakes [maintainer=@lucperkins]</a></li>
+<li><a href="https://medium.com/@santiaro90/write-your-own-git-subcommands-36d08f6a673e">Write your own Git subcommands | Medium</a></li>
+<li><a href="http://www.catb.org/esr/structure-packing/">The Lost Art of Structure Packing</a></li>
+<li><a href="https://kerkour.com/rust-how-to-organize-large-workspaces">How to organize large Rust codebases</a></li>
+<li><a href="https://kevinlynagh.com/notes/match-vs-lookup/">Performance of Rust's match vs. lookup tables</a></li>
+<li><a href="https://bodil.lol/parser-combinators/">Learning Parser Combinators With Rust : Bodil dot lol</a></li>
+<li><a href="https://www.codethink.co.uk/articles/2024/secure_bootloader/">Developing a cryptographically secure bootloader for RISC-V in Rust</a></li>
+<li><a href="https://dev.to/mattlewandowski93/template-literals-in-typescript-i36">Template Literals in TypeScript 📚✍️ - DEV Community</a></li>
+<li><a href="https://security.stackexchange.com/questions/247844/is-it-safe-to-share-git-folder-of-a-public-repo">privacy - Is it safe to share .git folder of a public repo? - Information Security Stack Exchange</a></li>
+</ul>
+</li>
+<li>Rust
+<ul>
+<li><a href="https://stackoverflow.com/questions/63589668/how-to-tokiojoin-multiple-tasks">rust - How to tokio::join multiple tasks? - Stack Overflow</a></li>
+<li><a href="https://rust-cli.github.io/book/tutorial/packaging.html">Packaging and distributing a Rust tool - Command Line Applications in Rust</a></li>
+<li><a href="https://stackoverflow.com/questions/59441667/why-can-stdrcrc-call-its-own-values-methods">rust - Why can std::rc::Rc call its own value's methods? - Stack Overflow</a></li>
+<li><a href="https://rust-unofficial.github.io/patterns/anti_patterns/deref.html">Deref Polymorphism - Rust Design Patterns</a></li>
+<li><a href="https://www.tunglevo.com/note/an-optimization-thats-impossible-in-rust/">An Optimization That's Impossible in Rust! | ltungv</a></li>
+<li><a href="https://www.hardmo.de/article/2021-03-14-zst-proof-types.md">The magical applications of Zero-Sized Types in Rust - Hardmo.de</a></li>
+<li><a href="https://zkrising.com/writing/three-unwraps/">Three Kinds Of Unwrap | zk</a></li>
+<li><a href="https://github.com/esp-rs/esp-rust-board?tab=readme-ov-file">esp-rs/esp-rust-board: Open Hardware with ESP32-C3 compatible with Feather specification designed in KiCad</a></li>
+</ul>
+</li>
+</ul>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

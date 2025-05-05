@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Terraform HandsOn
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Terraform HandsOn" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Terraform HandsOn<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-07-01</time>
+                    
+
+                    
+
+                    
+
+                    :: 925 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/devops/"
+                                   class="post-tag">devops</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#terraform">Terraform</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#hands-on">Hands On</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#tfvars-and-variables-tf">.tfvars and  variables.tf</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#modules">Modules</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#project-structure-for-different-deployments">Project Structure for different deployments</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#github-workflows">Github Workflows</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#google-cloud-as-provider">Google Cloud as Provider</a>
+                                    
+                                        <ul>
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#compute-instance">Compute Instance</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#firewall-instance">Firewall Instance</a>
+                                                </li>
+
+                                                
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#connect-with-ssh">Connect with SSH</a>
+                                                </li>
+
+                                                
+                                            
+                                        </ul>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#terraform-docs">terraform-docs</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/terraform-handson/#resources">Resources</a>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="terraform"><a class="zola-anchor" href="#terraform" aria-label="Anchor link for: terraform">Terraform</a></h2>
+<p>Terraform is used to manage infrastructure. Keeping the state of the project and applying just the changes.</p>
+<h2 id="hands-on"><a class="zola-anchor" href="#hands-on" aria-label="Anchor link for: hands-on">Hands On</a></h2>
+<p>Starting with the proposed tutorial, after having <code>terraform</code> installed, let's create a new file:</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>terraform {
+</span><span>  required_providers {
+</span><span>    docker = {
+</span><span>      source  = &quot;kreuzwerker/docker&quot;
+</span><span>      version = &quot;~&gt; 3.0.1&quot;
+</span><span>    }
+</span><span>  }
+</span><span>}
+</span><span>
+</span><span>provider &quot;docker&quot; {}
+</span><span>
+</span><span>resource &quot;docker_image&quot; &quot;nginx&quot; {
+</span><span>  name         = &quot;nginx&quot;
+</span><span>  keep_locally = false
+</span><span>}
+</span><span>
+</span><span>resource &quot;docker_container&quot; &quot;nginx&quot; {
+</span><span>  image = docker_image.nginx.image_id
+</span><span>  name  = &quot;tutorial&quot;
+</span><span>
+</span><span>  ports {
+</span><span>    internal = 80
+</span><span>    external = 8000
+</span><span>  }
+</span><span>}
+</span></code></pre>
+<p>The first block sets the provider, which handles the needed resources/infrastrucre, that will be used, in this case <code>"kreuzwerker/docker"</code>. There are many providers: <a href="https://registry.terraform.io/browse/providers">Browse Providers | Terraform Registry</a>.</p>
+<p>Then, a <code>resource</code> is declared, which is an <code>infrastructure</code> component, it may be a physical server or a logical service such as a <code>dns service</code> or even a <code>storage</code> component.</p>
+<p>In this example, there are two resources, an image and a container, the image is used to create the container. The two <code>strings</code> of the resource block are the resource's <code>type</code> and <code>name</code>.</p>
+<p>A clearer way to declare a resource, since we may have multiple resources of the same type could be naming them as follows: <code>instanceN</code>: <code>resource "docker_container" "container1"</code>.</p>
+<h2 id="tfvars-and-variables-tf"><a class="zola-anchor" href="#tfvars-and-variables-tf" aria-label="Anchor link for: tfvars-and-variables-tf">.tfvars and  variables.tf</a></h2>
+<p>The <code>variables.tf</code> is used to define variables such as:</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>variable &quot;secret_name&quot; {
+</span><span>  description = &quot;Nginx Container Name&quot;
+</span><span>  type = string
+</span><span>  sensitive = true
+</span><span>}
+</span></code></pre>
+<blockquote>
+<p>Since it's sensitive, it will not be compromised in any way.</p>
+</blockquote>
+<p>And then we can set the variable with the next descending order of prescedence:</p>
+<ul>
+<li><code>terraform apply -var secret_name=secret</code></li>
+<li>using a <code>*.auto.tfvars</code>
+<ul>
+<li>in the file: <code>secret_name=secret</code></li>
+</ul>
+</li>
+<li>using <code>terraform.tfvars</code>
+<ul>
+<li>in the file: <code>secret_name=secret</code></li>
+</ul>
+</li>
+<li>using an ENV variable: <code>TF_VAR_&lt;name&gt;</code>
+<ul>
+<li>this case: <code>TF_VAR_secret_name</code></li>
+</ul>
+</li>
+<li><code>default = value</code></li>
+<li>if the above options are not present, the command <code>terraform apply</code> will show a prompt to provide the variable</li>
+</ul>
+<h2 id="modules"><a class="zola-anchor" href="#modules" aria-label="Anchor link for: modules">Modules</a></h2>
+<p>If there is a file we want to reuse we can import it into another file, for example with this project structure:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>.
+</span><span>├── modules
+</span><span>│   └── api
+</span><span>│      ├── main.tf
+</span><span>│      └── variables.tf
+</span><span>├── main.tf
+</span><span>└── terraform.tfvars
+</span></code></pre>
+<p>inside <code>./main.tf</code> the <code>./modules/api/main.tf</code> can be imported as follows:</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>module &quot;app&quot; {
+</span><span>  source      = &quot;./modules/api&quot;
+</span><span>  // set the needed variables
+</span><span>}
+</span></code></pre>
+<h2 id="project-structure-for-different-deployments"><a class="zola-anchor" href="#project-structure-for-different-deployments" aria-label="Anchor link for: project-structure-for-different-deployments">Project Structure for different deployments</a></h2>
+<p>We can use <code>Workspaces</code> but may be confusing down the road, a better setup is to divide the infrastructure needed depending on the purpose of it.
+For example, a good project structure may be:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>.
+</span><span>├── modules
+</span><span>│   ├── api
+</span><span>│   │   ├── main.tf
+</span><span>│   │   └── variables.tf
+</span><span>│   ├── app
+</span><span>│   │   ├── main.tf
+</span><span>│   │   └── variables.tf
+</span><span>│   └── db
+</span><span>│       ├── main.tf
+</span><span>│       └── variables.tf
+</span><span>└── workspaces
+</span><span>    ├── dev
+</span><span>    │   ├── main.tf
+</span><span>    │   └── terraform.tfvars
+</span><span>    ├── global
+</span><span>    │   └── main.tf
+</span><span>    └── prod
+</span><span>        ├── main.tf
+</span><span>        └── terraform.tfvars
+</span></code></pre>
+<p>If inside of <code>workspaces/dev</code> we do:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">terraform</span><span> init
+</span><span style="color:#f29718;">terraform</span><span> apply
+</span></code></pre>
+<p>it only initializes the infrastructure defined in <code>workspaces/dev/main.tf</code></p>
+<p>The idea of having a <code>global</code> directory is to have infrastructure that is common for both <code>dev</code> and <code>prod</code>.</p>
+<blockquote>
+<p>[!NOTE]
+The <code>provider</code> is not declared inside the <code>main.tf</code> file. A file called <code>provider.tf</code> file is commonly used.</p>
+</blockquote>
+<h2 id="github-workflows"><a class="zola-anchor" href="#github-workflows" aria-label="Anchor link for: github-workflows">Github Workflows</a></h2>
+<p>Docs: <a href="https://docs.github.com/en/actions/using-workflows/triggering-a-workflow">Triggering a workflow - GitHub Docs</a></p>
+<p><code>GITHUB Secrets</code> are used to manage our Terraform's sensitive variables.</p>
+<pre data-lang="yml" style="background-color:#fafafa;color:#61676c;" class="language-yml "><code class="language-yml" data-lang="yml"><span style="color:#399ee6;">env</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">CLOUD_PROVIDER_API</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;${{ secrets.CLOUD_PROVIDER_API }}&quot;
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># [...]
+</span><span>
+</span><span style="color:#399ee6;">run</span><span style="color:#61676ccc;">: </span><span style="color:#fa6e32;">|
+</span><span style="color:#86b300;">    terraform init
+</span><span style="color:#86b300;">    terraform apply -var db_pwd=${{ secrets.CLOUD_PROVIDER_API }} -auto-approve
+</span></code></pre>
+<h2 id="google-cloud-as-provider"><a class="zola-anchor" href="#google-cloud-as-provider" aria-label="Anchor link for: google-cloud-as-provider">Google Cloud as Provider</a></h2>
+<ul>
+<li><a href="https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build">Build infrastructure | Terraform | HashiCorp Developer</a></li>
+<li><a href="https://cloud.google.com/sdk/docs/install">Install the gcloud CLI  |  Google Cloud CLI Documentation</a></li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started">Getting Started with the Google Cloud provider | Guides | hashicorp/google | Terraform | Terraform Registry</a></li>
+<li><a href="https://cloud.google.com/pricing/list?hl=en">Pricing per product | Google Cloud</a></li>
+<li><a href="https://headintheclouds.site/episodes/episode4">Episode 4 - Use Terraform to Provision a Google Compute instance | Head in the Clouds</a></li>
+<li><a href="https://github.com/tasdikrahman/terraform-gcp-examples/tree/master">tasdikrahman/terraform-gcp-examples: Terraform Google cloud platform examples</a></li>
+</ul>
+<p>Authenticate:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">gcloud</span><span> auth application-default login
+</span></code></pre>
+<p>And lets start with the <code>Terraform's webpage</code>  tutorial:</p>
+<p><code>main.tf</code>:</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>terraform {
+</span><span>  required_providers {
+</span><span>    google = {
+</span><span>      source  = &quot;hashicorp/google&quot;
+</span><span>      version = &quot;4.51.0&quot;
+</span><span>    }
+</span><span>  }
+</span><span>}
+</span><span>
+</span><span>variable &quot;project_id&quot; {
+</span><span>  description = &quot;GCP project ID&quot;
+</span><span>  type        = string
+</span><span>  default     = &quot;value&quot;
+</span><span>}
+</span><span>
+</span><span>provider &quot;google&quot; {
+</span><span>  project = var.project_id
+</span><span>  region  = &quot;us-central1&quot;
+</span><span>  zone    = &quot;us-central1-c&quot;
+</span><span>}
+</span><span>
+</span><span>resource &quot;google_compute_network&quot; &quot;net_instance1&quot; {
+</span><span>  name                    = &quot;tf-network-instance&quot;
+</span><span>  auto_create_subnetworks = true
+</span><span>}
+</span></code></pre>
+<p>Now if we run:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">terraform</span><span> init
+</span><span style="color:#f29718;">terraform</span><span> apply
+</span></code></pre>
+<p>Terraform will request your Google Cloud project ID. After providing it, Google Cloud will create the specified resource defined in main.tf, such as <code>google_compute_network</code> named <code>net_instance1</code>. You can access the name attribute of this resource using google_compute_network.net_instance1.name. Remember, you can define multiple instances of any resource by defining them as follows:</p>
+<ul>
+<li><code>resource x instance1</code></li>
+<li><code>resource x instance2</code></li>
+</ul>
+<blockquote>
+<p><a href="https://cloud.google.com/vpc/docs/vpc">VPC networks  |  Google Cloud</a></p>
+</blockquote>
+<h3 id="compute-instance"><a class="zola-anchor" href="#compute-instance" aria-label="Anchor link for: compute-instance">Compute Instance</a></h3>
+<p>Having the network set, we can connect a computer right adding it as resource.</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>resource &quot;google_compute_instance&quot; &quot;vm_instance1&quot; {
+</span><span>  name         = &quot;tf-vm-instance&quot;
+</span><span>  machine_type = &quot;f1-micro&quot;
+</span><span>  tags         = [&quot;test&quot;, &quot;dev&quot;]
+</span><span>
+</span><span>  boot_disk {
+</span><span>    initialize_params {
+</span><span>      image = &quot;debian-cloud/debian-11&quot;
+</span><span>    }
+</span><span>  }
+</span><span>
+</span><span>  network_interface {
+</span><span>    network = google_compute_network.net_instance1.name
+</span><span>  }
+</span><span>
+</span><span>  depends_on = [google_compute_network.net_instance1]
+</span><span>}
+</span></code></pre>
+<p>The compute_instance is making use of the <code>net_instance1</code> previously declared.</p>
+<p>Now if we run <code>terraform apply</code>, the compute instance will be created, but we'll not have access to it.</p>
+<h3 id="firewall-instance"><a class="zola-anchor" href="#firewall-instance" aria-label="Anchor link for: firewall-instance">Firewall Instance</a></h3>
+<p>The missing piece is the <code>Firewall</code>, the port <code>22</code> has to be exposed. The <code>Firewall</code> has to be applied to our <code>network</code>:</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>resource &quot;google_compute_firewall&quot; &quot;fw_instance1&quot; {
+</span><span>  name      = &quot;tf-firewall-instance&quot;
+</span><span>  network   = google_compute_network.net_instance1.name
+</span><span>  direction = &quot;INGRESS&quot;
+</span><span>  allow {
+</span><span>    protocol = &quot;tcp&quot;
+</span><span>    ports    = [&quot;22&quot;]
+</span><span>  }
+</span><span>
+</span><span>  source_ranges = [&quot;0.0.0.0/0&quot;]
+</span><span>  target_tags   = [&quot;ssh-server&quot;]
+</span><span>}
+</span></code></pre>
+<p>Now with the Firewall enabled, we have to <code>target</code> the <code>compute_instance</code> in use. The firewall makes use of the <code>target_tags</code>, we've just need to add <code>"ssh-server"</code> inside the <code>tags</code> array of the compute_instance:</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>resource &quot;google_compute_instance&quot; &quot;vm_instance1&quot; {
+</span><span>  //[...]
+</span><span>  tags         = [&quot;test&quot;, &quot;dev&quot;, &quot;ssh-server&quot;]
+</span><span>  //[...]
+</span><span>}
+</span></code></pre>
+<p>We just need one more piece, a <code>static public IP</code>. It can be declared with a resource and then use the IP for the <code>compute_instance</code>:</p>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>resource &quot;google_compute_address&quot; &quot;static&quot; {
+</span><span>  name = &quot;static-ipv4&quot;
+</span><span>}
+</span><span>//[...]
+</span><span>resource &quot;google_compute_instance&quot; &quot;vm_instance1&quot; {
+</span><span>  //[...]
+</span><span>  network_interface {
+</span><span>    network = google_compute_network.net_instance1.name
+</span><span>    access_config {
+</span><span>      nat_ip = google_compute_address.static.address
+</span><span>    }
+</span><span>  }
+</span><span>  //[...]
+</span><span>}
+</span></code></pre>
+<p>In fact, it is not strictly necessary to declare the <code>compute_address</code> resource, if the <code>access_config</code> field is left without the <code>nat_ip</code>, terraform will create a <code>static public</code> IP automatically.</p>
+<blockquote>
+<p>[!WARNING]
+Anyone can reach the compute_instance since the firewall allows connections from any address.
+Access is granted only with the correct keys. See below for details.</p>
+</blockquote>
+<h3 id="connect-with-ssh"><a class="zola-anchor" href="#connect-with-ssh" aria-label="Anchor link for: connect-with-ssh">Connect with SSH</a></h3>
+<p>Finally, to access via ssh to the vm:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">gcloud</span><span> compute ssh</span><span style="color:#ff8f40;"> --zone </span><span style="color:#86b300;">&quot;us-central1-c&quot; &quot;tf-vm-instance&quot;</span><span style="color:#ff8f40;"> --project </span><span style="color:#86b300;">&quot;&lt;project_id&gt;&quot;
+</span></code></pre>
+<p>It also can be done without gcloud, the proposed steps are:</p>
+<blockquote>
+<p>[!TIP]</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/38645002/how-to-add-an-ssh-key-to-an-gcp-instance-using-terraform/78388162#78388162">google cloud platform - How to add an ssh key to an GCP instance using terraform? - Stack Overflow</a></li>
+</ul>
+</blockquote>
+<ol>
+<li>Generate an ssh key → <code>ssh-keygen</code></li>
+<li>Load the variable as <code>metadata</code> of the <code>compute_instance</code>:</li>
+</ol>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>variable &quot;ssh_key_file&quot; {
+</span><span>  description = &quot;ssh key&quot;
+</span><span>  type        = string
+</span><span>  default = &quot;./ssh_keys/gcp.pub&quot;
+</span><span>}
+</span><span>//[...]
+</span><span>resource &quot;google_compute_instance&quot; &quot;vm_instance1&quot; {
+</span><span>  //[...]
+</span><span>  metadata = {
+</span><span>    ssh-keys = &quot;dev:${file(var.ssh_key_file)}&quot;
+</span><span>  }
+</span><span>  //[...]
+</span><span>}
+</span></code></pre>
+<ol start="3">
+<li>Output the public ip:</li>
+</ol>
+<pre data-lang="hcl" style="background-color:#fafafa;color:#61676c;" class="language-hcl "><code class="language-hcl" data-lang="hcl"><span>//[...]
+</span><span>output &quot;compute_instance_public_ip&quot; {
+</span><span>  value = google_compute_instance.vm_instance1.network_interface.0.access_config.0.nat_ip
+</span><span>}
+</span></code></pre>
+<ol start="4">
+<li>SSH to that public ip with the private key that matches the public key sent as metadata.
+<ul>
+<li><code>ssh -i &lt;priv key&gt; &lt;usr&gt;@&lt;public_ip&gt;</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="terraform-docs"><a class="zola-anchor" href="#terraform-docs" aria-label="Anchor link for: terraform-docs">terraform-docs</a></h2>
+<ul>
+<li><a href="https://github.com/terraform-docs/terraform-docs/">terraform-docs/terraform-docs: Generate documentation from Terraform modules in various output formats</a></li>
+</ul>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">terraform-docs</span><span> markdown path/to/module</span><span style="color:#ff8f40;"> --output-file</span><span> README.md
+</span></code></pre>
+<p>Output:</p>
+<pre data-lang="markdown" style="background-color:#fafafa;color:#61676c;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Requirements
+</span><span>
+</span><span style="color:#61676ccc;">|</span><span> Name                                                             </span><span style="color:#61676ccc;">|</span><span> Version </span><span style="color:#61676ccc;">|
+</span><span style="color:#61676ccc;">| </span><span>---------------------------------------------------------------- </span><span style="color:#61676ccc;">| </span><span>------- </span><span style="color:#61676ccc;">|
+</span><span style="color:#61676ccc;">| </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">a </span><span style="color:#f29718;">name</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;requirement_google&quot;</span><span style="color:#55b4d490;">&gt;&lt;/</span><span style="color:#399ee6;">a</span><span style="color:#55b4d490;">&gt; </span><span>[google](</span><span style="text-decoration:underline;font-style:italic;color:#4cbf99;">#requirement\_google</span><span>) </span><span style="color:#61676ccc;">|</span><span> 4.51.0  </span><span style="color:#61676ccc;">|
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Providers
+</span><span>
+</span><span style="color:#61676ccc;">|</span><span> Name                                                       </span><span style="color:#61676ccc;">|</span><span> Version </span><span style="color:#61676ccc;">|
+</span><span style="color:#61676ccc;">| </span><span>---------------------------------------------------------- </span><span style="color:#61676ccc;">| </span><span>------- </span><span style="color:#61676ccc;">|
+</span><span style="color:#61676ccc;">| </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">a </span><span style="color:#f29718;">name</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;provider_google&quot;</span><span style="color:#55b4d490;">&gt;&lt;/</span><span style="color:#399ee6;">a</span><span style="color:#55b4d490;">&gt; </span><span>[google](</span><span style="text-decoration:underline;font-style:italic;color:#4cbf99;">#provider\_google</span><span>) </span><span style="color:#61676ccc;">|</span><span> 4.51.0  </span><span style="color:#61676ccc;">|
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Modules
+</span><span>
+</span><span>No modules.
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Resources
+</span><span>
+</span><span style="color:#61676ccc;">|</span><span> Name                                                                                                                                    </span><span style="color:#61676ccc;">|</span><span> Type     </span><span style="color:#61676ccc;">|
+</span><span style="color:#61676ccc;">| </span><span>--------------------------------------------------------------------------------------------------------------------------------------- </span><span style="color:#61676ccc;">| </span><span>-------- </span><span style="color:#61676ccc;">|
+</span><span style="color:#61676ccc;">| </span><span>[google_compute_instance.vm_instance1](</span><span style="text-decoration:underline;font-style:italic;color:#4cbf99;">https://registry.terraform.io/providers/hashicorp/google/4.51.0/docs/resources/compute_instance</span><span>) </span><span style="color:#61676ccc;">|</span><span> resource </span><span style="color:#61676ccc;">|
+</span><span style="color:#61676ccc;">| </span><span>[google_compute_network.net_instance1](</span><span style="text-decoration:underline;font-style:italic;color:#4cbf99;">https://registry.terraform.io/providers/hashicorp/google/4.51.0/docs/resources/compute_network</span><span>)  </span><span style="color:#61676ccc;">|</span><span> resource </span><span style="color:#61676ccc;">|
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Inputs
+</span><span>
+</span><span style="color:#61676ccc;">|</span><span> Name                                                               </span><span style="color:#61676ccc;">|</span><span> Description    </span><span style="color:#61676ccc;">|</span><span> Type     </span><span style="color:#61676ccc;">|</span><span> Default </span><span style="color:#61676ccc;">|</span><span> Required </span><span style="color:#61676ccc;">|
+</span><span style="color:#61676ccc;">| </span><span>------------------------------------------------------------------ </span><span style="color:#61676ccc;">| </span><span>-------------- </span><span style="color:#61676ccc;">| </span><span>-------- </span><span style="color:#61676ccc;">| </span><span>------- </span><span style="color:#61676ccc;">| </span><span>:------: </span><span style="color:#61676ccc;">|
+</span><span style="color:#61676ccc;">| </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">a </span><span style="color:#f29718;">name</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;input_project_id&quot;</span><span style="color:#55b4d490;">&gt;&lt;/</span><span style="color:#399ee6;">a</span><span style="color:#55b4d490;">&gt; </span><span>[project</span><span style="color:#4cbf99;">\_</span><span>id](</span><span style="text-decoration:underline;font-style:italic;color:#4cbf99;">#input\_project\_id</span><span>) </span><span style="color:#61676ccc;">|</span><span> GCP project ID </span><span style="color:#61676ccc;">| </span><span style="background-color:#61676c10;color:#ed9366;">`string`</span><span> </span><span style="color:#61676ccc;">|</span><span> n/a     </span><span style="color:#61676ccc;">|</span><span>   yes    </span><span style="color:#61676ccc;">|
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Outputs
+</span><span>
+</span><span>No outputs.
+</span></code></pre>
+<h2 id="resources"><a class="zola-anchor" href="#resources" aria-label="Anchor link for: resources">Resources</a></h2>
+<ul>
+<li><a href="https://developer.hashicorp.com/terraform/tutorials/automation/github-actions">Automate Terraform with GitHub Actions | Terraform | HashiCorp Developer</a></li>
+<li><a href="https://developer.hashicorp.com/terraform/tutorials/docker-get-started/infrastructure-as-code">What is Infrastructure as Code with Terraform? | Terraform | HashiCorp Developer</a></li>
+</ul>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

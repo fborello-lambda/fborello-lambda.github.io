@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Cryptography
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Cryptography" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Cryptography<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-05-01</time>
+                    
+
+                    
+
+                    
+
+                    :: 837 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/cryptography/"
+                                   class="post-tag">cryptography</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/cryptography/#cryptography-notes-resources">Cryptography Notes&#x2F;Resources</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/cryptography/#non-technical">Non-Technical</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/cryptography/#technical">Technical</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/cryptography/#zk-proofs">ZK-Proofs</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/cryptography/#bootcamp">Bootcamp</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_at_lambdaclass/cryptography/#university-courses">University Courses</a>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="cryptography-notes-resources"><a class="zola-anchor" href="#cryptography-notes-resources" aria-label="Anchor link for: cryptography-notes-resources">Cryptography Notes/Resources</a></h2>
+<h2 id="non-technical"><a class="zola-anchor" href="#non-technical" aria-label="Anchor link for: non-technical">Non-Technical</a></h2>
+<ul>
+<li><a href="https://polygon.technology/blog/aggregated-blockchains-a-new-thesis">Aggregated Blockchains: A New Thesis</a> → Polygon feb 24</li>
+<li><a href="https://blog.uniswap.org/electronification-trading-and-crypto">Electronification, Trading, and Crypto</a> → Uniswap → Decentralization.</li>
+<li><a href="https://nakamoto.com/cambrian-explosion-of-crypto-proofs/">A Cambrian Explosion of Crypto Proofs</a>
+<ul>
+<li><a href="https://en.m.wikipedia.org/wiki/Post-quantum_cryptography">Symmetric Encryption is Quantum proof?</a></li>
+<li>Takeaway: asymmetric circuit-specific systems (Groth16) are shortest, shorter than all asymmetric universal ones, and all symmetric systems.</li>
+<li>Post Quantum Commitment Scheme → Merkle Trees.</li>
+</ul>
+</li>
+<li><a href="https://nakamoto.com/a-brief-history-of-money/">A Brief History of Money</a>
+<ul>
+<li>A medium of exchange is the asset we use to directly settle transactions. This is the easiest hurdle to clear. You can use Starbucks rewards points to buy a latte, so Starbucks points function as a medium of exchange. But of course, Starbucks points aren't a great store of value—people know this instinctively and don't store their savings into Starbucks points. This is not just because it's impractical; people are aware that Starbucks might modify their rewards program to devalue these points, and there's not a stable market for selling saved up points. → The US dollar can also be devaluated by some “Starbucks”.</li>
+<li>Money is just a bubble that never pops.</li>
+</ul>
+</li>
+<li><a href="https://nakamoto.com/the-cypherpunks/">The Cypherpunks</a></li>
+<li><a href="https://nakamoto.com/satoshi-nakamoto/">Satoshi Nakamoto</a></li>
+<li><a href="https://twitter.com/drakefjustin/status/1755929540700807211">SNARK proving ASIC</a></li>
+</ul>
+<h2 id="technical"><a class="zola-anchor" href="#technical" aria-label="Anchor link for: technical">Technical</a></h2>
+<ul>
+<li><a href="https://www.ulvetanna.io/news/elliptic-curve-acceleration-amd-versal">Elliptic Curve ZK-Proof Acceleration on AMD Versal</a>
+<ul>
+<li><a href="https://medium.com/@ingonyama/amd-xdna-meet-2023-zk-acceleration-king-323a29c93b75">AMD XDNA: Meet 2023 ZK Acceleration King | by Ingonyama | Medium</a></li>
+</ul>
+</li>
+<li><a href="https://www.youtube.com/watch?v=KAWlySN7Hm8">"A deep dive into optimizing Multi-Scalar Multiplication" (Niall Emmart, Yrrid) - YouTube</a></li>
+<li><a href="https://stackoverflow.com/questions/1935658/how-could-one-implement-multiplication-in-finite-fields">math - How could one implement multiplication in finite fields? - Stack Overflow</a></li>
+<li><a href="https://networkbuilders.intel.com/solutionslibrary/galois-field-new-instructions-gfni-technology-guide">Galois Field New Instructions (GFNI) Technology Guide</a> → Faster multiplication with these instructions? <a href="https://deepmind.google/discover/blog/discovering-novel-algorithms-with-alphatensor/">Discovering novel algorithms with AlphaTensor - Google DeepMind</a></li>
+<li><a href="https://nakamoto.com/hash-functions/">Hash Functions</a></li>
+<li><a href="https://nakamoto.com/merkle-trees/">Merkle Trees</a> — <a href="https://web.archive.org/web/20141222120036/http://www.emsec.rub.de/media/crypto/attachments/files/2011/04/becker_1.pdf">Merkle Trees paper</a>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Iv0cPT-7AR8">Solidity: Merkle Trees, BitMaps &amp; Coding an Airdrop - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=n6nEPaE7KZ8">Learn Solidity (0.5) - Merkle Tree - YouTube</a></li>
+<li><a href="https://medium.com/codex/using-merkle-trees-for-smart-contracts-24ccf6f75a0a">Using Merkle Trees for Smart Contracts | by mbvissers.eth | CodeX | Medium</a></li>
+</ul>
+</li>
+<li><a href="https://nakamoto.com/hashcash/">Hashcash</a></li>
+<li><a href="https://nakamoto.com/public-key-cryptography/">Public-Key Cryptography</a>
+<ul>
+<li>ECC &gt; RSA</li>
+</ul>
+</li>
+<li><a href="https://www.youtube.com/playlist?list=PLO5VPQH6OWdWPjQo_bxy8Oc1NFShta83y">Zero Knowledge Proof - YouTube</a> → How Tornado Works? → Practical use case of ZKP.</li>
+<li><a href="https://en.wikipedia.org/wiki/Dual_EC_DRBG">Dual_EC_DRBG - Wikipedia</a> → Elliptic Curves’ backdoor.</li>
+<li><a href="https://www.crypto101.io/">Crypto101</a></li>
+<li><a href="https://eth2book.info/capella/contents/">Eth2Book</a></li>
+<li><a href="https://coinmarketcap.com/academy/es/glossary/front-running">FrontRunning</a></li>
+<li><a href="https://www.youtube.com/watch?v=wjACBRJDfxc">How to Design Schnorr Signatures - YouTube</a></li>
+<li><a href="https://github.com/The-DevX-Initiative/RCIG_Coordination_Repo">RCIG_Coordination_Repo</a></li>
+<li><a href="https://web.archive.org/web/20230511143526/http://www-math.ucdenver.edu/~wcherowi/courses/m5410/exeucalg.html">Extended Euclidean Algorithm</a></li>
+<li><a href="https://crypto.stackexchange.com/questions/5170/why-do-we-need-in-rsa-the-modulus-to-be-product-of-2-primes">Why do we need in RSA the modulus to be product of 2 primes? - Cryptography Stack Exchange</a></li>
+<li><a href="https://crypto.stackexchange.com/questions/18301/textbook-rsa-with-exponent-e-3">Textbook RSA with exponent e=3 - Cryptography Stack Exchange</a></li>
+</ul>
+<h2 id="zk-proofs"><a class="zola-anchor" href="#zk-proofs" aria-label="Anchor link for: zk-proofs">ZK-Proofs</a></h2>
+<p><a href="https://ethereum.org/developers/docs/scaling/zk-rollups">Ethereum’s ZK rollups:</a></p>
+<ul>
+<li><strong>Proof generation and verification</strong>: ZK-rollup operators must produce validity proofs for transaction batches, which is resource-intensive. Verifying zero-knowledge proofs on Mainnet also costs gas (~ 500,000 gas).</li>
+<li>An advantage of zero-knowledge proofs is that proofs can verify other proofs. For example, a single ZK-SNARK can verify other ZK-SNARKs. Such "proof-of-proofs" are called recursive proofs and dramatically increase throughput on ZK-rollups.</li>
+<li>⚠️Producing validity proofs requires specialized hardware, which may encourage centralized control of the chain by a few parties.</li>
+</ul>
+<h2 id="bootcamp"><a class="zola-anchor" href="#bootcamp" aria-label="Anchor link for: bootcamp">Bootcamp</a></h2>
+<ul>
+<li><a href="https://www.rareskills.io/post/zk-circuits">How arithmetic circuits are used to verify zero knowledge proofs</a></li>
+<li><a href="https://www.zeroknowledgeblog.com/">The Zero Knowledge Blog</a></li>
+<li><a href="https://eprint.iacr.org/2014/718">Square Span Programs with Applications to Succinct NIZK Arguments</a></li>
+<li><a href="https://eprint.iacr.org/2014/718.pdf">718.pdf</a></li>
+<li><a href="https://eprint.iacr.org/2016/260.pdf">260.pdf</a></li>
+<li><a href="https://www.di.ens.fr/~nitulesc/files/Survey-SNARKs.pdf">Survey-SNARKs.pdf</a></li>
+<li><a href="https://github.com/initc3/babySNARK">babySNARK</a></li>
+<li><a href="https://github.com/pim-book/programmers-introduction-to-mathematics">programmers-introduction-to-mathematics</a></li>
+<li><a href="https://jeremykun.com/2014/03/13/programming-with-finite-fields/">Programming with Finite Fields – Math ∩ Programming</a></li>
+<li><a href="https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649">Quadratic Arithmetic Programs: from Zero to Hero | by Vitalik Buterin | Medium</a></li>
+<li><a href="https://medium.com/@VitalikButerin/zk-snarks-under-the-hood-b33151a013f6">Zk-SNARKs: Under the Hood. This is the third part of a series of… | by Vitalik Buterin | Medium</a></li>
+<li><a href="https://arxiv.org/abs/1906.07221">[1906.07221] Why and How zk-SNARK Works</a></li>
+<li><a href="https://cryptohack.org/">Cryptohack</a></li>
+<li><a href="https://eli5.zksync.io/glossary">Zero Knowledge Proofs for Kids</a></li>
+<li><a href="https://www.rareskills.io/zk-book">ZK Book | RareSkills</a></li>
+</ul>
+<h2 id="university-courses"><a class="zola-anchor" href="#university-courses" aria-label="Anchor link for: university-courses">University Courses</a></h2>
+<ul>
+<li><a href="https://crypto.stanford.edu/~dabo/courses/OnlineCrypto/">Crypto Stanford</a></li>
+<li><a href="https://zkiap.com/">ZK MIT course</a></li>
+</ul>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

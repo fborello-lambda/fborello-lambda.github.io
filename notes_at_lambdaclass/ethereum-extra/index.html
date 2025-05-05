@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Ethereum Extra Links
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Ethereum Extra Links" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Ethereum Extra Links<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-11-19</time>
+                    
+
+                    
+
+                    
+
+                    :: 637 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/ethereum/"
+                                   class="post-tag">ethereum</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+            
+
+            <section class="body">
+                <ul>
+<li>Ethereum
+<ul>
+<li><a href="https://epf.wiki/#/eps/intro?id=epf-protocol-studies">EPFsg overview</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/53094/sending-ether-via-contract-instance">web3js - Sending ether via Contract instance - Ethereum Stack Exchange</a></li>
+<li><a href="https://www.paradigm.xyz/2020/08/ethereum-is-a-dark-forest">Ethereum is a Dark Forest - Paradigm</a></li>
+<li><a href="https://www.paradigm.xyz/2024/01/ethereum-2024">What comes after Ethereum's Cancun hard fork? - Paradigm</a></li>
+<li><a href="https://github.com/andreitoma8/learn-yul">andreitoma8/learn-yul: Educational notes on Yul (Solidity Assembly) and how to use it inside Solidity Smart Contracts.</a></li>
+<li><a href="https://ethernaut.openzeppelin.com/">ethernaut.openzeppelin.com</a></li>
+<li><a href="https://www.evm.codes/">EVM Codes - An Ethereum Virtual Machine Opcodes Interactive Reference</a></li>
+<li><a href="https://noxx.substack.com/p/evm-deep-dives-the-path-to-shadowy-d6b?s=r">EVM Deep Dives: The Path to Shadowy Super Coder 🥷 💻 - Part 2</a></li>
+<li><a href="https://www.ankr.com/rpc/projects/">Check out the price of Ankr's Remote procedure call (RPC)</a></li>
+<li><a href="https://blog.openzeppelin.com/on-the-parity-wallet-multisig-hack-405a8c12e8f7">The Parity Wallet Hack Explained - OpenZeppelin blog</a></li>
+<li><a href="https://abitype.dev/api/human">Human-Readable ABI · ABIType</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/162311/how-do-you-deploy-to-two-chains-in-a-foundry-script">How do you deploy to two chains in a foundry script? - Ethereum Stack Exchange</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/155011/can-safe-wallet-interact-with-smart-contracts">Can safe wallet interact with smart contracts? - Ethereum Stack Exchange</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/154241/how-to-deploy-a-contract-in-foundry">solidity - How to deploy a contract in Foundry? - Ethereum Stack Exchange</a></li>
+<li><a href="https://www.paradigm.xyz/2024/04/reth-perf">Reth’s path to 1 gigagas per second, and beyond - Paradigm</a></li>
+<li><a href="https://ethresear.ch/t/proposal-delay-stateroot-reference-to-increase-throughput-and-reduce-latency/20490">Proposal: Delay stateRoot Reference to Increase Throughput and Reduce Latency - Ethereum Research</a></li>
+</ul>
+</li>
+<li>Rollups:
+<ul>
+<li><a href="https://taiko.mirror.xyz/y_47kIOL5kavvBmG0zVujD2TRztMZt-xgM5d4oqp4_Y">Taiko Protocol Overview — Taiko Labs</a></li>
+<li><a href="https://taiko.mirror.xyz/y_47kIOL5kavvBmG0zVujD2TRztMZt-xgM5d4oqp4_Y">Taiko Protocol Overview — Taiko Labs</a></li>
+<li><a href="https://taiko.mirror.xyz/qvZV19UrPOPbWwJ3hwdppNlnqn4nM_LXoS1uztKs6DE">Who Pays Me? — Taiko Labs</a></li>
+<li><a href="https://flashbots.mirror.xyz/bqCakwfQZkMsq63b50vib-nibo5eKai0QuK7m-Dsxpo">The MEV Supply Chain: a peek into the future of this industry — Flashbots</a></li>
+<li><a href="https://github.com/taikoxyz/taiko-mono/issues/13813#issuecomment-1562539366">feat(protocol): Auction · Issue #13813 · taikoxyz/taiko-mono</a></li>
+<li><a href="https://docs.minaprotocol.com/node-operators/faq#snarks-and-snark-workers">Node Operators FAQ | Mina Documentation</a></li>
+<li><a href="https://ethresear.ch/t/based-rollups-can-reward-proposers-first-come-first-serve/18317">Based Rollups can reward Proposers First Come First Serve - Layer 2 - Ethereum Research</a></li>
+<li><a href="https://ethresear.ch/t/based-rollups-superpowers-from-l1-sequencing/15016">Based rollups—superpowers from L1 sequencing - Layer 2 - Ethereum Research</a></li>
+<li><a href="https://docs.flashbots.net/flashbots-mev-boost/introduction">Overview | Flashbots Docs</a></li>
+<li><a href="https://flashbots.mirror.xyz/bqCakwfQZkMsq63b50vib-nibo5eKai0QuK7m-Dsxpo">The MEV Supply Chain: a peek into the future of this industry — Flashbots</a></li>
+<li><a href="https://community.starknet.io/t/starknet-decentralized-protocol-iv-proofs-in-the-protocol/6030/18">Starknet Decentralized Protocol IV - Proofs in the Protocol - 📜 Development Proposals / Starknet Technical Development - Starknet Community Forum</a></li>
+<li><a href="https://ethresear.ch/t/execution-tickets/17944">Execution Tickets - Proof-of-Stake / Economics - Ethereum Research</a></li>
+<li><a href="https://ethresear.ch/t/economic-analysis-of-execution-tickets/18894">Economic Analysis of Execution Tickets - Proof-of-Stake / Economics - Ethereum Research</a></li>
+<li><a href="https://unifi.puffer.fi/files/Puffer-UniFi-Litepaper.pdf">Puffer-UniFi-Litepaper.pdf</a></li>
+<li><a href="https://dba.mirror.xyz/LYUb_Y2huJhNUw_z8ltqui2d6KY8Fc3t_cnSE9rDL_o">Rollups Are L1s (&amp; L2s) a.k.a. How Rollups *Actually Actually Ac… — Jon Charbonneau</a> [Important]</li>
+<li><a href="https://vitalik.eth.limo/general/2024/10/17/futures2.html#6">Possible futures of the Ethereum protocol, part 2: The Surge</a></li>
+<li>https://x.com/0xsiva/status/1850919448309301371?s=12</li>
+</ul>
+</li>
+<li>ZK-Provers:
+<ul>
+<li><a href="https://taiko.mirror.xyz/Kx1Mp4WJjd83K1KDEwp1pM7xi9QmpSahxJg3S_N7NE4">Why multi-prover matters. SGX as a possible solution. — Taiko Labs</a>Ï</li>
+<li>https://scroll.io/blog/scaling-security</li>
+<li><a href="https://risczero.com/blog/zeth-release">Announcing Zeth: The First Type Zero zkEVM | RISC Zero</a></li>
+</ul>
+</li>
+<li>SGX / TEEs
+<ul>
+<li>Use SGX or TDX? Virtualuzation seems a better option.Ï</li>
+<li><a href="https://sgx101.gitbook.io/sgx101">Home | SGX 101</a></li>
+<li>https://ethresear.ch/t/2fa-zk-rollups-using-sgx/14462/30 - EIP needed for performance when using SGX</li>
+<li>https://collective.flashbots.net/t/tee-boost/3741#tee-proofs-6 TEE proofs</li>
+</ul>
+</li>
+<li>EIPs
+<ul>
+<li>https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7702.md - Account Abstraction</li>
+</ul>
+</li>
+<li>MISC
+<ul>
+<li>https://github.com/chainbound/bolt</li>
+<li>https://zksecurity.github.io/RFCs/</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

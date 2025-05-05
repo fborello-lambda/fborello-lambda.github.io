@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                Foundry-HandsOn
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Foundry-HandsOn" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        Foundry-HandsOn<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-08-26</time>
+                    
+
+                    
+
+                    
+
+                    :: 200 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/programming/"
+                                   class="post-tag">programming</a>
+                                ,
+                            
+                                <a href="https://fborello-lambda.github.io/tags/web3/"
+                                   class="post-tag">web3</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_cs/foundry-handson/#how-to-use-foundry-with-openzeppelin">How to use Foundry with OpenZeppelin</a>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="how-to-use-foundry-with-openzeppelin"><a class="zola-anchor" href="#how-to-use-foundry-with-openzeppelin" aria-label="Anchor link for: how-to-use-foundry-with-openzeppelin">How to use Foundry with OpenZeppelin</a></h2>
+<p><a href="https://book.getfoundry.sh/getting-started/installation">Installation - Foundry Book</a></p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">forge</span><span> init {ProjectName}
+</span></code></pre>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f07171;">cd </span><span>{ProjectName}
+</span></code></pre>
+<p>Install <code>openzeppelin-contracts</code>:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">forge</span><span> install OpenZeppelin/openzeppelin-contracts
+</span><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/&quot; </span><span style="color:#ed9366;">&gt;&gt;</span><span> remmapings.txt
+</span></code></pre>
+<p>The project's structure should be:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>.
+</span><span>├── README.md
+</span><span>├── foundry.toml
+</span><span>├── lib
+</span><span>│   ├── forge-std
+</span><span>│   └── openzeppelin-contracts
+</span><span>├── remmapings.txt
+</span><span>├── script
+</span><span>│   └── Counter.s.sol
+</span><span>├── src
+</span><span>│   └── Counter.sol
+</span><span>└── test
+</span><span>    └── Counter.t.sol
+</span></code></pre>
+<p>We can replace all the occurrences of <code>Counter</code> to <code>Token</code> i.e:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>.
+</span><span>├── README.md
+</span><span>├── foundry.toml
+</span><span>├── lib
+</span><span>│   ├── forge-std
+</span><span>│   └── openzeppelin-contracts
+</span><span>├── remmapings.txt
+</span><span>├── script
+</span><span>│   └── Token.s.sol
+</span><span>├── src
+</span><span>│   └── Token.sol
+</span><span>└── test
+</span><span>    └── Token.t.sol
+</span></code></pre>
+<p>Then, inside <code>Token.sol</code>, which is the main contract, the example from the <a href="https://docs.openzeppelin.com/contracts/4.x/erc20#constructing-an-erc20-token-contract">OZ docs'</a> can be used:</p>
+<pre data-lang="solidity" style="background-color:#fafafa;color:#61676c;" class="language-solidity "><code class="language-solidity" data-lang="solidity"><span>// SPDX-License-Identifier: MIT
+</span><span>pragma solidity ^0.8.13;
+</span><span>
+</span><span>import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;
+</span><span>
+</span><span>contract Token is ERC20 {
+</span><span>    constructor(uint256 initialSupply) ERC20(&quot;Token&quot;, &quot;TKN&quot;) {
+</span><span>        // The deployer will have all the initialSupply
+</span><span>        _mint(msg.sender, initialSupply);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>Then we have to change the deployment script <code>script/Token.s.sol</code>:</p>
+<ul>
+<li>Reference: <a href="https://book.getfoundry.sh/tutorials/solidity-scripting">Solidity Scripting - Foundry Book</a></li>
+</ul>
+<pre data-lang="solidity" style="background-color:#fafafa;color:#61676c;" class="language-solidity "><code class="language-solidity" data-lang="solidity"><span>// SPDX-License-Identifier: UNLICENSED
+</span><span>pragma solidity ^0.8.13;
+</span><span>
+</span><span>import {Script, console} from &quot;forge-std/Script.sol&quot;;
+</span><span>
+</span><span>import &quot;../src/Token.sol&quot;;
+</span><span>
+</span><span>contract TokenScript is Script {
+</span><span>    uint256 deployerPrivateKey;
+</span><span>    function setUp() public {
+</span><span>        // foundry will read the env variable named PRIVATE_KEY
+</span><span>        // and it will use it to deploy the contract
+</span><span>        deployerPrivateKey = vm.envUint(&quot;PRIVATE_KEY&quot;);
+</span><span>    }
+</span><span>
+</span><span>    function run() public {
+</span><span>        vm.startBroadcast(deployerPrivateKey);
+</span><span>
+</span><span>        // This is the initialSupply the constructor will use
+</span><span>        Token token = new Token(1000000);
+</span><span>
+</span><span>        vm.stopBroadcast();
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>For simplicity, the contract will be deployed in a local environment created with <code>anvil</code>.
+Run <code>anvil</code> in a terminal, the output should be:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>Available Accounts
+</span><span>==================
+</span><span>
+</span><span>(0) 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (10000.000000000000000000 ETH)
+</span><span>.
+</span><span>.
+</span><span>
+</span><span>Private Keys
+</span><span>==================
+</span><span>
+</span><span>(0) 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+</span><span>.
+</span><span>.
+</span></code></pre>
+<p>This funded account can be used to deploy the contract, with <code>anvil</code> running, open a new terminal and run:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80&quot; </span><span style="color:#ed9366;">&gt;</span><span> .env
+</span><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;ADDRESS=0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266&quot; </span><span style="color:#ed9366;">&gt;&gt;</span><span> .env
+</span></code></pre>
+<p>Then, deploy the contract, <code>forge</code> will automatically read the <code>.env</code> file:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">forge</span><span> script script/Token.s.sol:TokenScript</span><span style="color:#ff8f40;"> --rpc-url</span><span> http:localhost:8545</span><span style="color:#ff8f40;"> --broadcast
+</span></code></pre>
+<p>Note: if using <code>http:localhost:8545</code>, which is anvil's default port, the flag <code>--rpc-url</code> is not necessary.</p>
+<p>Finally, the output should contain the <code>Contract Address</code>:</p>
+<pre data-lang="shell" style="background-color:#fafafa;color:#61676c;" class="language-shell "><code class="language-shell" data-lang="shell"><span>✅  [Success]Hash: 0x07ba8c8365d97fa68eef4d623fe5c1a91b7318dee6071b3c4e0de3b8a8e6551b
+</span><span>Contract Address: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+</span><span>Block: 1
+</span><span>Paid: 0.002214764 ETH (553691 gas * 4 gwei)
+</span></code></pre>
+<p>It can be used with <code>cast</code> to ask for the erc20 <code>balance</code>, the constructor of the Contract was defined to mint the <code>initialSupply</code> to the <code>deployer</code> address, and the <code>initialSupply</code> was defined in the <code>Token.s.sol</code>: <code>Token token = new Token(1000000);</code>:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f07171;">source</span><span> .env
+</span><span style="color:#f29718;">cast</span><span> balance</span><span style="color:#ff8f40;"> --erc20</span><span> 0x5FbDB2315678afecb367f032d93F642f64180aa3 $ADDRESS</span><span style="color:#ff8f40;"> --rpc-url</span><span> http:localhost:8545
+</span></code></pre>
+<p>Output:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>1000000 [1e6]
+</span></code></pre>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>

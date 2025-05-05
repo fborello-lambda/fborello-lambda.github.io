@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;">
+
+    
+
+    
+    
+    
+        <title>
+            
+                K8S HandsOn
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="K8S HandsOn" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    <link rel="icon" type="image/png" href=&#x2F;icons&#x2F;bug-icon.svg />
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    <script src=https://fborello-lambda.github.io/js/codeblock.js></script>
+
+    
+    <script src=https://fborello-lambda.github.io/js/toc.js></script>
+
+    
+    
+        <script src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="In Case I Forget"
+          href="https://fborello-lambda.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>setTheme(getSavedTheme());</script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css">
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css">
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=bc1c5d2fc827759822eb"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="content">
+            <header>
+    <div class="main">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg">
+                </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-left: 0.25em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-left: 0.25em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-left: 0.25em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-left: 0.25em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-left: 0.25em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-left: 0.25em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon">
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">Search</h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox"></div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg"
+                     id="sun-icon"
+                     style="filter: invert(1)"
+                     alt="Light" />
+                <img src=https://fborello-lambda.github.io/icons/moon.svg id="moon-icon" alt="Dark" />
+            </a>
+
+            <!-- Inititialize the theme toggle icons -->
+            <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+            
+            
+    
+    <main>
+        <article>
+            <div class="title">
+                
+                
+    <div class="page-header">
+        K8S HandsOn<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-06-25</time>
+                    
+
+                    
+
+                    
+
+                    :: 1112 Words
+
+                    
+                    
+                        <span class="tags-label">:: Tags:</span>
+                        <span class="tags">
+                                <a href="https://fborello-lambda.github.io/tags/devops/"
+                                   class="post-tag">devops</a>
+                                
+                            
+                        </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+            </div>
+
+            
+
+            
+            
+                
+                    <div class="toc-container">
+                        <h1 class="toc-title">Table of Contents</h1>
+                        <ul class="toc-list">
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/k8s-handson/#kubernetes">Kubernetes</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/k8s-handson/#pods-nodes-and-the-control-plane">Pods, Nodes, and The Control Plane</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/k8s-handson/#hands-on">Hands On</a>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/k8s-handson/#networking-load-balancing">Networking &amp; Load Balancing</a>
+                                    
+                                        <ul>
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_devops/k8s-handson/#services">Services</a>
+                                                </li>
+
+                                                
+                                            
+                                        </ul>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/k8s-handson/#ingress">Ingress</a>
+                                    
+                                        <ul>
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_devops/k8s-handson/#helm">Helm</a>
+                                                </li>
+
+                                                
+                                            
+                                        </ul>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <a href="https://fborello-lambda.github.io/notes_devops/k8s-handson/#resources">Resources</a>
+                                    
+                                        <ul>
+                                            
+                                                <li>
+                                                    <a href="https://fborello-lambda.github.io/notes_devops/k8s-handson/#ingress-1">Ingress</a>
+                                                </li>
+
+                                                
+                                            
+                                        </ul>
+                                    
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            
+
+            <section class="body">
+                <h2 id="kubernetes"><a class="zola-anchor" href="#kubernetes" aria-label="Anchor link for: kubernetes">Kubernetes</a></h2>
+<p>To test Kubernetes locally, we need a <code>Kubernetes Cluster</code>. We can create a cluster using <code>Docker</code>. Docker Desktop provides a quick way to run a Kubernetes cluster. However, <code>Minikube</code> offers detailed tutorials and thorough documentation.</p>
+<p>So, the necessary tools are:</p>
+<ul>
+<li><code>docker</code> → runs the <code>Minikube</code> container.</li>
+<li><code>minikube</code> → helps create the Kubernetes cluster (Docker Desktop can also create a Kubernetes context/cluster).</li>
+<li><code>kubectl</code> → CLI used to <code>orchestrate</code> our <code>pods</code>.</li>
+</ul>
+<h2 id="pods-nodes-and-the-control-plane"><a class="zola-anchor" href="#pods-nodes-and-the-control-plane" aria-label="Anchor link for: pods-nodes-and-the-control-plane">Pods, Nodes, and The Control Plane</a></h2>
+<p>The Control Plane is the main <code>node</code> responsible for supervising our <code>nodes</code>. Nodes, also known as kubelets, are VMs or physical computers with the Docker engine running. Each Node hosts Pods, where a single pod represents an instance of any given app.</p>
+<p>In summary, our cluster is managed by the <code>Control Plane</code>. We can have multiple <code>Nodes</code> (docker engines) where apps can be deployed, and we will have $N$ <code>Pods</code> depending on the number of instances we decide to deploy.</p>
+<p>The magic behind Kubernetes lies in its pods; a single pod represents an application, and each application can consist of multiple Docker containers. In simple terms, multiple pods can handle many containers. If one container or even the entire pod fails, Kubernetes will manage this situation by reloading the containers and/or pods.</p>
+<h2 id="hands-on"><a class="zola-anchor" href="#hands-on" aria-label="Anchor link for: hands-on">Hands On</a></h2>
+<p>If using <code>Minikube</code>, we start our <code>Minikube</code> context:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">minikube</span><span> start
+</span></code></pre>
+<p><code>kubectl</code> works as follows: <code>kubectl &lt;action&gt; &lt;resource&gt;</code></p>
+<table><thead><tr><th style="text-align: center">Action</th><th style="text-align: center">Description</th></tr></thead><tbody>
+<tr><td style="text-align: center"><code>get</code></td><td style="text-align: center">Retrieves one or more resources from the cluster.</td></tr>
+<tr><td style="text-align: center"><code>describe</code></td><td style="text-align: center">Provides detailed information about a specific resource or group of resources.</td></tr>
+<tr><td style="text-align: center"><code>apply</code></td><td style="text-align: center">Applies configuration changes to resources by creating or updating them.</td></tr>
+<tr><td style="text-align: center"><code>delete</code></td><td style="text-align: center">Deletes one or more resources from the cluster.</td></tr>
+<tr><td style="text-align: center"><code>logs</code></td><td style="text-align: center">Retrieves the logs of a specific pod or container.</td></tr>
+<tr><td style="text-align: center"><code>exec</code></td><td style="text-align: center">Executes a command inside a specific pod.</td></tr>
+<tr><td style="text-align: center"><code>port-forward</code></td><td style="text-align: center">Sets up a port forward from a local port to a port on a pod.</td></tr>
+<tr><td style="text-align: center"><code>scale</code></td><td style="text-align: center">Scales the number of replicas of a deployment, replication controller, or replica set.</td></tr>
+<tr><td style="text-align: center"><code>label</code></td><td style="text-align: center">Adds or updates labels on resources.</td></tr>
+<tr><td style="text-align: center"><code>annotate</code></td><td style="text-align: center">Adds or updates annotations on resources.</td></tr>
+<tr><td style="text-align: center"><code>edit</code></td><td style="text-align: center">Edits a resource in the default editor or the editor specified by the KUBE_EDITOR or EDITOR env.</td></tr>
+</tbody></table>
+<p>To ask for our context:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> config current-context
+</span></code></pre>
+<p>To get our nodes:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> get nodes
+</span></code></pre>
+<p>Output:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">❯</span><span> kubectl get nodes
+</span><span style="color:#f29718;">NAME</span><span>             STATUS   ROLES           AGE   VERSION
+</span><span style="color:#f29718;">docker-desktop</span><span>   Ready    control-plane   22m   v1.29.2
+</span></code></pre>
+<p>Here the <code>docker-desktop</code> node acts as the <code>control-plane</code>.</p>
+<p>The easiest way to have an app managed by the <code>control-plane</code> is by deploying a docker-image:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> create deployment first-deploy</span><span style="color:#ff8f40;"> --image</span><span style="color:#ed9366;">=&lt;</span><span>img url</span><span style="color:#ed9366;">&gt;
+</span></code></pre>
+<p>We can also deploy more neatly by using a file:</p>
+<p><code>k8s_deployment</code>:</p>
+<pre data-lang="yml" style="background-color:#fafafa;color:#61676c;" class="language-yml "><code class="language-yml" data-lang="yml"><span style="color:#399ee6;">apiVersion</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">apps/v1
+</span><span style="color:#399ee6;">kind</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">Deployment
+</span><span style="color:#399ee6;">metadata</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">hello-world
+</span><span style="color:#399ee6;">spec</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">replicas</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">3
+</span><span>  </span><span style="color:#399ee6;">selector</span><span style="color:#61676ccc;">:
+</span><span>    </span><span style="color:#399ee6;">matchLabels</span><span style="color:#61676ccc;">:
+</span><span>      </span><span style="color:#399ee6;">app</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">hello-app
+</span><span>  </span><span style="color:#399ee6;">template</span><span style="color:#61676ccc;">:
+</span><span>    </span><span style="color:#399ee6;">metadata</span><span style="color:#61676ccc;">:
+</span><span>      </span><span style="color:#399ee6;">labels</span><span style="color:#61676ccc;">:
+</span><span>        </span><span style="color:#399ee6;">app</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">hello-app
+</span><span>    </span><span style="color:#399ee6;">spec</span><span style="color:#61676ccc;">:
+</span><span>      </span><span style="color:#399ee6;">containers</span><span style="color:#61676ccc;">:
+</span><span>        - </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">hello-app
+</span><span>          </span><span style="color:#399ee6;">image</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">gcr.io/google-samples/hello-app:1.0
+</span><span>          </span><span style="color:#399ee6;">imagePullPolicy</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">IfNotPresent
+</span><span>          </span><span style="color:#399ee6;">ports</span><span style="color:#61676ccc;">:
+</span><span>            - </span><span style="color:#399ee6;">containerPort</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">8080
+</span></code></pre>
+<p>To deploy with this file:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> apply</span><span style="color:#ff8f40;"> -f</span><span> k8s_deployment.yml
+</span></code></pre>
+<p>Now if we take a look at the deployments:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">❯</span><span> kubectl get deployments
+</span><span style="color:#f29718;">NAME</span><span>            READY   UP-TO-DATE   AVAILABLE   AGE
+</span><span style="color:#f29718;">hello-world</span><span>     3/3     3            3           3m16s
+</span></code></pre>
+<p>We can observe our deployment with 3/3 pods ready. If we change the number of <code>replicas</code> and then we run the command, the kubernetes <code>control-plane</code> will automatically adjust the number of pods.</p>
+<p>To get the pods with extra info:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> get pods</span><span style="color:#ff8f40;"> -o</span><span> wide
+</span></code></pre>
+<p>If, by any chance, a pod stops, Kubernetes will automatically restart it, even if the pod is deleted:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> delete pod </span><span style="color:#ed9366;">&lt;</span><span>pod</span><span style="color:#86b300;">&#39;s NAME&gt;
+</span></code></pre>
+<p>A resize can be performed as follows:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> scale deployment.apps/hello-world</span><span style="color:#ff8f40;"> --replicas</span><span style="color:#ed9366;">=</span><span>4
+</span></code></pre>
+<p>The pods are attached to the deployment, which is always supervised.</p>
+<p>To delete the deployment:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> delete deployment </span><span style="color:#ed9366;">&lt;</span><span>deployment</span><span style="color:#86b300;">&#39;s NAME&gt;
+</span></code></pre>
+<p>We can delete everything that a file has created with the following command:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> delete</span><span style="color:#ff8f40;"> -f </span><span style="color:#ed9366;">&lt;</span><span>file</span><span style="color:#ed9366;">&gt;
+</span></code></pre>
+<h2 id="networking-load-balancing"><a class="zola-anchor" href="#networking-load-balancing" aria-label="Anchor link for: networking-load-balancing">Networking &amp; Load Balancing</a></h2>
+<p>The above deployment file contains 3 pods with <code>containerPort</code> set to 8080. Since we can resize our pods, the IPs are dynamic. It's preferable to have a method that preserves access to any number of pods.</p>
+<p>Before demonstrating the preferred method, let's explore <code>kubectl proxy</code>.</p>
+<p>Ensure the deployment is running and open a new terminal:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> proxy
+</span></code></pre>
+<p>Output: <code>Starting to serve on 127.0.0.1:8001</code></p>
+<p>Now, if we ask for the name of the pods:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> get pods
+</span></code></pre>
+<p>Output:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">❯</span><span> kubectl get pods
+</span><span style="color:#f29718;">NAME</span><span>                          READY   STATUS    RESTARTS   AGE
+</span><span style="color:#f29718;">hello-world-d4c945676-fzpwc</span><span>   1/1     Running   0          22m
+</span><span style="color:#f29718;">hello-world-d4c945676-sz66l</span><span>   1/1     Running   0          22m
+</span><span style="color:#f29718;">hello-world-d4c945676-xzd7m</span><span>   1/1     Running   0          22m
+</span></code></pre>
+<p>We can access to each pod individually with the following URL:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>http://localhost:8001/api/v1/namespaces/default/pods/&lt;POD_NAME&gt;:8080/proxy/
+</span></code></pre>
+<h3 id="services"><a class="zola-anchor" href="#services" aria-label="Anchor link for: services">Services</a></h3>
+<p>From the Docs:</p>
+<blockquote>
+<p>A Service in Kubernetes is an abstraction which defines a logical set of Pods and a policy by which to access them.</p>
+</blockquote>
+<blockquote>
+<p>A service routes traffic across the defined pods.</p>
+</blockquote>
+<p>Table of services:</p>
+<table><thead><tr><th style="text-align: center">Type</th><th style="text-align: center">Description</th></tr></thead><tbody>
+<tr><td style="text-align: center">ClusterIP</td><td style="text-align: center">Exposes the Service on an internal IP in the cluster.</td></tr>
+<tr><td style="text-align: center">NodePort</td><td style="text-align: center">Exposes the Service on each Node’s IP at a static port (NodePort). Makes a Service accessible from outside the cluster using <code>&lt;NodeIP&gt;:&lt;NodePort&gt;</code>.</td></tr>
+<tr><td style="text-align: center">LoadBalancer</td><td style="text-align: center">Exposes the Service externally using a cloud provider's load balancer.</td></tr>
+<tr><td style="text-align: center">ExternalName</td><td style="text-align: center">Maps the Service to the contents of the externalName field, returning a CNAME record. No proxying is set up.</td></tr>
+</tbody></table>
+<p>A service can be created with the <code>kubectl expose &lt;deployment&gt; --type=&lt;type&gt; --port=&lt;port&gt;</code>. However, it can also be defined in a <code>.yml</code> file.</p>
+<p>For example, if we want to use a <code>LoadBalancer</code> service with our existing deployment file, add the following configuration at the end and add the role label to the deployment:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span>      </span><span style="color:#f29718;">labels:
+</span><span>        </span><span style="color:#f29718;">app:</span><span> hello-app
+</span><span>        </span><span style="color:#f29718;">role:</span><span> hello-role </span><span style="color:#ed9366;">&lt;</span><span style="color:#61676ccc;">-</span><span>- add the role label to the deployment
+</span><span style="color:#f29718;">---
+</span><span style="color:#f29718;">apiVersion:</span><span> v1
+</span><span style="color:#f29718;">kind:</span><span> Service
+</span><span style="color:#f29718;">metadata:
+</span><span>  </span><span style="color:#f29718;">name:</span><span> hello-service
+</span><span style="color:#f29718;">spec:
+</span><span>  </span><span style="color:#f29718;">type:</span><span> LoadBalancer
+</span><span>  </span><span style="color:#f29718;">selector:
+</span><span>    </span><span style="color:#f29718;">role:</span><span> hello-role
+</span><span>  </span><span style="color:#f29718;">ports:
+</span><span>    </span><span style="color:#f29718;">-</span><span> port: 8080
+</span><span>      </span><span style="color:#f29718;">targetPort:</span><span> 8080
+</span></code></pre>
+<p>Now if we apply the file:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> apply</span><span style="color:#ff8f40;"> -f</span><span> k8s_deployment.yml
+</span></code></pre>
+<p>And then we do a curl, we should have access to the LoadBalancer:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">❯</span><span> curl http://127.0.0.1:8080
+</span><span style="color:#f29718;">Hello,</span><span> world!
+</span><span style="color:#f29718;">Version:</span><span> 1.0.0
+</span><span style="color:#f29718;">Hostname:</span><span> hello-world-5486f9dfc5-6bkhr
+</span></code></pre>
+<blockquote>
+<p>[!NOTE]
+If using minikube, the <code>service</code> has to be exposed <code>minikube service hello-service --url</code></p>
+</blockquote>
+<p>The <code>LoadBalancer</code> service handles the case where it doesn't matter which pod you are accessing and it even takes into account the network traffic.</p>
+<h2 id="ingress"><a class="zola-anchor" href="#ingress" aria-label="Anchor link for: ingress">Ingress</a></h2>
+<p>Ingress is an Nginx server that simplifies the creation of paths and can distribute traffic load.</p>
+<p>What happens if there are two nodes running multiple pods, each hosting different APIs, and the goal is to manage all traffic through a single URL?</p>
+<p>For example, if we want to have 2 versions of a given URL and another for developing we cmay want the following scheme:</p>
+<ul>
+<li><code>url/v1</code></li>
+<li><code>url/v2</code></li>
+<li><code>url/dev</code></li>
+</ul>
+<p>In such case, we will have a deployment for each app, which may have multiple replicas as pods, then a service to manage the pods' networking and finally the Ingress controller.</p>
+<h3 id="helm"><a class="zola-anchor" href="#helm" aria-label="Anchor link for: helm">Helm</a></h3>
+<blockquote>
+<p>The package manager for Kubernetes</p>
+<p>Helm is the best way to find, share, and use software built for Kubernetes</p>
+</blockquote>
+<p>With <code>helm</code>, the Ingress controller can be installed with the following command:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">helm</span><span> upgrade</span><span style="color:#ff8f40;"> --install</span><span> ingress-nginx ingress-nginx </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">  --repo</span><span> https://kubernetes.github.io/ingress-nginx </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">  --namespace</span><span> ingress-nginx</span><span style="color:#ff8f40;"> --create-namespace
+</span></code></pre>
+<hr />
+<p>Now, paste the definition of the Ingress controller inside the deployment file:</p>
+<pre data-lang="yml" style="background-color:#fafafa;color:#61676c;" class="language-yml "><code class="language-yml" data-lang="yml"><span>---
+</span><span style="color:#399ee6;">apiVersion</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">networking.k8s.io/v1
+</span><span style="color:#399ee6;">kind</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">Ingress
+</span><span style="color:#399ee6;">metadata</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">hello-ing
+</span><span>  </span><span style="color:#399ee6;">labels</span><span style="color:#61676ccc;">:
+</span><span>    </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">hello-ing
+</span><span>  </span><span style="color:#399ee6;">annotations</span><span style="color:#61676ccc;">:
+</span><span>    </span><span style="color:#399ee6;">nginx.ingress.kubernetes.io/rewrite-target</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">/
+</span><span style="color:#399ee6;">spec</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">ingressClassName</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;nginx&quot;
+</span><span>  </span><span style="color:#399ee6;">rules</span><span style="color:#61676ccc;">:
+</span><span>    - </span><span style="color:#399ee6;">host</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">localhost
+</span><span>      </span><span style="color:#399ee6;">http</span><span style="color:#61676ccc;">:
+</span><span>        </span><span style="color:#399ee6;">paths</span><span style="color:#61676ccc;">:
+</span><span>          - </span><span style="color:#399ee6;">path</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">/v1
+</span><span>            </span><span style="color:#399ee6;">pathType</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">Prefix
+</span><span>            </span><span style="color:#399ee6;">backend</span><span style="color:#61676ccc;">:
+</span><span>              </span><span style="color:#399ee6;">service</span><span style="color:#61676ccc;">:
+</span><span>                </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">hello-service
+</span><span>                </span><span style="color:#399ee6;">port</span><span style="color:#61676ccc;">:
+</span><span>                  </span><span style="color:#399ee6;">number</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">8080
+</span></code></pre>
+<p>Apply the changes:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">kubectl</span><span> apply</span><span style="color:#ff8f40;"> -f</span><span> k8s_deployment.yml
+</span></code></pre>
+<blockquote>
+<p>[!NOTE]
+The Ingress Node is in another namespace: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespaces | Kubernetes</a></p>
+</blockquote>
+<p>Finally, the curl command returns the expected output:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">❯</span><span> curl localhost/v1
+</span><span style="color:#f29718;">Hello,</span><span> world!
+</span><span style="color:#f29718;">Version:</span><span> 1.0.0
+</span><span style="color:#f29718;">Hostname:</span><span> hello-world-5486f9dfc5-lqclc
+</span></code></pre>
+<h1 id="resources"><a class="zola-anchor" href="#resources" aria-label="Anchor link for: resources">Resources</a></h1>
+<ul>
+<li><a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/">Learn Kubernetes Basics | Kubernetes</a></li>
+<li><a href="https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Fx86-64%2Fstable%2Fbinary+download">minikube start | minikube</a></li>
+<li><a href="https://www.youtube.com/watch?v=r2zuL9MW6wc">Kubernetes Explained in 15 Minutes | Hands On (2024 Edition) - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=XltFOyGanYE">Kubernetes 101: Deploying Your First Application! - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=DCoBcpOA7W4">KUBERNETES De NOVATO a PRO! (CURSO COMPLETO EN ESPAÑOL) - YouTube</a></li>
+</ul>
+<h2 id="ingress-1"><a class="zola-anchor" href="#ingress-1" aria-label="Anchor link for: ingress-1">Ingress</a></h2>
+<ul>
+<li><a href="https://kubernetes.github.io/ingress-nginx/deploy/#quick-start">Installation Guide - Ingress-Nginx Controller</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource">Ingress | Kubernetes</a></li>
+<li><a href="https://www.youtube.com/watch?v=g9EqZiTWLGA">Ingress Made Easy! Install and Configure the Ingress NGINX Controller for Kubernetes - YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=13y1tWEK2ZY">Kubernetes Ingress Tutorial: Day 32 of 100DaysOfKubernetes - YouTube</a></li>
+</ul>
+
+            </section>
+        </article>
+    </main>
+
+
+
+            
+                
+            
+
+            
+        </div>
+    </body>
+
+</html>
