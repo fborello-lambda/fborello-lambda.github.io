@@ -1,6 +1,6 @@
 +++
 title = "playground_rs"
-description = "Experiments written in Rust🦀."
+description = "🦀 Small experiments written in Rust"
 weight = 1
 
 [extra]
