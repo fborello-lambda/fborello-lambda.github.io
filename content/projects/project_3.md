@@ -1,6 +1,6 @@
 +++
-title = "playground_rs"
-description = "🌞 Solar Panel I-V Curve Tracer."
+title = "solar_panel_curve_tracer"
+description = "🌞 Solar Panel I-V Curve Tracer"
 weight = 1
 
 [extra]
