@@ -1,6 +1,6 @@
 +++
 title = "linux_device_drivers_hw"
-description = "©️ Linux Device Drivers | Small experiments with hardware"
+description = "©️ Linux Device Drivers | Small experiments"
 weight = 1
 
 [extra]

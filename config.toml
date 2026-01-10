@@ -31,4 +31,4 @@ stylesheets = [
     "dark.css",  # without this the sass/dark.scss file is not used
     "light.css", # without this the sass/light.scss file is not used
 ]
-favicon = "/icons/bug-icon.svg"
+favicon = "/icons/wave-icon.svg"
