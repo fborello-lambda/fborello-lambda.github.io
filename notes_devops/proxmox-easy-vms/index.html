@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" class="dark light">
+
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="base" content="https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;" />
+
+    
+
+    
+
+    
+    
+    
+        <title>
+            
+                Proxmox Easy VMs
+            
+        </title>
+
+        
+            <meta property="og:title"
+                  content="Proxmox Easy VMs" />
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+    
+        <link rel="icon"
+              type="image/png"
+              href="https://fborello-lambda.github.io/icons/wave-icon.svg" />
+    
+
+    
+    
+        <link href=https://fborello-lambda.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        <script defer src=https://fborello-lambda.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script defer src=https://fborello-lambda.github.io/js/toc.js></script>
+    
+
+    
+    
+        <script defer src=https://fborello-lambda.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+                MathJax = {
+                    tex: {
+                        inlineMath: [
+                            ['$', '$'],
+                            ['\\(', '\\)']
+                        ]
+                    }
+                };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    
+
+
+    
+    
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/light.css" />
+        <link id="darkModeStyle"
+              rel="stylesheet"
+              type="text/css"
+              href="https://fborello-lambda.github.io/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+
+    
+        <script src=https://fborello-lambda.github.io/js/themetoggle.js></script>
+
+        
+            <script>
+                setTheme(getSavedTheme());
+            </script>
+        
+    
+
+
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="https://fborello-lambda.github.io/main.css" />
+
+    
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/dark.css" />
+        
+            <link rel="stylesheet" href="https://fborello-lambda.github.io/light.css" />
+        
+    
+
+    <script defer
+                    src="https://fborello-lambda.github.io/search_index.en.js?h=38a430b74e4dad2c5ff0"></script>
+        <script defer
+                src="https://fborello-lambda.github.io/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e"></script></head>
+
+
+    <body>
+        <div class="left-content">
+            
+            
+        </div>
+
+        <div class="content">
+            <nav>
+    <div class="left-nav">
+        
+            <a href=https:&#x2F;&#x2F;fborello-lambda.github.io&#x2F;>In Case I Forget</a>
+        
+
+
+        <div class="socials">
+            
+                
+            
+            
+                <a rel='me' href="https:&#x2F;&#x2F;github.com&#x2F;fborello-lambda" class="social">
+                    <img alt="github"
+                         src="https://fborello-lambda.github.io/icons/social/github.svg" />
+                </a>
+            
+        </div>
+    </div>
+
+    <div class="right-nav">
+        
+            <a href=https://fborello-lambda.github.io/notes_ee style="margin-right: 0.5em">&#x2F;ee</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_cs style="margin-right: 0.5em">&#x2F;cs</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_devops style="margin-right: 0.5em">&#x2F;devops</a>
+        
+            <a href=https://fborello-lambda.github.io/notes_misc style="margin-right: 0.5em">&#x2F;misc</a>
+        
+            <a href=https://fborello-lambda.github.io/projects style="margin-right: 0.5em">&#x2F;projects</a>
+        
+            <a href=https://fborello-lambda.github.io/tags style="margin-right: 0.5em">&#x2F;tags</a>
+        
+
+        
+            <button id="search-button"
+                    class="search-button"
+                    title="$SHORTCUT to open search">
+                <img src="https://fborello-lambda.github.io/icons/search.svg"
+                     alt="Search"
+                     class="search-icon" />
+            </button>
+
+            <div id="searchModal"
+                 class="search-modal js"
+                 role="dialog"
+                 aria-labelledby="modalTitle">
+                <div id="modal-content">
+                    <h1 id="modalTitle" class="page-header">
+                        Search
+                    </h1>
+                    <div id="searchBar">
+                        <input id="searchInput"
+                               role="combobox"
+                               autocomplete="off"
+                               spellcheck="false"
+                               aria-expanded="false"
+                               aria-controls="results-container"
+                               placeholder="Search..." />
+                        <button id="clear-search" class="clear-button" title="Clear search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-container">
+                        <div id="results-info">
+                            <span id="zero_results" style="display: none;">No results</span>
+                            <span id="one_result" style="display: none;">1 result</span>
+                            <span id="many_results" style="display: none;">$NUMBER results</span>
+                        </div>
+                        <div id="results" role="listbox">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <a id="dark-mode-toggle"
+               onclick="toggleTheme(); event.preventDefault();"
+               href="#">
+                <img src="https://fborello-lambda.github.io/icons/sun.svg" id="sun-icon" alt="Light" />
+                <img src="https://fborello-lambda.github.io/icons/moon.svg"
+                     id="moon-icon"
+                     style="filter: invert(1)"
+                     alt="Dark" />
+                <img src="https://fborello-lambda.github.io/icons/auto.svg"
+                     id="auto-icon"
+                     style="filter: invert(1)"
+                     alt="Auto" />
+            </a>
+
+            <!-- Initialize the theme toggle icons -->
+            <script>
+                updateItemToggleTheme()
+            </script>
+        
+    </div>
+</nav>
+
+
+            
+            
+    
+    <div class="visible-element-observer-root" data-selector="main article p">
+        <main>
+            <article>
+                <div class="title">
+                    
+                    
+    
+        <div class="page-header">
+            Proxmox Easy VMs
+        </div>
+    
+
+
+                    <div class="meta">
+                        
+                            Posted on <time>2026-01-09</time>
+                        
+
+
+                        
+
+                        
+
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            <span class="tags-label">::</span>
+                            <span class="tags">
+                                    <a href="https://fborello-lambda.github.io/tags/devops/"
+                                       class="post-tag">devops</a>
+                                
+                                    <a href="https://fborello-lambda.github.io/tags/proxmox/"
+                                       class="post-tag">proxmox</a>
+                                
+                            </span>
+                        
+
+                        
+
+                    </div>
+                </div>
+
+                
+
+                <section class="body">
+                    <h2 id="how-to-create-a-vm-template-pve-9-1-2"><a class="zola-anchor" href="#how-to-create-a-vm-template-pve-9-1-2" aria-label="Anchor link for: how-to-create-a-vm-template-pve-9-1-2">How to Create a VM Template - PVE 9.1.2</a></h2>
+<p>Being able to have a ready to go image to fire VMs up is extremely useful for quick and easy to use sandboxes for isolated projects.</p>
+<p>Creating Templates from an already existing VM is really easy from the proxmox's GUI. If, for instance, an <code>ubuntu-server</code> image is used to generate the VM, it can be just set to be a <code>Template</code>, but there are some things to take into account.</p>
+<h2 id="problem-duplicated-ip"><a class="zola-anchor" href="#problem-duplicated-ip" aria-label="Anchor link for: problem-duplicated-ip">Problem - Duplicated IP</a></h2>
+<p>There's a catch, the <code>machine-id</code>, when using the template to create a cloned instance, the <code>machine-id</code> is duplicated, also the MAC address and consequently the IP address will not differ between instances.</p>
+<p>A way of fixing this issue is by manually removing the <code>machine-id</code> (<a href="https://unix.stackexchange.com/questions/402999/is-it-ok-to-change-etc-machine-id">systemd - Is it OK to change /etc/machine-id? - Unix &amp; Linux Stack Exchange</a>) and then creating a template out of that instance:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">rm</span><span style="color:#ff8f40;"> -f</span><span> /etc/machine-id </span><span style="color:#ed9366;">&amp;&amp; </span><span style="color:#f29718;">dbus-uuidgen</span><span style="color:#ff8f40;"> --ensure</span><span style="color:#ed9366;">=</span><span>/etc/machine-id </span><span style="color:#ed9366;">&amp;&amp; </span><span style="color:#f29718;">rm</span><span> /var/lib/dbus/machine-id </span><span style="color:#ed9366;">&amp;&amp; </span><span style="color:#f29718;">dbus-uuidgen</span><span style="color:#ff8f40;"> --ensure
+</span></code></pre>
+<p>Then the cloned instance should regenerate the <code>machine-id</code> the first time it boots... Well, it doesn't, the instance cannot boot properly</p>
+<p>A second approach would be changing the IP for each new clone, but it's an ugly solution and tedious to do.</p>
+<p>With the <code>ip a</code> command we can get the network link associated with our ip address.
+In this case it's <code>ens18</code>.</p>
+<p>So, using <code>vim</code> to write the config file:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">sudo</span><span> vim /etc/netplan/50-cloud-init.yaml
+</span></code></pre>
+<p>The following:</p>
+<pre data-lang="yaml" style="background-color:#fafafa;color:#61676c;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#399ee6;">network</span><span style="color:#61676ccc;">:
+</span><span>  </span><span style="color:#399ee6;">version</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">2
+</span><span>  </span><span style="color:#399ee6;">ethernets</span><span style="color:#61676ccc;">:
+</span><span>    </span><span style="color:#399ee6;">ens18</span><span style="color:#61676ccc;">:
+</span><span>        </span><span style="color:#399ee6;">dhcp4</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">false
+</span><span>        </span><span style="color:#399ee6;">addresses</span><span style="color:#61676ccc;">:
+</span><span>          - </span><span style="color:#86b300;">192.168.0.254/24
+</span><span>        </span><span style="color:#399ee6;">nameservers</span><span style="color:#61676ccc;">:
+</span><span>          </span><span style="color:#399ee6;">addresses</span><span style="color:#61676ccc;">:
+</span><span>            - </span><span style="color:#ff8f40;">8</span><span style="color:#61676ccc;">.</span><span style="color:#ff8f40;">8.8.8
+</span><span>            - </span><span style="color:#ff8f40;">8</span><span style="color:#61676ccc;">.</span><span style="color:#ff8f40;">8.4.4
+</span><span>        </span><span style="color:#399ee6;">routes</span><span style="color:#61676ccc;">:
+</span><span>          - </span><span style="color:#399ee6;">to</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">default
+</span><span>            </span><span style="color:#399ee6;">via</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">192</span><span style="color:#61676ccc;">.</span><span style="color:#ff8f40;">168.0.1
+</span></code></pre>
+<p>And applying the changes with:</p>
+<pre data-lang="sh" style="background-color:#fafafa;color:#61676c;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#f29718;">sudo</span><span> netplan apply
+</span></code></pre>
+<p>The static IP address should be set. Take into account that the router plays a big role in this, it may differ quite a lot. Ideally a sub network could be made for all the VM instances so the static IP addresses doesn't alter the "main" network.</p>
+<p>It may work but it doesn't scale well. <code>cloud-init</code> gives more flexibility.</p>
+<h2 id="solution-cloud-init"><a class="zola-anchor" href="#solution-cloud-init" aria-label="Anchor link for: solution-cloud-init">Solution - Cloud Init</a></h2>
+<p>To make it work, an ubuntu server vm can be created and configured with <code>cloud-init</code> or even simpler, an already created image can be used from <a href="https://cloud-images.ubuntu.com/">Ubuntu Cloud Images</a>. A QCow2 UEFI/GPT Bootable disk image is needed, it can be downloaded from the proxmox's GUI with <code>Download from URL</code> button (Also the sha256sum can be validated with the same tool)</p>
+<p>Then, to create the template the docs have a dedicated section: <a href="https://pve.proxmox.com/wiki/Cloud-Init_Support">Cloud-Init Support - Proxmox VE</a>. There are some extra tweaks that may be worth mentioning:</p>
+<ul>
+<li>Set the CPU to <code>host</code>.</li>
+<li>Set the disk to <code>SSD emulation</code> (if an SSD is being used).</li>
+<li>Enlarge the template's boot disk, by doing so the cloned instances will have more disk available with no extra steps.</li>
+<li>Set the cloud-init file, the user, password, enable dhcp and set the ssh-keys of the PCs that need to access the VM.</li>
+</ul>
+<p>There is an excellent video tutorial that explains the steps from the documentation in detail:
+<a href="https://www.youtube.com/watch?v=Kv6-_--y5CM">Use Proxmox Cloud-Init to Deploy Your Virtual Machines! Kubernetes At Home - Part 2 - YouTube</a></p>
+<h2 id="resources"><a class="zola-anchor" href="#resources" aria-label="Anchor link for: resources">Resources</a></h2>
+<ul>
+<li><a href="https://forum.proxmox.com/threads/ip-address-duplicates-conflicts-when-cloning-from-a-template.84237/">IP Address duplicates/conflicts when cloning from a template | Proxmox Support Forum</a></li>
+<li><a href="https://tecadmin.net/how-to-configure-static-ip-address-on-ubuntu-22-04/">How to Configure Static IP Address on Ubuntu 22.04 – TecAdmin</a></li>
+<li><a href="https://serverfault.com/questions/24515/how-do-i-request-a-new-ip-address-from-my-dhcp-server-using-ubuntu-server">How do I request a new IP address from my DHCP server using Ubuntu Server? - Server Fault</a></li>
+<li><a href="https://forum.proxmox.com/threads/how-to-clone-a-vm-and-assign-a-different-ip-address-to-the-clone.161232/">How to Clone a VM and Assign a Different IP Address to the Clone? | Proxmox Support Forum</a></li>
+<li><a href="https://www.youtube.com/watch?v=E8heMmnS9Wc">Proxmox Home Lab - Using Cloud Init to speed up VM creation - YouTube</a></li>
+</ul>
+
+                </section>
+            </article>
+        </main>
+    </div>
+
+
+
+            
+                
+            
+
+            
+        </div>
+
+        <div class="right-content">
+            
+    
+    
+        <div class="toc">
+    <div class="heading">
+        Table of Contents
+    </div>
+    <ul class="toc-list">
+        
+            <li class="parent">
+                
+                <a href="https://fborello-lambda.github.io/notes_devops/proxmox-easy-vms/#how-to-create-a-vm-template-pve-9-1-2">How to Create a VM Template - PVE 9.1.2</a>
+
+                
+            </li>
+        
+            <li class="parent">
+                
+                <a href="https://fborello-lambda.github.io/notes_devops/proxmox-easy-vms/#problem-duplicated-ip">Problem - Duplicated IP</a>
+
+                
+            </li>
+        
+            <li class="parent">
+                
+                <a href="https://fborello-lambda.github.io/notes_devops/proxmox-easy-vms/#solution-cloud-init">Solution - Cloud Init</a>
+
+                
+            </li>
+        
+            <li class="parent">
+                
+                <a href="https://fborello-lambda.github.io/notes_devops/proxmox-easy-vms/#resources">Resources</a>
+
+                
+            </li>
+        
+    </ul>
+</div>
+
+    
+
+        </div>
+    </body>
+
+</html>
