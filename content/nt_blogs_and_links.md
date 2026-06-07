@@ -16,3 +16,7 @@ path = "nt_blogs_and_links"
   - [Basic Things](https://matklad.github.io/2024/03/22/basic-things.html)
   - [Cognitive load is what matters](https://minds.md/zakirullin/cognitive)
   - [Software Design is Knowledge Building | olano.dev](https://olano.dev/blog/software-design-is-knowledge-building/)
+- [You and Your Research](https://fs.blog/great-talks/richard-hamming-your-research/)
+  - Do what you think is important.
+- [Mental Models: The Best Way to Make Intelligent Decisions (\~100 Models Explained)](https://fs.blog/mental-models/#general_thinking_concepts)
+  - The big picture of how the world works.

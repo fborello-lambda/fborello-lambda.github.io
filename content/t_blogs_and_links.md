@@ -44,12 +44,14 @@ path = "t_blogs_and_links"
     - [Resources for ML | Ludwig](https://ludwigabap.bearblog.dev/resources-for-ml/)
   - Misc
     - [Disillusioning the Magic of the fork System Call](https://blog.codingconfessions.com/p/the-magic-of-fork)
+    - [getting-real.pdf](https://basecamp.com/gettingreal/getting-real.pdf)
 - Hardware
   - [**GPU acceleration in ZK crypto**](https://www.youtube.com/watch?v=JJMZQzVhCvY)
   - [**Talk on Icicle by Ingonyama**](https://www.youtube.com/watch?v=mUo0WtLnEHU)
 - Videos
   - Distributed Systems
     - [Distributed Systems in One Lesson by Tim Berglund - YouTube](https://www.youtube.com/watch?v=Y6Ev8GIlbxc)
+    - [Rust Traits - Implementing the Actor pattern with traits - YouTube](https://www.youtube.com/watch?v=tOYlxaC-3QQ&t=169s)
   - Machine Learning
     - [The Dark Matter of AI [Mechanistic Interpretability] - YouTube](https://www.youtube.com/watch?v=UGO_Ehywuxc)
   - Misc
